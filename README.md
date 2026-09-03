@@ -1,2 +1,2 @@
 # Qua - Tang
-Mon - Qua - Yêu - Thương
+Mon - Qua - Yeu - Thương
