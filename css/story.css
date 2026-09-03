@@ -1,0 +1,328 @@
+.story-container {
+
+    position: relative;
+    z-index: 2;
+
+    padding:
+        55px 0 80px;
+}
+
+
+.story-header {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.story-label {
+
+    letter-spacing: 7px;
+
+    font-size: 13px;
+
+    opacity: .7;
+}
+
+
+.story-header h1 {
+
+    margin:
+        18px 0 10px;
+
+    font-size:
+        clamp(38px, 9vw, 64px);
+
+    line-height: 1.1;
+}
+
+
+.story-header div:last-child {
+
+    font-size: 20px;
+
+    opacity: .75;
+}
+
+
+.story-card {
+
+    margin-bottom: 25px;
+
+    padding: 30px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 28px;
+
+    background:
+        var(--card);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,.2);
+}
+
+
+.story-card h2 {
+
+    text-align: center;
+
+    margin:
+        0 0 8px;
+
+    color:
+        var(--accent);
+
+    font-size: 28px;
+}
+
+
+.card-subtitle {
+
+    text-align: center;
+
+    margin:
+        0 0 25px;
+
+    opacity: .65;
+}
+
+
+/* =========================
+   COUNTER
+========================= */
+
+.counter-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+}
+
+
+.counter-item {
+
+    min-height: 115px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 20px;
+
+    background:
+        rgba(0,0,0,.15);
+}
+
+
+.counter-item strong {
+
+    color:
+        var(--accent);
+
+    font-size: 38px;
+
+    line-height: 1;
+}
+
+
+.counter-item span {
+
+    margin-top: 9px;
+
+    font-size: 14px;
+
+    opacity: .7;
+}
+
+
+/* =========================
+   QUOTE
+========================= */
+
+.quote-card {
+
+    min-height: 230px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.quote-card p {
+
+    max-width: 620px;
+
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 25px;
+
+    font-style: italic;
+
+    line-height: 1.7;
+
+    opacity: .85;
+}
+
+
+/* =========================
+   YOUTUBE
+========================= */
+
+.youtube-box {
+
+    position: relative;
+
+    width: 100%;
+
+    padding-top: 56.25%;
+
+    margin-top: 20px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        rgba(0,0,0,.3);
+}
+
+
+.youtube-box iframe {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+
+/* =========================
+   LETTER
+========================= */
+
+.letter {
+
+    white-space: pre-line;
+
+    line-height: 1.9;
+
+    font-size: 17px;
+
+    color:
+        var(--text-soft);
+
+    padding:
+        10px 5px;
+}
+
+
+.signature {
+
+    text-align: right;
+
+    margin-top: 25px;
+
+    color:
+        var(--accent);
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+footer {
+
+    text-align: center;
+
+    opacity: .4;
+
+    font-size: 13px;
+
+    padding-top: 10px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .story-container {
+        width:
+            calc(100% - 24px);
+
+        padding-top: 35px;
+    }
+
+
+    .story-card {
+        padding: 22px 17px;
+
+        border-radius: 23px;
+    }
+
+
+    .story-card h2 {
+        font-size: 24px;
+    }
+
+
+    .counter-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+
+    .counter-item {
+        min-height: 110px;
+    }
+
+
+    .counter-item strong {
+        font-size: 34px;
+    }
+
+
+    .quote-card {
+        min-height: 210px;
+    }
+
+
+    .quote-card p {
+        font-size: 21px;
+    }
+
+}
