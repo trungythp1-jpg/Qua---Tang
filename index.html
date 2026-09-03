@@ -2,18 +2,30 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Our Love Story ❤️</title>
 
-    <link rel="stylesheet" href="css/story.css">
+    <link
+        rel="stylesheet"
+        href="css/story.css"
+    >
 </head>
 
 <body>
 
-    <!-- Màn hình mở quà -->
-    <section id="openingScreen" class="opening-screen">
+    <!-- ==============================
+         MÀN HÌNH MỞ QUÀ
+    =============================== -->
+
+    <section
+        id="openingScreen"
+        class="opening-screen"
+    >
 
         <div class="opening-content">
 
@@ -22,14 +34,20 @@
             </div>
 
             <h1>
-                Dành cho <span id="receiverName">Em</span>
+                Dành cho
+                <span id="receiverName">
+                    Em
+                </span>
             </h1>
 
             <p>
                 Có một câu chuyện anh muốn kể lại cho em...
             </p>
 
-            <button id="openStoryBtn">
+            <button
+                id="openStoryBtn"
+                type="button"
+            >
                 Hãy mở nó nhé ❤️
             </button>
 
@@ -38,12 +56,22 @@
     </section>
 
 
-    <!-- Câu chuyện tình yêu -->
-    <main id="storyPage" class="story-page">
+    <!-- ==============================
+         TRANG LOVE STORY
+    =============================== -->
+
+    <main
+        id="storyPage"
+        class="story-page"
+    >
 
         <div class="story-container">
 
-            <!-- Tiêu đề -->
+
+            <!-- ==========================
+                 PHẦN TIÊU ĐỀ
+            =========================== -->
+
             <section class="hero">
 
                 <div class="hero-label">
@@ -54,14 +82,20 @@
                     Trung Trang
                 </h1>
 
-                <div class="start-date" id="startDateText">
+                <div
+                    id="startDateText"
+                    class="start-date"
+                >
                     04/03/2018
                 </div>
 
             </section>
 
 
-            <!-- Bộ đếm -->
+            <!-- ==========================
+                 BỘ ĐẾM THỜI GIAN
+            =========================== -->
+
             <section class="counter-section">
 
                 <h2>
@@ -75,86 +109,127 @@
 
                 <div class="counter-grid">
 
-                    <!-- Năm -->
+
+                    <!-- NĂM -->
+
                     <div class="counter-box">
-                        <div id="years" class="counter-number">
+
+                        <div
+                            id="years"
+                            class="counter-number"
+                        >
                             0
                         </div>
 
                         <div class="counter-label">
                             Năm
                         </div>
+
                     </div>
 
 
-                    <!-- Tháng -->
+                    <!-- THÁNG -->
+
                     <div class="counter-box">
-                        <div id="months" class="counter-number">
+
+                        <div
+                            id="months"
+                            class="counter-number"
+                        >
                             0
                         </div>
 
                         <div class="counter-label">
                             Tháng
                         </div>
+
                     </div>
 
 
-                    <!-- Ngày -->
+                    <!-- NGÀY -->
+
                     <div class="counter-box">
-                        <div id="days" class="counter-number">
+
+                        <div
+                            id="days"
+                            class="counter-number"
+                        >
                             0
                         </div>
 
                         <div class="counter-label">
                             Ngày
                         </div>
+
                     </div>
 
 
-                    <!-- Giờ -->
+                    <!-- GIỜ -->
+
                     <div class="counter-box">
-                        <div id="hours" class="counter-number">
+
+                        <div
+                            id="hours"
+                            class="counter-number"
+                        >
                             0
                         </div>
 
                         <div class="counter-label">
                             Giờ
                         </div>
+
                     </div>
 
 
-                    <!-- Phút -->
+                    <!-- PHÚT -->
+
                     <div class="counter-box">
-                        <div id="minutes" class="counter-number">
+
+                        <div
+                            id="minutes"
+                            class="counter-number"
+                        >
                             0
                         </div>
 
                         <div class="counter-label">
                             Phút
                         </div>
+
                     </div>
 
 
-                    <!-- Giây -->
+                    <!-- GIÂY -->
+
                     <div class="counter-box">
-                        <div id="seconds" class="counter-number">
+
+                        <div
+                            id="seconds"
+                            class="counter-number"
+                        >
                             00
                         </div>
 
                         <div class="counter-label">
                             Giây
                         </div>
+
                     </div>
 
                 </div>
 
 
-                <!-- TỔNG SỐ NGÀY -->
+                <!-- ======================
+                     TỔNG SỐ NGÀY
+                ======================= -->
+
                 <div class="total-days">
 
                     <div
                         id="totalDays"
-                        class="total-days-number">
+                        class="total-days-number"
+                    >
                         0
                     </div>
 
@@ -167,7 +242,10 @@
             </section>
 
 
-            <!-- Lời yêu thương -->
+            <!-- ==========================
+                 LỜI YÊU THƯƠNG
+            =========================== -->
+
             <section class="letter-section">
 
                 <div class="section-title">
@@ -176,13 +254,17 @@
 
                 <div
                     id="loveLetter"
-                    class="love-letter">
+                    class="love-letter"
+                >
                 </div>
 
             </section>
 
 
-            <!-- Kết -->
+            <!-- ==========================
+                 PHẦN KẾT
+            =========================== -->
+
             <section class="ending-section">
 
                 <div class="heart">
@@ -208,9 +290,19 @@
     </main>
 
 
-    <!-- Tim bay -->
-    <div id="heartsContainer"></div>
+    <!-- ==============================
+         TIM BAY
+    =============================== -->
 
+    <div
+        id="heartsContainer"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- ==============================
+         JAVASCRIPT
+    =============================== -->
 
     <script src="js/story.js"></script>
 
