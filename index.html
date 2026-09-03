@@ -10,32 +10,12 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="theme-color"
-        content="#180913"
-    >
-
-    <meta
-        name="description"
-        content="Một món quà đặc biệt dành cho người bạn yêu thương ❤️"
-    >
-
     <title>Our Love Story ❤️</title>
-
-
-    <!-- =========================================
-         CSS CHÍNH
-    ========================================== -->
 
     <link
         rel="stylesheet"
         href="css/story.css"
     >
-
-    <!-- =========================================
-         HỆ THỐNG 6 MÀU × 6 PHONG CÁCH
-         File này phải nằm SAU story.css
-    ========================================== -->
 
     <link
         rel="stylesheet"
@@ -47,10 +27,9 @@
 
 <body>
 
-
-    <!-- =================================================
+    <!-- =========================================
          MÀN HÌNH MỞ QUÀ
-    ================================================== -->
+    ========================================== -->
 
     <section
         id="openingScreen"
@@ -59,15 +38,9 @@
 
         <div class="opening-content">
 
-
-            <!-- Dòng nhỏ phía trên -->
-
             <div class="opening-small">
                 MỘT MÓN QUÀ ĐẶC BIỆT
             </div>
-
-
-            <!-- Người nhận -->
 
             <h1>
 
@@ -79,15 +52,9 @@
 
             </h1>
 
-
-            <!-- Lời giới thiệu -->
-
             <p>
                 Có một câu chuyện anh muốn kể lại cho em...
             </p>
-
-
-            <!-- Nút mở -->
 
             <button
                 id="openStoryBtn"
@@ -96,16 +63,14 @@
                 Hãy mở nó nhé ❤️
             </button>
 
-
         </div>
 
     </section>
 
 
-
-    <!-- =================================================
+    <!-- =========================================
          TRANG LOVE STORY
-    ================================================== -->
+    ========================================== -->
 
     <main
         id="storyPage"
@@ -115,22 +80,19 @@
         <div class="story-container">
 
 
-            <!-- =========================================
+            <!-- =====================================
                  HERO
-            ========================================== -->
+            ====================================== -->
 
             <section class="hero">
-
 
                 <div class="hero-label">
                     OUR LOVE STORY
                 </div>
 
-
                 <h1 id="coupleName">
                     Trung Trang
                 </h1>
-
 
                 <div
                     id="startDateText"
@@ -139,37 +101,60 @@
                     04/03/2018
                 </div>
 
+            </section>
+
+
+            <!-- =====================================
+                 YOUTUBE
+            ====================================== -->
+
+            <section
+                id="musicSection"
+                class="music-section"
+            >
+
+                <div class="section-title">
+                    🎵 Bài hát dành cho chúng ta
+                </div>
+
+                <p class="music-subtitle">
+                    Một bài hát nhỏ cho câu chuyện của chúng mình ❤️
+                </p>
+
+                <div class="music-player">
+
+                    <iframe
+                        id="youtubePlayer"
+                        title="Bài hát dành cho chúng ta"
+                        src=""
+                        loading="lazy"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+
+                </div>
 
             </section>
 
 
-
-            <!-- =========================================
-                 BỘ ĐẾM THỜI GIAN
-            ========================================== -->
+            <!-- =====================================
+                 COUNTER
+            ====================================== -->
 
             <section class="counter-section">
-
 
                 <h2>
                     Chúng ta đã bên nhau
                 </h2>
-
 
                 <p class="counter-subtitle">
                     Và thời gian vẫn đang tiếp tục... ❤️
                 </p>
 
 
-
-                <!-- =====================================
-                     6 Ô THỜI GIAN
-                ====================================== -->
-
                 <div class="counter-grid">
 
-
-                    <!-- NĂM -->
 
                     <div class="counter-box">
 
@@ -187,9 +172,6 @@
                     </div>
 
 
-
-                    <!-- THÁNG -->
-
                     <div class="counter-box">
 
                         <div
@@ -205,9 +187,6 @@
 
                     </div>
 
-
-
-                    <!-- NGÀY -->
 
                     <div class="counter-box">
 
@@ -225,9 +204,6 @@
                     </div>
 
 
-
-                    <!-- GIỜ -->
-
                     <div class="counter-box">
 
                         <div
@@ -243,9 +219,6 @@
 
                     </div>
 
-
-
-                    <!-- PHÚT -->
 
                     <div class="counter-box">
 
@@ -263,9 +236,6 @@
                     </div>
 
 
-
-                    <!-- GIÂY -->
-
                     <div class="counter-box">
 
                         <div
@@ -281,17 +251,10 @@
 
                     </div>
 
-
                 </div>
 
 
-
-                <!-- =====================================
-                     TỔNG SỐ NGÀY
-                ====================================== -->
-
                 <div class="total-days">
-
 
                     <div
                         id="totalDays"
@@ -300,68 +263,54 @@
                         0
                     </div>
 
-
                     <div class="total-days-label">
                         TỔNG SỐ NGÀY BÊN NHAU
                     </div>
 
-
                 </div>
-
 
             </section>
 
 
-
-            <!-- =========================================
-                 LỜI YÊU THƯƠNG
-            ========================================== -->
+            <!-- =====================================
+                 LOVE LETTER
+            ====================================== -->
 
             <section class="letter-section">
-
 
                 <div class="section-title">
                     Một chút yêu thương ❤️
                 </div>
 
-
                 <div
                     id="loveLetter"
                     class="love-letter"
-                >
-                </div>
-
+                ></div>
 
             </section>
 
 
-
-            <!-- =========================================
-                 PHẦN KẾT
-            ========================================== -->
+            <!-- =====================================
+                 ENDING
+            ====================================== -->
 
             <section class="ending-section">
-
 
                 <div class="heart">
                     ❤️
                 </div>
 
-
                 <h2>
                     Câu chuyện của chúng ta
                 </h2>
-
 
                 <p>
                     Và câu chuyện ấy vẫn chưa kết thúc...
                 </p>
 
-
                 <p class="forever">
                     Mình sẽ còn viết tiếp nhé ❤️
                 </p>
-
 
             </section>
 
@@ -371,10 +320,9 @@
     </main>
 
 
-
-    <!-- =================================================
+    <!-- =========================================
          TIM BAY
-    ================================================== -->
+    ========================================== -->
 
     <div
         id="heartsContainer"
@@ -382,15 +330,11 @@
     ></div>
 
 
-
-    <!-- =================================================
+    <!-- =========================================
          JAVASCRIPT
-    ================================================== -->
+    ========================================== -->
 
-    <script
-        src="js/story.js"
-    ></script>
-
+    <script src="js/story.js"></script>
 
 </body>
 
