@@ -1,18 +1,33 @@
 /* =========================================================
    LOVE STORY — STORY ENGINE
-   Version: Premium / Stable
+   Version: Premium Stable V2
    ========================================================= */
 
 (function () {
+
   "use strict";
+
 
   /* =======================================================
      DOM READY
      ======================================================= */
 
-  document.addEventListener("DOMContentLoaded", function () {
+  if (document.readyState === "loading") {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      initLoveStory,
+      {
+        once: true
+      }
+    );
+
+  } else {
+
     initLoveStory();
-  });
+
+  }
+
 
 
   /* =======================================================
@@ -21,176 +36,379 @@
 
   function initLoveStory() {
 
-    const params = new URLSearchParams(window.location.search);
+    try {
 
-    /* -------------------------------------------------------
-       GET DATA
-       ------------------------------------------------------- */
+      /*
+       * Đọc dữ liệu từ URL
+       *
+       * c     = couple
+       * t     = receiver
+       * d     = date
+       * m     = youtube
+       * l     = love letter
+       * theme = color theme
+       * style = visual style
+       */
 
-    const couple = params.get("c") || "Chun Chan";
-    const receiver = params.get("t") || "em";
-    const startDate = params.get("d") || "";
-    const youtubeUrl = params.get("m") || "";
-    const loveLetter = params.get("l") || "Anh Yêu Em";
-
-    const theme = safeTheme(
-      params.get("theme")
-    );
-
-    const style = safeStyle(
-      params.get("style")
-    );
-
-
-    /* -------------------------------------------------------
-       DOM ELEMENTS
-       ------------------------------------------------------- */
-
-    const openingScreen =
-      document.getElementById("openingScreen");
-
-    const openingReceiver =
-      document.getElementById("openingReceiver");
-
-    const openGiftButton =
-      document.getElementById("openGiftButton");
-
-    const storyContent =
-      document.getElementById("storyContent");
-
-    const coupleName =
-      document.getElementById("coupleName");
-
-    const heroReceiver =
-      document.getElementById("heroReceiver");
-
-    const startDateElement =
-      document.getElementById("startDate");
-
-    const loveLetterElement =
-      document.getElementById("loveLetter");
-
-    const letterContent =
-      document.getElementById("letterContent");
-
-    const musicSection =
-      document.getElementById("musicSection");
-
-    const youtubePlayer =
-      document.getElementById("youtubePlayer");
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
 
 
-    /* =======================================================
-       APPLY VISUAL THEME
-       ======================================================= */
+      /* -----------------------------------------------------
+         DATA
+         ----------------------------------------------------- */
 
-    applyVisualTheme(theme, style);
+      const couple =
+        cleanText(
+          params.get("c"),
+          "Chun Chan"
+        );
 
 
-    /* =======================================================
-       FILL CONTENT SAFELY
-       ======================================================= */
+      const receiver =
+        cleanText(
+          params.get("t"),
+          "em"
+        );
 
-    if (openingReceiver) {
-      openingReceiver.textContent = receiver;
+
+      const startDate =
+        params.get("d") || "";
+
+
+      const youtubeUrl =
+        params.get("m") || "";
+
+
+      const loveLetter =
+        cleanText(
+          params.get("l"),
+          "Anh Yêu Em ❤️"
+        );
+
+
+      const theme =
+        safeTheme(
+          params.get("theme")
+        );
+
+
+      const style =
+        safeStyle(
+          params.get("style")
+        );
+
+
+      /* -----------------------------------------------------
+         DOM
+         ----------------------------------------------------- */
+
+      const openingScreen =
+        document.getElementById(
+          "openingScreen"
+        );
+
+
+      const openingReceiver =
+        document.getElementById(
+          "openingReceiver"
+        );
+
+
+      const openGiftButton =
+        document.getElementById(
+          "openGiftButton"
+        );
+
+
+      const storyContent =
+        document.getElementById(
+          "storyContent"
+        );
+
+
+      const coupleName =
+        document.getElementById(
+          "coupleName"
+        );
+
+
+      const heroReceiver =
+        document.getElementById(
+          "heroReceiver"
+        );
+
+
+      const startDateElement =
+        document.getElementById(
+          "startDate"
+        );
+
+
+      /*
+       * QUAN TRỌNG:
+       *
+       * Chỉ còn #letterContent.
+       *
+       * Không tìm #loveLetter nữa.
+       */
+
+      const letterContent =
+        document.getElementById(
+          "letterContent"
+        );
+
+
+      const musicSection =
+        document.getElementById(
+          "musicSection"
+        );
+
+
+      const youtubePlayer =
+        document.getElementById(
+          "youtubePlayer"
+        );
+
+
+      /* =====================================================
+         APPLY THEME + STYLE
+         ===================================================== */
+
+      applyVisualTheme(
+        theme,
+        style
+      );
+
+
+      /* =====================================================
+         FILL CONTENT
+         ===================================================== */
+
+      if (openingReceiver) {
+
+        openingReceiver.textContent =
+          receiver;
+
+      }
+
+
+      if (coupleName) {
+
+        coupleName.textContent =
+          couple;
+
+      }
+
+
+      if (heroReceiver) {
+
+        heroReceiver.textContent =
+          receiver;
+
+      }
+
+
+      /*
+       * CHỈ GHI THƯ VÀO #letterContent
+       */
+
+      if (letterContent) {
+
+        letterContent.textContent =
+          loveLetter;
+
+      }
+
+
+      if (startDateElement) {
+
+        const formatted =
+          formatDate(
+            startDate
+          );
+
+
+        startDateElement.textContent =
+          formatted || "Chưa xác định";
+
+      }
+
+
+      /* =====================================================
+         INITIAL OPENING
+         ===================================================== */
+
+      setupInitialOpening(
+        openingScreen,
+        storyContent
+      );
+
+
+      /* =====================================================
+         OPEN GIFT
+         ===================================================== */
+
+      setupOpeningButton(
+        openingScreen,
+        openGiftButton,
+        storyContent
+      );
+
+
+      /* =====================================================
+         COUNTER
+         ===================================================== */
+
+      setupCounter(
+        startDate
+      );
+
+
+      /* =====================================================
+         YOUTUBE
+         ===================================================== */
+
+      setupYouTube(
+        youtubeUrl,
+        musicSection,
+        youtubePlayer
+      );
+
+
+      /* =====================================================
+         FLOATING HEARTS
+         ===================================================== */
+
+      setupFloatingHearts();
+
+
+    } catch (error) {
+
+      console.error(
+        "LOVE STORY: Không thể khởi tạo Story.",
+        error
+      );
+
     }
 
-    if (coupleName) {
-      coupleName.textContent = couple;
+  }
+
+
+
+  /* =========================================================
+     CLEAN TEXT
+     ========================================================= */
+
+  function cleanText(
+    value,
+    fallback
+  ) {
+
+    if (
+      value === null ||
+      value === undefined
+    ) {
+
+      return fallback;
+
     }
 
-    if (heroReceiver) {
-      heroReceiver.textContent = receiver;
-    }
 
-    if (letterContent) {
-      letterContent.textContent = loveLetter;
-    }
+    const text =
+      String(value).trim();
 
-    if (loveLetterElement) {
-      loveLetterElement.textContent = loveLetter;
-    }
 
-    if (startDateElement) {
-      startDateElement.textContent =
-        formatDate(startDate);
+    if (!text) {
+
+      return fallback;
+
     }
 
 
-    /* =======================================================
-       INITIAL OPENING STATE
-       ======================================================= */
+    return text;
+
+  }
+
+
+
+  /* =========================================================
+     INITIAL OPENING
+     ========================================================= */
+
+  function setupInitialOpening(
+    openingScreen,
+    storyContent
+  ) {
 
     /*
-      QUAN TRỌNG:
-
-      Khi trang vừa tải:
-      - Opening hiện
-      - Story ẩn hoàn toàn
-
-      Không phụ thuộc CSS hidden.
-    */
+     * Opening luôn xuất hiện
+     * khi trang được tải.
+     */
 
     if (openingScreen) {
 
-      openingScreen.style.display = "flex";
-      openingScreen.style.visibility = "visible";
-      openingScreen.style.opacity = "1";
-      openingScreen.style.pointerEvents = "auto";
+      openingScreen.style.display =
+        "flex";
+
+      openingScreen.style.visibility =
+        "visible";
+
+      openingScreen.style.opacity =
+        "1";
+
+      openingScreen.style.pointerEvents =
+        "auto";
+
+      openingScreen.classList.remove(
+        "opening-hidden"
+      );
+
       openingScreen.setAttribute(
         "aria-hidden",
         "false"
       );
+
     }
+
+
+    /*
+     * Story bị ẩn hoàn toàn
+     * cho tới khi bấm mở quà.
+     */
 
     if (storyContent) {
 
-      storyContent.hidden = true;
+      storyContent.hidden =
+        true;
 
-      storyContent.style.display = "none";
+      storyContent.classList.remove(
+        "story-visible"
+      );
+
+      storyContent.style.display =
+        "none";
+
+      storyContent.style.visibility =
+        "hidden";
+
+      storyContent.style.opacity =
+        "0";
+
+      storyContent.style.pointerEvents =
+        "none";
 
       storyContent.setAttribute(
         "aria-hidden",
         "true"
       );
+
     }
 
-
-    /* =======================================================
-       OPEN GIFT
-       ======================================================= */
-
-    setupOpeningButton(
-      openingScreen,
-      openGiftButton,
-      storyContent
-    );
-
-
-    /* =======================================================
-       COUNTER
-       ======================================================= */
-
-    setupCounter(startDate);
-
-
-    /* =======================================================
-       YOUTUBE
-       ======================================================= */
-
-    setupYouTube(
-      youtubeUrl,
-      musicSection,
-      youtubePlayer
-    );
-
-
-    /* =======================================================
-       FLOATING HEARTS
-       ======================================================= */
-
-    setupFloatingHearts();
   }
+
 
 
   /* =========================================================
@@ -204,103 +422,159 @@
   ) {
 
     if (!openGiftButton) {
+
       console.error(
         "LOVE STORY: Không tìm thấy #openGiftButton"
       );
+
       return;
+
     }
 
+
     /*
-      Hàm mở quà duy nhất.
-      Dùng cả style inline + hidden
-      để không bị CSS can thiệp.
-    */
+     * Chống chạy hàm mở 2 lần
+     * do click + touch.
+     */
+
+    let opened =
+      false;
+
 
     function openGift(event) {
 
       if (event) {
+
         event.preventDefault();
         event.stopPropagation();
+
       }
 
+
+      /*
+       * Nếu đã mở rồi thì bỏ qua.
+       */
+
+      if (opened) {
+
+        return;
+
+      }
+
+
+      opened =
+        true;
+
+
       console.log(
-        "LOVE STORY: Đã bấm nút mở quà"
+        "LOVE STORY: Đã mở món quà."
       );
 
 
       /* -----------------------------------------------------
-         1. ẨN OPENING SCREEN
+         KHÓA NÚT
          ----------------------------------------------------- */
 
-      if (openingScreen) {
+      openGiftButton.disabled =
+        true;
 
-        openingScreen.style.opacity = "0";
-        openingScreen.style.visibility = "hidden";
-        openingScreen.style.pointerEvents = "none";
+      openGiftButton.setAttribute(
+        "aria-disabled",
+        "true"
+      );
 
-        /*
-          Sau một khoảng ngắn:
-          display none hoàn toàn.
-        */
-
-        setTimeout(function () {
-
-          openingScreen.style.display = "none";
-
-          openingScreen.setAttribute(
-            "aria-hidden",
-            "true"
-          );
-
-        }, 350);
-      }
+      openGiftButton.style.pointerEvents =
+        "none";
 
 
       /* -----------------------------------------------------
-         2. HIỆN STORY
+         HIỆN STORY
          ----------------------------------------------------- */
 
       if (storyContent) {
 
-        storyContent.hidden = false;
+        storyContent.hidden =
+          false;
 
         storyContent.removeAttribute(
           "hidden"
         );
 
-        storyContent.style.display = "block";
+        storyContent.style.display =
+          "block";
 
-        storyContent.style.visibility = "visible";
+        storyContent.style.visibility =
+          "visible";
 
-        storyContent.style.opacity = "1";
+        storyContent.style.opacity =
+          "1";
 
-        storyContent.style.pointerEvents = "auto";
+        storyContent.style.pointerEvents =
+          "auto";
+
+        storyContent.classList.add(
+          "story-visible"
+        );
 
         storyContent.setAttribute(
           "aria-hidden",
           "false"
         );
 
-        /*
-          Scroll về đầu câu chuyện
-        */
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
       }
 
 
       /* -----------------------------------------------------
-         3. KHÓA NÚT
+         ẨN OPENING
          ----------------------------------------------------- */
 
-      openGiftButton.disabled = true;
-      openGiftButton.setAttribute(
-        "aria-disabled",
-        "true"
-      );
+      if (openingScreen) {
+
+        openingScreen.classList.add(
+          "opening-hidden"
+        );
+
+        openingScreen.style.opacity =
+          "0";
+
+        openingScreen.style.visibility =
+          "hidden";
+
+        openingScreen.style.pointerEvents =
+          "none";
+
+        openingScreen.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+
+        /*
+         * Xóa khỏi layout sau animation.
+         */
+
+        setTimeout(
+          function () {
+
+            openingScreen.style.display =
+              "none";
+
+          },
+          500
+        );
+
+      }
+
+
+      /* -----------------------------------------------------
+         VỀ ĐẦU STORY
+         ----------------------------------------------------- */
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
     }
 
 
@@ -321,50 +595,18 @@
        TOUCH
        ======================================================= */
 
-    /*
-      Một số trình duyệt mobile có thể xử lý
-      touch/click khác nhau.
-
-      Ta chỉ dùng touchstart để đảm bảo
-      nút phản hồi trên iPhone.
-    */
-
-    let touchHandled = false;
-
-    openGiftButton.addEventListener(
-      "touchstart",
-      function (event) {
-
-        touchHandled = true;
-
-        openGift(event);
-
-      },
-      {
-        passive: false
-      }
-    );
-
-
     openGiftButton.addEventListener(
       "touchend",
-      function (event) {
-
-        if (touchHandled) {
-          event.preventDefault();
-          touchHandled = false;
-        }
-
-      },
+      openGift,
       {
         passive: false
       }
     );
 
 
-    /*
-      Thêm keyboard accessibility
-    */
+    /* =======================================================
+       KEYBOARD
+       ======================================================= */
 
     openGiftButton.addEventListener(
       "keydown",
@@ -376,153 +618,231 @@
         ) {
 
           openGift(event);
+
         }
 
       }
     );
+
   }
 
 
+
   /* =========================================================
-     THEME + STYLE
+     APPLY VISUAL THEME
      ========================================================= */
 
-  function applyVisualTheme(theme, style) {
+  function applyVisualTheme(
+    theme,
+    style
+  ) {
 
-    const body = document.body;
+    const body =
+      document.body;
 
-    if (!body) return;
+
+    if (!body) {
+
+      return;
+
+    }
 
 
-    /* -------------------------------------------------------
-       XÓA CLASS CŨ
-       ------------------------------------------------------- */
+    /*
+     * Xóa theme/style cũ.
+     */
 
-    body.classList.forEach(function (className) {
+    const classes =
+      Array.from(
+        body.classList
+      );
 
-      if (
-        className.indexOf("theme-") === 0 ||
-        className.indexOf("style-") === 0
-      ) {
 
-        body.classList.remove(
-          className
-        );
+    classes.forEach(
+      function (className) {
+
+        if (
+          className.indexOf(
+            "theme-"
+          ) === 0 ||
+          className.indexOf(
+            "style-"
+          ) === 0
+        ) {
+
+          body.classList.remove(
+            className
+          );
+
+        }
+
       }
+    );
 
-    });
 
-
-    /* -------------------------------------------------------
-       THÊM THEME
-       ------------------------------------------------------- */
+    /*
+     * Theme màu.
+     */
 
     body.classList.add(
       "theme-" + theme
     );
 
 
-    /* -------------------------------------------------------
-       THÊM STYLE
-       ------------------------------------------------------- */
+    /*
+     * Visual style.
+     */
 
     body.classList.add(
       "style-" + style
     );
 
 
-    /* -------------------------------------------------------
-       DATA ATTRIBUTES
-       ------------------------------------------------------- */
+    /*
+     * Data attributes.
+     */
 
-    body.dataset.theme = theme;
-    body.dataset.style = style;
+    body.dataset.theme =
+      theme;
+
+    body.dataset.style =
+      style;
+
   }
+
 
 
   /* =========================================================
      SAFE THEME
      ========================================================= */
 
-  function safeTheme(theme) {
+  function safeTheme(
+    theme
+  ) {
 
     const themes = [
+
       "romantic",
+
       "rose",
+
       "purple",
+
       "pink",
+
       "night",
+
       "sunset"
+
     ];
+
 
     if (
       themes.indexOf(theme) !== -1
     ) {
+
       return theme;
+
     }
 
+
     return "romantic";
+
   }
+
 
 
   /* =========================================================
      SAFE STYLE
      ========================================================= */
 
-  function safeStyle(style) {
+  function safeStyle(
+    style
+  ) {
 
     const styles = [
+
       "glass",
+
       "luxury",
+
       "sakura",
+
       "cinematic",
+
       "letter",
+
       "minimal"
+
     ];
+
 
     if (
       styles.indexOf(style) !== -1
     ) {
+
       return style;
+
     }
 
+
     return "glass";
+
   }
 
 
+
   /* =========================================================
-     DATE
+     DATE PARSER
      ========================================================= */
 
-  function parseLocalDate(dateString) {
+  function parseLocalDate(
+    dateString
+  ) {
 
     if (!dateString) {
+
       return null;
+
     }
+
 
     const parts =
-      dateString.split("-");
+      String(dateString)
+        .split("-");
 
-    if (parts.length !== 3) {
+
+    if (
+      parts.length !== 3
+    ) {
+
       return null;
+
     }
+
 
     const year =
       Number(parts[0]);
 
+
     const month =
       Number(parts[1]);
+
 
     const day =
       Number(parts[2]);
 
+
     if (
-      !year ||
-      !month ||
-      !day
+      !Number.isInteger(year) ||
+      !Number.isInteger(month) ||
+      !Number.isInteger(day)
     ) {
+
       return null;
+
     }
+
 
     const date =
       new Date(
@@ -535,47 +855,70 @@
         0
       );
 
+
     /*
-      Kiểm tra ngày hợp lệ
-    */
+     * Kiểm tra ngày thực tế.
+     */
 
     if (
       date.getFullYear() !== year ||
       date.getMonth() !== month - 1 ||
       date.getDate() !== day
     ) {
+
       return null;
+
     }
 
+
     return date;
+
   }
+
 
 
   /* =========================================================
      FORMAT DATE
      ========================================================= */
 
-  function formatDate(dateString) {
+  function formatDate(
+    dateString
+  ) {
 
     const date =
-      parseLocalDate(dateString);
+      parseLocalDate(
+        dateString
+      );
+
 
     if (!date) {
+
       return "";
+
     }
+
 
     const day =
       String(
         date.getDate()
-      ).padStart(2, "0");
+      ).padStart(
+        2,
+        "0"
+      );
+
 
     const month =
       String(
         date.getMonth() + 1
-      ).padStart(2, "0");
+      ).padStart(
+        2,
+        "0"
+      );
+
 
     const year =
       date.getFullYear();
+
 
     return (
       day +
@@ -584,49 +927,110 @@
       "/" +
       year
     );
+
   }
+
 
 
   /* =========================================================
      COUNTER
      ========================================================= */
 
-  function setupCounter(startDateString) {
+  function setupCounter(
+    startDateString
+  ) {
 
     const startDate =
       parseLocalDate(
         startDateString
       );
 
+
     const years =
-      document.getElementById("years");
+      document.getElementById(
+        "years"
+      );
+
 
     const months =
-      document.getElementById("months");
+      document.getElementById(
+        "months"
+      );
+
 
     const days =
-      document.getElementById("days");
+      document.getElementById(
+        "days"
+      );
+
 
     const hours =
-      document.getElementById("hours");
+      document.getElementById(
+        "hours"
+      );
+
 
     const minutes =
-      document.getElementById("minutes");
+      document.getElementById(
+        "minutes"
+      );
+
 
     const seconds =
-      document.getElementById("seconds");
+      document.getElementById(
+        "seconds"
+      );
+
 
     const totalDays =
-      document.getElementById("totalDays");
+      document.getElementById(
+        "totalDays"
+      );
 
+
+    /*
+     * Không có ngày.
+     */
 
     if (!startDate) {
 
-      if (totalDays) {
-        totalDays.textContent = "0";
-      }
+      setCounterValue(
+        years,
+        "0"
+      );
+
+      setCounterValue(
+        months,
+        "0"
+      );
+
+      setCounterValue(
+        days,
+        "0"
+      );
+
+      setCounterValue(
+        hours,
+        "00"
+      );
+
+      setCounterValue(
+        minutes,
+        "00"
+      );
+
+      setCounterValue(
+        seconds,
+        "00"
+      );
+
+      setCounterValue(
+        totalDays,
+        "0"
+      );
 
       return;
+
     }
 
 
@@ -634,6 +1038,55 @@
 
       const now =
         new Date();
+
+
+      /*
+       * Nếu ngày bắt đầu ở tương lai.
+       */
+
+      if (
+        now.getTime() <
+        startDate.getTime()
+      ) {
+
+        setCounterValue(
+          years,
+          "0"
+        );
+
+        setCounterValue(
+          months,
+          "0"
+        );
+
+        setCounterValue(
+          days,
+          "0"
+        );
+
+        setCounterValue(
+          hours,
+          "00"
+        );
+
+        setCounterValue(
+          minutes,
+          "00"
+        );
+
+        setCounterValue(
+          seconds,
+          "00"
+        );
+
+        setCounterValue(
+          totalDays,
+          "0"
+        );
+
+        return;
+
+      }
 
 
       /* -----------------------------------------------------
@@ -644,21 +1097,20 @@
         now.getTime() -
         startDate.getTime();
 
+
       const total =
-        Math.max(
-          0,
-          Math.floor(
-            milliseconds /
-            86400000
-          )
+        Math.floor(
+          milliseconds /
+          86400000
         );
 
 
-      if (totalDays) {
-
-        totalDays.textContent =
-          formatNumber(total);
-      }
+      setCounterValue(
+        totalDays,
+        formatNumber(
+          total
+        )
+      );
 
 
       /* -----------------------------------------------------
@@ -669,18 +1121,26 @@
         now.getFullYear() -
         startDate.getFullYear();
 
+
       let m =
         now.getMonth() -
         startDate.getMonth();
+
 
       let d =
         now.getDate() -
         startDate.getDate();
 
 
+      /*
+       * Nếu ngày hiện tại nhỏ hơn
+       * ngày bắt đầu.
+       */
+
       if (d < 0) {
 
         m--;
+
 
         const previousMonth =
           new Date(
@@ -689,55 +1149,67 @@
             0
           );
 
+
         d +=
           previousMonth.getDate();
+
       }
 
+
+      /*
+       * Nếu tháng hiện tại nhỏ hơn
+       * tháng bắt đầu.
+       */
 
       if (m < 0) {
 
         y--;
 
         m += 12;
+
       }
 
 
       /*
-        Phần giờ/phút/giây
-      */
+       * Tính giờ/phút/giây.
+       */
 
-      let startToday =
+      const todayStart =
         new Date(
           now.getFullYear(),
           now.getMonth(),
           now.getDate(),
           startDate.getHours(),
           startDate.getMinutes(),
-          startDate.getSeconds()
+          startDate.getSeconds(),
+          0
         );
 
 
-      let diffMilliseconds =
+      let timeDifference =
         now.getTime() -
-        startToday.getTime();
+        todayStart.getTime();
 
 
       /*
-        Nếu thời điểm hiện tại
-        chưa tới giờ bắt đầu trong ngày,
-        điều chỉnh calendar day.
-      */
+       * Chưa tới giờ bắt đầu
+       * trong ngày hiện tại.
+       */
 
-      if (diffMilliseconds < 0) {
+      if (
+        timeDifference < 0
+      ) {
 
         d--;
 
-        diffMilliseconds +=
+        timeDifference +=
           86400000;
+
 
         if (d < 0) {
 
           m--;
+
 
           const previousMonth =
             new Date(
@@ -746,177 +1218,296 @@
               0
             );
 
+
           d +=
             previousMonth.getDate();
+
         }
+
 
         if (m < 0) {
 
           y--;
 
           m += 12;
+
         }
+
       }
 
+
+      /*
+       * Bảo vệ giá trị âm.
+       */
+
+      y =
+        Math.max(
+          0,
+          y
+        );
+
+
+      m =
+        Math.max(
+          0,
+          m
+        );
+
+
+      d =
+        Math.max(
+          0,
+          d
+        );
+
+
+      /*
+       * Giờ.
+       */
 
       const totalSeconds =
         Math.floor(
-          diffMilliseconds /
+          timeDifference /
           1000
         );
 
+
       const hh =
         Math.floor(
-          totalSeconds / 3600
+          totalSeconds /
+          3600
         );
+
 
       const mm =
         Math.floor(
-          (totalSeconds % 3600) /
-          60
+          (
+            totalSeconds %
+            3600
+          ) / 60
         );
 
+
       const ss =
-        totalSeconds % 60;
+        totalSeconds %
+        60;
 
 
       /* -----------------------------------------------------
-         WRITE
+         WRITE TO DOM
          ----------------------------------------------------- */
 
-      if (years) {
-        years.textContent =
-          Math.max(0, y);
-      }
+      setCounterValue(
+        years,
+        String(y)
+      );
 
-      if (months) {
-        months.textContent =
-          Math.max(0, m);
-      }
 
-      if (days) {
-        days.textContent =
-          Math.max(0, d);
-      }
+      setCounterValue(
+        months,
+        String(m)
+      );
 
-      if (hours) {
-        hours.textContent =
-          String(
-            Math.max(0, hh)
-          ).padStart(2, "0");
-      }
 
-      if (minutes) {
-        minutes.textContent =
-          String(
-            Math.max(0, mm)
-          ).padStart(2, "0");
-      }
+      setCounterValue(
+        days,
+        String(d)
+      );
 
-      if (seconds) {
-        seconds.textContent =
-          String(
-            Math.max(0, ss)
-          ).padStart(2, "0");
-      }
+
+      setCounterValue(
+        hours,
+        String(hh)
+          .padStart(
+            2,
+            "0"
+          )
+      );
+
+
+      setCounterValue(
+        minutes,
+        String(mm)
+          .padStart(
+            2,
+            "0"
+          )
+      );
+
+
+      setCounterValue(
+        seconds,
+        String(ss)
+          .padStart(
+            2,
+            "0"
+          )
+      );
+
     }
 
 
+    /*
+     * Chạy ngay.
+     */
+
     updateCounter();
 
-    /*
-      Cập nhật mỗi giây
-    */
 
-    setInterval(
+    /*
+     * Chạy mỗi giây.
+     */
+
+    window.setInterval(
       updateCounter,
       1000
     );
+
   }
+
+
+
+  /* =========================================================
+     SET COUNTER VALUE
+     ========================================================= */
+
+  function setCounterValue(
+    element,
+    value
+  ) {
+
+    if (!element) {
+
+      return;
+
+    }
+
+
+    element.textContent =
+      value;
+
+  }
+
 
 
   /* =========================================================
      NUMBER FORMAT
      ========================================================= */
 
-  function formatNumber(number) {
+  function formatNumber(
+    number
+  ) {
 
-    return Number(number)
-      .toLocaleString("vi-VN");
+    return Number(
+      number
+    ).toLocaleString(
+      "vi-VN"
+    );
+
   }
 
 
+
   /* =========================================================
-     YOUTUBE
+     YOUTUBE ID
      ========================================================= */
 
-  function extractYouTubeId(input) {
+  function extractYouTubeId(
+    input
+  ) {
 
     if (!input) {
+
       return null;
+
     }
 
+
     const value =
-      String(input).trim();
+      String(input)
+        .trim();
 
 
     /*
-      Raw YouTube ID
-      */
+     * ID trực tiếp.
+     */
 
     if (
       /^[A-Za-z0-9_-]{11}$/.test(
         value
       )
     ) {
+
       return value;
+
     }
 
 
+    /*
+     * URL.
+     */
+
     let url;
+
 
     try {
 
       url =
-        new URL(value);
+        new URL(
+          value
+        );
 
     } catch (error) {
 
       return null;
+
     }
 
 
     const hostname =
       url.hostname
         .toLowerCase()
-        .replace(/^www\./, "");
+        .replace(
+          /^www\./,
+          ""
+        );
 
 
-    /*
-      youtu.be
-    */
+    /* -------------------------------------------------------
+       YOUTU.BE
+       ------------------------------------------------------- */
 
     if (
       hostname === "youtu.be"
     ) {
 
-      const id =
+      const parts =
         url.pathname
           .split("/")
-          .filter(Boolean)[0];
+          .filter(Boolean);
+
+
+      const id =
+        parts[0];
+
 
       if (
         id &&
-        /^[A-Za-z0-9_-]{11}$/.test(id)
+        /^[A-Za-z0-9_-]{11}$/.test(
+          id
+        )
       ) {
+
         return id;
+
       }
+
     }
 
 
-    /*
-      youtube.com
-    */
+    /* -------------------------------------------------------
+       YOUTUBE.COM
+       ------------------------------------------------------- */
 
     if (
       hostname === "youtube.com" ||
@@ -926,11 +1517,14 @@
 
 
       /*
-        watch?v=
-      */
+       * watch?v=ID
+       */
 
       const watchId =
-        url.searchParams.get("v");
+        url.searchParams.get(
+          "v"
+        );
+
 
       if (
         watchId &&
@@ -940,50 +1534,65 @@
       ) {
 
         return watchId;
+
       }
 
 
       /*
-        /shorts/ID
-        /embed/ID
-        /live/ID
-      */
+       * shorts
+       * embed
+       * live
+       */
 
       const parts =
         url.pathname
           .split("/")
           .filter(Boolean);
 
-      const types = [
-        "shorts",
-        "embed",
-        "live"
-      ];
 
       if (
-        parts.length >= 2 &&
-        types.indexOf(parts[0]) !== -1
+        parts.length >= 2
       ) {
 
-        const id =
-          parts[1];
+        const type =
+          parts[0];
+
 
         if (
-          /^[A-Za-z0-9_-]{11}$/.test(id)
+          type === "shorts" ||
+          type === "embed" ||
+          type === "live"
         ) {
 
-          return id;
+          const id =
+            parts[1];
+
+
+          if (
+            /^[A-Za-z0-9_-]{11}$/.test(
+              id
+            )
+          ) {
+
+            return id;
+
+          }
+
         }
+
       }
+
     }
 
 
     return null;
+
   }
 
 
+
   /* =========================================================
-     SETUP YOUTUBE
+     YOUTUBE PLAYER
      ========================================================= */
 
   function setupYouTube(
@@ -996,7 +1605,9 @@
       !musicSection ||
       !youtubePlayer
     ) {
+
       return;
+
     }
 
 
@@ -1007,44 +1618,68 @@
 
 
     /*
-      Không có video
-    */
+     * Không có video.
+     */
 
     if (!youtubeId) {
 
       musicSection.style.display =
         "none";
 
+
+      youtubePlayer.removeAttribute(
+        "src"
+      );
+
+
       return;
+
     }
 
 
     /*
-      Có video
-    */
+     * Có video.
+     */
 
     musicSection.style.display =
       "";
 
 
-    youtubePlayer.src =
+    const embedUrl =
       "https://www.youtube.com/embed/" +
-      youtubeId +
+      encodeURIComponent(
+        youtubeId
+      ) +
       "?rel=0" +
       "&modestbranding=1" +
       "&playsinline=1";
 
 
+    youtubePlayer.src =
+      embedUrl;
+
+
     youtubePlayer.setAttribute(
       "allow",
-      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      [
+        "accelerometer",
+        "autoplay",
+        "clipboard-write",
+        "encrypted-media",
+        "gyroscope",
+        "picture-in-picture",
+        "web-share"
+      ].join("; ")
     );
+
 
     youtubePlayer.setAttribute(
       "allowfullscreen",
       ""
     );
+
   }
+
 
 
   /* =========================================================
@@ -1058,41 +1693,94 @@
         "heartsContainer"
       );
 
+
     if (!container) {
+
       return;
+
     }
 
 
+    /*
+     * Không tạo hiệu ứng quá mạnh
+     * trên mobile.
+     */
+
+    const isMobile =
+      window.matchMedia &&
+      window.matchMedia(
+        "(max-width: 600px)"
+      ).matches;
+
+
+    const interval =
+      isMobile
+        ? 2600
+        : 1800;
+
+
     function createHeart() {
+
+      /*
+       * Giới hạn số lượng tim
+       * đang tồn tại.
+       */
+
+      if (
+        container.children.length >=
+        (isMobile ? 5 : 8)
+      ) {
+
+        return;
+
+      }
+
 
       const heart =
         document.createElement(
           "span"
         );
 
+
       heart.className =
         "floating-heart";
+
 
       heart.textContent =
         "♥";
 
+
+      heart.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
       heart.style.left =
-        Math.random() * 100 +
-        "%";
+        (
+          Math.random() * 100
+        ) + "%";
+
 
       heart.style.animationDuration =
-        5 +
-        Math.random() * 6 +
-        "s";
+        (
+          5 +
+          Math.random() * 6
+        ) + "s";
+
 
       heart.style.fontSize =
-        12 +
-        Math.random() * 18 +
-        "px";
+        (
+          12 +
+          Math.random() * 18
+        ) + "px";
+
 
       heart.style.opacity =
-        0.25 +
-        Math.random() * 0.5;
+        (
+          0.25 +
+          Math.random() * 0.5
+        ).toFixed(2);
 
 
       container.appendChild(
@@ -1100,26 +1788,44 @@
       );
 
 
-      setTimeout(
+      window.setTimeout(
         function () {
 
-          heart.remove();
+          if (
+            heart &&
+            heart.parentNode
+          ) {
+
+            heart.remove();
+
+          }
 
         },
         12000
       );
+
     }
 
 
     /*
-      Tạo tim thưa để không ảnh hưởng
-      hiệu năng trên iPhone.
-    */
+     * Tạo tim đầu tiên sau khi trang load.
+     */
 
-    setInterval(
+    window.setTimeout(
       createHeart,
-      1800
+      1200
     );
+
+
+    /*
+     * Sau đó tạo định kỳ.
+     */
+
+    window.setInterval(
+      createHeart,
+      interval
+    );
+
   }
 
 })();
