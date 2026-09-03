@@ -1,0 +1,233 @@
+:root {
+
+    --accent: #ff5c93;
+
+    --bg1: #160914;
+    --bg2: #32152d;
+
+    --card:
+        rgba(40, 18, 39, .72);
+
+    --border:
+        rgba(255, 190, 220, .25);
+
+    --text-soft:
+        rgba(255, 225, 240, .78);
+
+}
+
+
+/* =========================
+   ROMANTIC
+========================= */
+
+body.theme-romantic {
+
+    --accent: #ff5c93;
+
+    --bg1: #160914;
+    --bg2: #421b38;
+
+    --card:
+        rgba(48, 21, 45, .72);
+
+    --border:
+        rgba(255, 150, 195, .28);
+
+}
+
+
+/* =========================
+   ROSE
+========================= */
+
+body.theme-rose {
+
+    --accent: #ff496f;
+
+    --bg1: #19070d;
+    --bg2: #4b101d;
+
+    --card:
+        rgba(53, 15, 27, .74);
+
+    --border:
+        rgba(255, 130, 150, .3);
+
+}
+
+
+/* =========================
+   PURPLE
+========================= */
+
+body.theme-purple {
+
+    --accent: #b889ff;
+
+    --bg1: #0f091c;
+    --bg2: #30205a;
+
+    --card:
+        rgba(34, 22, 60, .75);
+
+    --border:
+        rgba(190, 150, 255, .28);
+
+}
+
+
+/* =========================
+   PINK
+========================= */
+
+body.theme-pink {
+
+    --accent: #ff8fbd;
+
+    --bg1: #210d18;
+    --bg2: #632945;
+
+    --card:
+        rgba(68, 28, 48, .72);
+
+    --border:
+        rgba(255, 190, 220, .32);
+
+}
+
+
+/* =========================
+   NIGHT
+========================= */
+
+body.theme-night {
+
+    --accent: #8ab4ff;
+
+    --bg1: #050912;
+    --bg2: #182b4c;
+
+    --card:
+        rgba(15, 27, 47, .78);
+
+    --border:
+        rgba(140, 180, 255, .28);
+
+}
+
+
+/* =========================
+   SUNSET
+========================= */
+
+body.theme-sunset {
+
+    --accent: #ff9b65;
+
+    --bg1: #1c0b08;
+    --bg2: #66351f;
+
+    --card:
+        rgba(65, 31, 21, .76);
+
+    --border:
+        rgba(255, 180, 120, .3);
+
+}
+
+
+/* =========================
+   BODY BACKGROUND
+========================= */
+
+body {
+
+    background:
+
+        radial-gradient(
+            circle at 20% 10%,
+            var(--bg2),
+            transparent 42%
+        ),
+
+        radial-gradient(
+            circle at 80% 90%,
+            var(--bg2),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            135deg,
+            var(--bg1),
+            #08060b
+        );
+
+    transition:
+        background .4s ease;
+
+}
+
+
+/* =========================
+   PREVIEW COLORS
+========================= */
+
+.romantic-preview {
+    background:
+        linear-gradient(
+            135deg,
+            #32152d,
+            #ff5c93
+        );
+}
+
+
+.rose-preview {
+    background:
+        linear-gradient(
+            135deg,
+            #3b0915,
+            #ff496f
+        );
+}
+
+
+.purple-preview {
+    background:
+        linear-gradient(
+            135deg,
+            #170d35,
+            #9b6cff
+        );
+}
+
+
+.pink-preview {
+    background:
+        linear-gradient(
+            135deg,
+            #42172d,
+            #ff8fbd
+        );
+}
+
+
+.night-preview {
+    background:
+        linear-gradient(
+            135deg,
+            #050912,
+            #416ca8
+        );
+}
+
+
+.sunset-preview {
+    background:
+        linear-gradient(
+            135deg,
+            #32110a,
+            #ff9b65
+        );
+}
