@@ -1,180 +1,174 @@
 /* =========================================
    TAO QUA
-========================================= */
+   ========================================= */
 
-let selectedTheme =
-    "romantic";
+let selectedTheme = "romantic";
+let selectedStyle = "glass";
 
 
 /* =========================================
    ELEMENTS
-========================================= */
+   ========================================= */
 
 const coupleInput =
-    document.getElementById(
-        "couple"
-    );
-
+    document.getElementById("couple");
 
 const receiverInput =
-    document.getElementById(
-        "receiver"
-    );
-
+    document.getElementById("receiver");
 
 const dateInput =
-    document.getElementById(
-        "startDate"
-    );
-
+    document.getElementById("startDate");
 
 const musicInput =
-    document.getElementById(
-        "music"
-    );
-
+    document.getElementById("music");
 
 const letterInput =
-    document.getElementById(
-        "letter"
-    );
-
+    document.getElementById("letter");
 
 const createButton =
-    document.getElementById(
-        "createButton"
-    );
-
+    document.getElementById("createButton");
 
 const result =
-    document.getElementById(
-        "result"
-    );
-
+    document.getElementById("result");
 
 const generatedLink =
-    document.getElementById(
-        "generatedLink"
-    );
-
+    document.getElementById("generatedLink");
 
 const qrImage =
-    document.getElementById(
-        "qrImage"
-    );
-
+    document.getElementById("qrImage");
 
 const copyButton =
-    document.getElementById(
-        "copyButton"
-    );
-
+    document.getElementById("copyButton");
 
 const openButton =
-    document.getElementById(
-        "openButton"
-    );
+    document.getElementById("openButton");
 
 
 /* =========================================
    THEME SELECT
-========================================= */
+   ========================================= */
 
 const themeButtons =
-    document.querySelectorAll(
-        ".theme-option"
-    );
+    document.querySelectorAll(".theme-option");
 
+themeButtons.forEach(button => {
 
-themeButtons.forEach(
-    button => {
+    button.addEventListener("click", () => {
 
-        button.addEventListener(
-            "click",
-            () => {
+        themeButtons.forEach(item => {
+            item.classList.remove("active");
+        });
 
-                themeButtons.forEach(
-                    item => {
+        button.classList.add("active");
 
-                        item.classList.remove(
-                            "active"
-                        );
+        selectedTheme =
+            button.dataset.theme;
 
-                    }
-                );
+        applyCreateTheme();
 
+    });
 
-                button.classList.add(
-                    "active"
-                );
-
-
-                selectedTheme =
-                    button.dataset.theme;
-
-
-                applyCreateTheme();
-
-            }
-        );
-
-    }
-);
+});
 
 
 /* =========================================
-   APPLY PREVIEW THEME
-========================================= */
+   STYLE SELECT
+   ========================================= */
+
+const styleButtons =
+    document.querySelectorAll(".style-option");
+
+styleButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        styleButtons.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        selectedStyle =
+            button.dataset.style;
+
+        applyCreateTheme();
+
+    });
+
+});
+
+
+/* =========================================
+   APPLY PREVIEW
+   ========================================= */
 
 function applyCreateTheme() {
 
+    /*
+       Xóa theme/style cũ
+       nhưng giữ nguyên các class khác
+    */
+
     document.body.className =
         document.body.className
-            .replace(
-                /\btheme-\S+/g,
-                ""
-            )
+            .replace(/\btheme-\S+/g, "")
+            .replace(/\bstyle-\S+/g, "")
+            .replace(/\s+/g, " ")
             .trim();
 
 
+    /*
+       Thêm màu được chọn
+    */
+
     document.body.classList.add(
-        "theme-" +
-        selectedTheme
+        "theme-" + selectedTheme
+    );
+
+
+    /*
+       Thêm phong cách được chọn
+    */
+
+    document.body.classList.add(
+        "style-" + selectedStyle
     );
 
 }
 
+
+/* =========================================
+   INITIAL PREVIEW
+   ========================================= */
 
 applyCreateTheme();
 
 
 /* =========================================
    CREATE LINK
-========================================= */
+   ========================================= */
 
 function createGift() {
 
     const couple =
         coupleInput.value.trim();
 
-
     const receiver =
         receiverInput.value.trim();
-
 
     const date =
         dateInput.value;
 
-
     const music =
         musicInput.value.trim();
-
 
     const letter =
         letterInput.value.trim();
 
 
-    /* VALIDATE */
+    /* =====================================
+       VALIDATE
+       ===================================== */
 
     if (!couple) {
 
@@ -185,7 +179,6 @@ function createGift() {
         coupleInput.focus();
 
         return;
-
     }
 
 
@@ -198,7 +191,6 @@ function createGift() {
         receiverInput.focus();
 
         return;
-
     }
 
 
@@ -211,15 +203,20 @@ function createGift() {
         dateInput.focus();
 
         return;
-
     }
 
 
-    /* PARAMS */
+    /* =====================================
+       PARAMS
+       ===================================== */
 
     const params =
         new URLSearchParams();
 
+
+    /*
+       Tên hai người
+    */
 
     params.set(
         "c",
@@ -227,17 +224,29 @@ function createGift() {
     );
 
 
+    /*
+       Người nhận
+    */
+
     params.set(
         "t",
         receiver
     );
 
 
+    /*
+       Ngày bắt đầu
+    */
+
     params.set(
         "d",
         date
     );
 
+
+    /*
+       YouTube
+    */
 
     if (music) {
 
@@ -249,6 +258,10 @@ function createGift() {
     }
 
 
+    /*
+       Lời nhắn
+    */
+
     if (letter) {
 
         params.set(
@@ -259,13 +272,29 @@ function createGift() {
     }
 
 
+    /*
+       MÀU SẮC
+    */
+
     params.set(
         "theme",
         selectedTheme
     );
 
 
-    /* INDEX URL */
+    /*
+       PHONG CÁCH
+    */
+
+    params.set(
+        "style",
+        selectedStyle
+    );
+
+
+    /* =====================================
+       INDEX URL
+       ===================================== */
 
     const indexURL =
         new URL(
@@ -282,23 +311,29 @@ function createGift() {
         indexURL.toString();
 
 
-    /* DISPLAY */
+    /* =====================================
+       DISPLAY LINK
+       ===================================== */
 
     generatedLink.value =
         finalURL;
 
 
-    /* QR */
+    /* =====================================
+       QR CODE
+       ===================================== */
 
     qrImage.src =
         "https://api.qrserver.com/v1/create-qr-code/?" +
         "size=700x700" +
         "&margin=20" +
         "&data=" +
-        encodeURIComponent(
-            finalURL
-        );
+        encodeURIComponent(finalURL);
 
+
+    /* =====================================
+       SHOW RESULT
+       ===================================== */
 
     result.classList.remove(
         "hidden"
@@ -315,7 +350,7 @@ function createGift() {
 
 /* =========================================
    CREATE BUTTON
-========================================= */
+   ========================================= */
 
 createButton.addEventListener(
     "click",
@@ -324,8 +359,8 @@ createButton.addEventListener(
 
 
 /* =========================================
-   COPY
-========================================= */
+   COPY LINK
+   ========================================= */
 
 copyButton.addEventListener(
     "click",
@@ -352,6 +387,7 @@ copyButton.addEventListener(
                 1800
             );
 
+
         } catch (error) {
 
             generatedLink.select();
@@ -370,8 +406,8 @@ copyButton.addEventListener(
 
 
 /* =========================================
-   OPEN
-========================================= */
+   OPEN GIFT
+   ========================================= */
 
 openButton.addEventListener(
     "click",
