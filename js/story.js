@@ -1,13 +1,15 @@
 /* =========================================
    LOVE STORY
-========================================= */
+   ========================================= */
 
 
 /* -----------------------------------------
    Lấy dữ liệu từ URL
 ----------------------------------------- */
 
-const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(
+    window.location.search
+);
 
 const coupleName =
     params.get("c") || "Trung Trang";
@@ -24,43 +26,132 @@ const loveLetter =
 
 
 /* -----------------------------------------
+   THEME + STYLE
+----------------------------------------- */
+
+/*
+   6 màu
+*/
+const allowedThemes = [
+    "romantic",
+    "rose",
+    "purple",
+    "pink",
+    "night",
+    "sunset"
+];
+
+
+/*
+   6 phong cách
+*/
+const allowedStyles = [
+    "glass",
+    "luxury",
+    "sakura",
+    "cinematic",
+    "letter",
+    "minimal"
+];
+
+
+/*
+   Lấy theme từ URL
+   Nếu không hợp lệ → romantic
+*/
+const selectedTheme =
+    allowedThemes.includes(
+        params.get("theme")
+    )
+        ? params.get("theme")
+        : "romantic";
+
+
+/*
+   Lấy style từ URL
+   Nếu không hợp lệ → glass
+*/
+const selectedStyle =
+    allowedStyles.includes(
+        params.get("style")
+    )
+        ? params.get("style")
+        : "glass";
+
+
+/*
+   Áp dụng giao diện vào BODY
+*/
+document.body.classList.add(
+    "theme-" + selectedTheme,
+    "style-" + selectedStyle
+);
+
+
+/* -----------------------------------------
    Lấy các phần tử HTML
 ----------------------------------------- */
 
 const openingScreen =
-    document.getElementById("openingScreen");
+    document.getElementById(
+        "openingScreen"
+    );
 
 const storyPage =
-    document.getElementById("storyPage");
+    document.getElementById(
+        "storyPage"
+    );
 
 const openStoryBtn =
-    document.getElementById("openStoryBtn");
+    document.getElementById(
+        "openStoryBtn"
+    );
 
 const receiverNameEl =
-    document.getElementById("receiverName");
+    document.getElementById(
+        "receiverName"
+    );
 
 const coupleNameEl =
-    document.getElementById("coupleName");
+    document.getElementById(
+        "coupleName"
+    );
 
 const startDateTextEl =
-    document.getElementById("startDateText");
+    document.getElementById(
+        "startDateText"
+    );
 
 const loveLetterEl =
-    document.getElementById("loveLetter");
+    document.getElementById(
+        "loveLetter"
+    );
 
 
 /* -----------------------------------------
    Hiển thị thông tin
 ----------------------------------------- */
 
-receiverNameEl.textContent =
-    receiverName;
+if (receiverNameEl) {
 
-coupleNameEl.textContent =
-    coupleName;
+    receiverNameEl.textContent =
+        receiverName;
 
-loveLetterEl.textContent =
-    loveLetter;
+}
+
+if (coupleNameEl) {
+
+    coupleNameEl.textContent =
+        coupleName;
+
+}
+
+if (loveLetterEl) {
+
+    loveLetterEl.textContent =
+        loveLetter;
+
+}
 
 
 /* -----------------------------------------
@@ -70,12 +161,23 @@ loveLetterEl.textContent =
 
 function parseLocalDate(dateString) {
 
+    if (
+        typeof dateString !== "string"
+    ) {
+        return null;
+    }
+
+
     const parts =
         dateString.split("-");
 
-    if (parts.length !== 3) {
+
+    if (
+        parts.length !== 3
+    ) {
         return null;
     }
+
 
     const year =
         Number(parts[0]);
@@ -85,6 +187,16 @@ function parseLocalDate(dateString) {
 
     const day =
         Number(parts[2]);
+
+
+    if (
+        !Number.isInteger(year) ||
+        !Number.isInteger(month) ||
+        !Number.isInteger(day)
+    ) {
+        return null;
+    }
+
 
     const date =
         new Date(
@@ -97,9 +209,27 @@ function parseLocalDate(dateString) {
             0
         );
 
-    if (isNaN(date.getTime())) {
+
+    if (
+        isNaN(date.getTime())
+    ) {
         return null;
     }
+
+
+    /*
+       Kiểm tra ngày thực tế.
+       Ví dụ 2026-02-31 không được
+       tự động biến thành tháng 3.
+    */
+    if (
+        date.getFullYear() !== year ||
+        date.getMonth() !== month - 1 ||
+        date.getDate() !== day
+    ) {
+        return null;
+    }
+
 
     return date;
 }
@@ -112,44 +242,77 @@ function parseLocalDate(dateString) {
 function formatDate(dateString) {
 
     const date =
-        parseLocalDate(dateString);
+        parseLocalDate(
+            dateString
+        );
+
 
     if (!date) {
+
         return dateString;
+
     }
 
+
     const day =
-        String(date.getDate()).padStart(2, "0");
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
 
     const month =
-        String(date.getMonth() + 1).padStart(2, "0");
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
 
     const year =
         date.getFullYear();
 
-    return `${day}/${month}/${year}`;
+
+    return (
+        `${day}/${month}/${year}`
+    );
 }
 
-startDateTextEl.textContent =
-    formatDate(startDate);
+
+if (startDateTextEl) {
+
+    startDateTextEl.textContent =
+        formatDate(startDate);
+
+}
 
 
 /* -----------------------------------------
-   Tính số năm / tháng / ngày
+   Tính số năm / tháng / ngày / giờ...
 ----------------------------------------- */
 
-function calculateCalendarDifference(start, now) {
+function calculateCalendarDifference(
+    start,
+    now
+) {
 
-    if (now < start) {
+    if (
+        now < start
+    ) {
 
         return {
+
             years: 0,
+
             months: 0,
+
             days: 0,
+
             hours: 0,
+
             minutes: 0,
+
             seconds: 0
+
         };
+
     }
 
 
@@ -164,28 +327,52 @@ function calculateCalendarDifference(start, now) {
 
     let anniversary =
         new Date(
-            start.getFullYear() + years,
+
+            start.getFullYear() +
+                years,
+
             start.getMonth(),
+
             start.getDate(),
+
             start.getHours(),
+
             start.getMinutes(),
-            start.getSeconds()
+
+            start.getSeconds(),
+
+            start.getMilliseconds()
+
         );
 
 
-    if (anniversary > now) {
+    if (
+        anniversary > now
+    ) {
 
         years--;
 
+
         anniversary =
             new Date(
-                start.getFullYear() + years,
+
+                start.getFullYear() +
+                    years,
+
                 start.getMonth(),
+
                 start.getDate(),
+
                 start.getHours(),
+
                 start.getMinutes(),
-                start.getSeconds()
+
+                start.getSeconds(),
+
+                start.getMilliseconds()
+
             );
+
     }
 
 
@@ -194,37 +381,65 @@ function calculateCalendarDifference(start, now) {
     ------------------------------- */
 
     let months =
-        (now.getFullYear() -
-            anniversary.getFullYear()) * 12
+        (
+            now.getFullYear() -
+            anniversary.getFullYear()
+        ) * 12
         +
-        (now.getMonth() -
-            anniversary.getMonth());
+        (
+            now.getMonth() -
+            anniversary.getMonth()
+        );
 
 
     let monthPoint =
         new Date(
+
             anniversary.getFullYear(),
-            anniversary.getMonth() + months,
+
+            anniversary.getMonth() +
+                months,
+
             anniversary.getDate(),
+
             anniversary.getHours(),
+
             anniversary.getMinutes(),
-            anniversary.getSeconds()
+
+            anniversary.getSeconds(),
+
+            anniversary.getMilliseconds()
+
         );
 
 
-    if (monthPoint > now) {
+    if (
+        monthPoint > now
+    ) {
 
         months--;
 
+
         monthPoint =
             new Date(
+
                 anniversary.getFullYear(),
-                anniversary.getMonth() + months,
+
+                anniversary.getMonth() +
+                    months,
+
                 anniversary.getDate(),
+
                 anniversary.getHours(),
+
                 anniversary.getMinutes(),
-                anniversary.getSeconds()
+
+                anniversary.getSeconds(),
+
+                anniversary.getMilliseconds()
+
             );
+
     }
 
 
@@ -236,7 +451,8 @@ function calculateCalendarDifference(start, now) {
         now - monthPoint;
 
 
-    const SECOND = 1000;
+    const SECOND =
+        1000;
 
     const MINUTE =
         SECOND * 60;
@@ -249,35 +465,75 @@ function calculateCalendarDifference(start, now) {
 
 
     const days =
-        Math.floor(remaining / DAY);
+        Math.floor(
+            remaining / DAY
+        );
+
 
     remaining %= DAY;
 
 
     const hours =
-        Math.floor(remaining / HOUR);
+        Math.floor(
+            remaining / HOUR
+        );
+
 
     remaining %= HOUR;
 
 
     const minutes =
-        Math.floor(remaining / MINUTE);
+        Math.floor(
+            remaining / MINUTE
+        );
+
 
     remaining %= MINUTE;
 
 
     const seconds =
-        Math.floor(remaining / SECOND);
+        Math.floor(
+            remaining / SECOND
+        );
 
 
     return {
+
         years,
+
         months,
+
         days,
+
         hours,
+
         minutes,
+
         seconds
+
     };
+}
+
+
+/* -----------------------------------------
+   Hàm cập nhật một phần tử
+----------------------------------------- */
+
+function setText(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(id);
+
+
+    if (element) {
+
+        element.textContent =
+            value;
+
+    }
 }
 
 
@@ -288,11 +544,51 @@ function calculateCalendarDifference(start, now) {
 function updateCounter() {
 
     const start =
-        parseLocalDate(startDate);
+        parseLocalDate(
+            startDate
+        );
+
 
     if (!start) {
+
+        setText(
+            "years",
+            "0"
+        );
+
+        setText(
+            "months",
+            "0"
+        );
+
+        setText(
+            "days",
+            "0"
+        );
+
+        setText(
+            "hours",
+            "0"
+        );
+
+        setText(
+            "minutes",
+            "0"
+        );
+
+        setText(
+            "seconds",
+            "00"
+        );
+
+        setText(
+            "totalDays",
+            "0"
+        );
+
         return;
     }
+
 
     const now =
         new Date();
@@ -302,28 +598,44 @@ function updateCounter() {
        Nếu ngày bắt đầu ở tương lai
     ----------------------------------- */
 
-    if (start > now) {
+    if (
+        start > now
+    ) {
 
-        document.getElementById("years")
-            .textContent = "0";
+        setText(
+            "years",
+            "0"
+        );
 
-        document.getElementById("months")
-            .textContent = "0";
+        setText(
+            "months",
+            "0"
+        );
 
-        document.getElementById("days")
-            .textContent = "0";
+        setText(
+            "days",
+            "0"
+        );
 
-        document.getElementById("hours")
-            .textContent = "0";
+        setText(
+            "hours",
+            "0"
+        );
 
-        document.getElementById("minutes")
-            .textContent = "0";
+        setText(
+            "minutes",
+            "0"
+        );
 
-        document.getElementById("seconds")
-            .textContent = "00";
+        setText(
+            "seconds",
+            "00"
+        );
 
-        document.getElementById("totalDays")
-            .textContent = "0";
+        setText(
+            "totalDays",
+            "0"
+        );
 
         return;
     }
@@ -340,31 +652,42 @@ function updateCounter() {
         );
 
 
-    document.getElementById("years")
-        .textContent =
-        difference.years;
+    setText(
+        "years",
+        difference.years
+    );
 
-    document.getElementById("months")
-        .textContent =
-        difference.months;
 
-    document.getElementById("days")
-        .textContent =
-        difference.days;
+    setText(
+        "months",
+        difference.months
+    );
 
-    document.getElementById("hours")
-        .textContent =
-        difference.hours;
 
-    document.getElementById("minutes")
-        .textContent =
-        difference.minutes;
+    setText(
+        "days",
+        difference.days
+    );
 
-    document.getElementById("seconds")
-        .textContent =
+
+    setText(
+        "hours",
+        difference.hours
+    );
+
+
+    setText(
+        "minutes",
+        difference.minutes
+    );
+
+
+    setText(
+        "seconds",
         String(
             difference.seconds
-        ).padStart(2, "0");
+        ).padStart(2, "0")
+    );
 
 
     /* -----------------------------------
@@ -374,16 +697,25 @@ function updateCounter() {
     const totalMilliseconds =
         now - start;
 
+
     const totalDays =
         Math.floor(
             totalMilliseconds /
-            (1000 * 60 * 60 * 24)
+            (
+                1000 *
+                60 *
+                60 *
+                24
+            )
         );
 
 
-    document.getElementById("totalDays")
-        .textContent =
-        totalDays.toLocaleString("vi-VN");
+    setText(
+        "totalDays",
+        totalDays.toLocaleString(
+            "vi-VN"
+        )
+    );
 }
 
 
@@ -394,7 +726,7 @@ function updateCounter() {
 updateCounter();
 
 
-let counterInterval =
+const counterInterval =
     setInterval(
         updateCounter,
         1000
@@ -405,35 +737,68 @@ let counterInterval =
    Mở câu chuyện
 ----------------------------------------- */
 
-openStoryBtn.addEventListener(
-    "click",
-    function () {
+if (
+    openStoryBtn &&
+    openingScreen
+) {
 
-        openingScreen.classList.add("hide");
+    openStoryBtn.addEventListener(
+        "click",
+        function () {
 
-        document.body.style.overflow =
-            "auto";
+            openingScreen.classList.add(
+                "hide"
+            );
 
-        setTimeout(
-            function () {
 
-                openingScreen.style.display =
-                    "none";
+            document.body.style.overflow =
+                "auto";
 
-            },
-            900
-        );
 
-    }
-);
+            setTimeout(
+                function () {
+
+                    openingScreen.style.display =
+                        "none";
+
+                },
+                900
+            );
+
+        }
+    );
+
+}
 
 
 /* -----------------------------------------
    Khởi tạo trạng thái
 ----------------------------------------- */
 
-storyPage.style.display =
-    "block";
+if (storyPage) {
+
+    storyPage.style.display =
+        "block";
+
+}
+
+
+/*
+   Khi mở trực tiếp gift URL,
+   khóa scroll để người nhận
+   tập trung vào màn hình mở quà.
+*/
+if (
+    openingScreen &&
+    !openingScreen.classList.contains(
+        "hide"
+    )
+) {
+
+    document.body.style.overflow =
+        "hidden";
+
+}
 
 
 /* -----------------------------------------
@@ -448,32 +813,50 @@ const heartsContainer =
 
 function createHeart() {
 
+    if (!heartsContainer) {
+
+        return;
+
+    }
+
+
     const heart =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     heart.className =
         "floating-heart";
 
+
     heart.textContent =
-        Math.random() > .5
+        Math.random() > 0.5
             ? "❤️"
             : "💕";
 
 
     heart.style.left =
-        Math.random() * 100 + "%";
+        Math.random() * 100 +
+        "%";
 
 
     heart.style.fontSize =
-        (14 + Math.random() * 18) + "px";
+        (
+            14 +
+            Math.random() * 18
+        ) +
+        "px";
 
 
     const duration =
-        6 + Math.random() * 7;
+        6 +
+        Math.random() * 7;
 
 
     heart.style.animationDuration =
-        duration + "s";
+        duration +
+        "s";
 
 
     heartsContainer.appendChild(
@@ -492,10 +875,15 @@ function createHeart() {
 }
 
 
-setInterval(
-    createHeart,
-    1200
-);
+/* -----------------------------------------
+   Tim bay định kỳ
+----------------------------------------- */
+
+const heartInterval =
+    setInterval(
+        createHeart,
+        1200
+    );
 
 
 /* -----------------------------------------
@@ -512,4 +900,5 @@ for (
         createHeart,
         i * 500
     );
+
 }
