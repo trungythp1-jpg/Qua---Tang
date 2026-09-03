@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#160b18"
+    >
+
+    <title>Tạo món quà ❤️</title>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+</head>
+
+
+<body>
+
+    <main class="create-page">
+
+        <div class="create-container">
+
+
+            <div class="create-header">
+
+                <div class="create-label">
+                    LOVE STORY
+                </div>
+
+                <h1>
+                    Tạo món quà
+                </h1>
+
+                <p>
+                    Tạo một món quà nhỏ dành cho
+                    người đặc biệt ❤️
+                </p>
+
+            </div>
+
+
+
+            <!-- THÔNG TIN -->
+
+            <section class="form-card">
+
+                <h2>
+                    💌 Thông tin
+                </h2>
+
+
+                <label>
+                    Tên hai người
+                </label>
+
+                <input
+                    id="couple"
+                    type="text"
+                    placeholder="Ví dụ: Anh & Em"
+                >
+
+
+                <label>
+                    Tên người nhận
+                </label>
+
+                <input
+                    id="receiver"
+                    type="text"
+                    placeholder="Ví dụ: Trang"
+                >
+
+
+                <label>
+                    Ngày bắt đầu yêu
+                </label>
+
+                <input
+                    id="startDate"
+                    type="date"
+                >
+
+
+                <label>
+                    Link YouTube
+                </label>
+
+                <input
+                    id="music"
+                    type="url"
+                    placeholder="https://www.youtube.com/watch?v=..."
+                >
+
+
+                <label>
+                    Lời nhắn
+                </label>
+
+                <textarea
+                    id="letter"
+                    rows="7"
+                    placeholder="Viết điều bạn muốn nói..."
+                ></textarea>
+
+            </section>
+
+
+
+            <!-- CHỌN GIAO DIỆN -->
+
+            <section class="form-card">
+
+                <h2>
+                    🎨 Chọn giao diện
+                </h2>
+
+
+                <div class="theme-grid">
+
+
+                    <button
+                        type="button"
+                        class="theme-option active"
+                        data-theme="romantic"
+                    >
+
+                        <span class="theme-preview romantic-preview"></span>
+
+                        <strong>
+                            ❤️ Romantic
+                        </strong>
+
+                        <small>
+                            Đỏ hồng
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="theme-option"
+                        data-theme="rose"
+                    >
+
+                        <span class="theme-preview rose-preview"></span>
+
+                        <strong>
+                            🌹 Rose
+                        </strong>
+
+                        <small>
+                            Đỏ quyến rũ
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="theme-option"
+                        data-theme="purple"
+                    >
+
+                        <span class="theme-preview purple-preview"></span>
+
+                        <strong>
+                            💜 Purple
+                        </strong>
+
+                        <small>
+                            Tím mộng mơ
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="theme-option"
+                        data-theme="pink"
+                    >
+
+                        <span class="theme-preview pink-preview"></span>
+
+                        <strong>
+                            🌸 Sweet Pink
+                        </strong>
+
+                        <small>
+                            Hồng ngọt ngào
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="theme-option"
+                        data-theme="night"
+                    >
+
+                        <span class="theme-preview night-preview"></span>
+
+                        <strong>
+                            🌌 Night Love
+                        </strong>
+
+                        <small>
+                            Đêm huyền bí
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="theme-option"
+                        data-theme="sunset"
+                    >
+
+                        <span class="theme-preview sunset-preview"></span>
+
+                        <strong>
+                            🌅 Sunset
+                        </strong>
+
+                        <small>
+                            Hoàng hôn
+                        </small>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- NÚT TẠO -->
+
+            <button
+                id="createButton"
+                class="main-button create-button"
+                type="button"
+            >
+                Tạo món quà ❤️
+            </button>
+
+
+
+            <!-- KẾT QUẢ -->
+
+            <section
+                id="result"
+                class="form-card result-card hidden"
+            >
+
+                <h2>
+                    🎁 Món quà đã sẵn sàng
+                </h2>
+
+
+                <p>
+                    Sao chép link hoặc quét mã QR để gửi.
+                </p>
+
+
+                <input
+                    id="generatedLink"
+                    type="text"
+                    readonly
+                >
+
+
+                <div class="result-buttons">
+
+                    <button
+                        id="copyButton"
+                        type="button"
+                        class="secondary-button"
+                    >
+                        📋 Sao chép
+                    </button>
+
+
+                    <button
+                        id="openButton"
+                        type="button"
+                        class="secondary-button"
+                    >
+                        🎁 Mở quà
+                    </button>
+
+                </div>
+
+
+                <div class="qr-wrapper">
+
+                    <img
+                        id="qrImage"
+                        alt="Mã QR món quà"
+                    >
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/tao-qua.js"></script>
+
+</body>
+
+</html>
