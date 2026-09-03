@@ -1,0 +1,583 @@
+/* =========================================================
+   LUXURY LOVE — PREMIUM / CINEMATIC UPGRADE
+   ========================================================= */
+
+body.style-luxury {
+  --lux-gold: #d9b56d;
+  --lux-gold-soft: #f1d99a;
+  --lux-cream: #f7f0df;
+  --lux-dark: #080705;
+  --lux-panel: rgba(20, 16, 10, .72);
+  --lux-border: rgba(217, 181, 109, .28);
+
+  background:
+    radial-gradient(
+      circle at 50% 8%,
+      rgba(217, 181, 109, .16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 15% 65%,
+      rgba(130, 88, 35, .12),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      #050403 0%,
+      #120d08 48%,
+      #050403 100%
+    ) !important;
+
+  color: var(--lux-cream) !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+
+/* =========================================================
+   CINEMATIC AMBIENT LIGHT
+   ========================================================= */
+
+body.style-luxury::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 226, 160, .10),
+      transparent 34%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0 18%,
+      rgba(255, 220, 150, .025) 50%,
+      transparent 82%
+    );
+
+  animation:
+    luxuryAmbient 10s ease-in-out infinite alternate;
+}
+
+@keyframes luxuryAmbient {
+  from {
+    transform: scale(1);
+    opacity: .72;
+  }
+
+  to {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   OPENING SCREEN
+   ========================================================= */
+
+body.style-luxury .opening-screen {
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(217, 181, 109, .18),
+      transparent 25%
+    ),
+    linear-gradient(
+      145deg,
+      #030303,
+      #171109 52%,
+      #030303
+    ) !important;
+}
+
+
+/* Vòng trang trí ánh vàng */
+
+body.style-luxury .opening-screen::before {
+  content: "";
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  border:
+    1px solid
+    rgba(217, 181, 109, .20);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 70px
+    rgba(217, 181, 109, .08),
+
+    inset 0 0 50px
+    rgba(217, 181, 109, .05);
+
+  animation:
+    luxuryRing 8s linear infinite;
+}
+
+@keyframes luxuryRing {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   TIÊU ĐỀ MỞ QUÀ
+   ========================================================= */
+
+body.style-luxury .opening-screen h1,
+body.style-luxury .opening-title {
+  color:
+    var(--lux-gold-soft) !important;
+
+  text-shadow:
+    0 0 10px
+    rgba(217, 181, 109, .18),
+
+    0 0 35px
+    rgba(217, 181, 109, .10);
+
+  letter-spacing: .16em;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   NÚT MỞ QUÀ
+   ========================================================= */
+
+body.style-luxury .opening-screen button,
+body.style-luxury .opening-button {
+  border:
+    1px solid
+    rgba(217, 181, 109, .65) !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(217, 181, 109, .20),
+      rgba(255, 255, 255, .04)
+    ) !important;
+
+  color:
+    var(--lux-cream) !important;
+
+  box-shadow:
+    0 10px 35px
+    rgba(0, 0, 0, .45),
+
+    inset 0 1px
+    rgba(255, 255, 255, .10);
+
+  backdrop-filter:
+    blur(14px);
+
+  transition:
+    all .35s ease;
+}
+
+body.style-luxury .opening-screen button:hover,
+body.style-luxury .opening-button:hover {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    var(--lux-gold-soft) !important;
+
+  box-shadow:
+    0 15px 45px
+    rgba(0, 0, 0, .55),
+
+    0 0 25px
+    rgba(217, 181, 109, .15);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+body.style-luxury .hero,
+body.style-luxury .hero-section {
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(217, 181, 109, .12),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, .20),
+      transparent
+    ) !important;
+}
+
+body.style-luxury .hero h1,
+body.style-luxury .hero-title {
+  color:
+    var(--lux-gold-soft) !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-weight: 500;
+
+  letter-spacing: .10em;
+
+  text-shadow:
+    0 5px 30px
+    rgba(0, 0, 0, .65);
+}
+
+body.style-luxury .hero p,
+body.style-luxury .hero-subtitle {
+  color:
+    rgba(247, 240, 223, .72) !important;
+}
+
+
+/* =========================================================
+   CÁC KHỐI NỘI DUNG
+   ========================================================= */
+
+body.style-luxury .section,
+body.style-luxury .story-section,
+body.style-luxury .music-section,
+body.style-luxury .counter-section,
+body.style-luxury .letter-section,
+body.style-luxury .ending-section,
+body.style-luxury .love-letter {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, .055),
+      rgba(217, 181, 109, .025) 48%,
+      rgba(0, 0, 0, .20)
+    ) !important;
+
+  border:
+    1px solid
+    var(--lux-border) !important;
+
+  box-shadow:
+    0 22px 70px
+    rgba(0, 0, 0, .38),
+
+    inset 0 1px
+    rgba(255, 255, 255, .06);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+}
+
+
+/* =========================================================
+   TIÊU ĐỀ CÁC SECTION
+   ========================================================= */
+
+body.style-luxury .section-title,
+body.style-luxury .section h2,
+body.style-luxury .story-section h2 {
+  color:
+    var(--lux-gold-soft) !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-weight: 500;
+
+  letter-spacing: .06em;
+
+  text-shadow:
+    0 3px 20px
+    rgba(217, 181, 109, .10);
+}
+
+
+/* Đường kẻ vàng */
+
+body.style-luxury .section-title::after,
+body.style-luxury .section h2::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--lux-gold),
+      transparent
+    ) !important;
+}
+
+
+/* =========================================================
+   BỘ ĐẾM THỜI GIAN
+   ========================================================= */
+
+body.style-luxury .counter-card,
+body.style-luxury .time-card,
+body.style-luxury .counter-item {
+  background:
+    rgba(0, 0, 0, .24) !important;
+
+  border:
+    1px solid
+    rgba(217, 181, 109, .20) !important;
+
+  box-shadow:
+    inset 0 1px
+    rgba(255, 255, 255, .045);
+
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+body.style-luxury .counter-card:hover,
+body.style-luxury .time-card:hover,
+body.style-luxury .counter-item:hover {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    rgba(217, 181, 109, .45) !important;
+
+  box-shadow:
+    0 12px 35px
+    rgba(0, 0, 0, .35),
+
+    0 0 20px
+    rgba(217, 181, 109, .06);
+}
+
+body.style-luxury .counter-number,
+body.style-luxury .time-value,
+body.style-luxury .counter-value {
+  color:
+    var(--lux-gold-soft) !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  text-shadow:
+    0 0 22px
+    rgba(217, 181, 109, .12);
+}
+
+body.style-luxury .counter-label,
+body.style-luxury .time-label {
+  color:
+    rgba(247, 240, 223, .60) !important;
+
+  letter-spacing:
+    .08em;
+}
+
+
+/* =========================================================
+   YOUTUBE
+   ========================================================= */
+
+body.style-luxury .music-player {
+  border:
+    1px solid
+    rgba(217, 181, 109, .30) !important;
+
+  background:
+    #050403 !important;
+
+  box-shadow:
+    0 24px 60px
+    rgba(0, 0, 0, .50),
+
+    0 0 35px
+    rgba(217, 181, 109, .06);
+}
+
+body.style-luxury .music-subtitle {
+  color:
+    rgba(247, 240, 223, .62) !important;
+}
+
+
+/* =========================================================
+   LOVE LETTER
+   ========================================================= */
+
+body.style-luxury .letter-content,
+body.style-luxury .love-letter-content {
+  color:
+    rgba(247, 240, 223, .88) !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  line-height:
+    1.95;
+}
+
+
+/* Chữ cái đầu đoạn thư */
+
+body.style-luxury .letter-content::first-letter,
+body.style-luxury .love-letter-content::first-letter {
+  color:
+    var(--lux-gold-soft);
+
+  font-size:
+    2.8em;
+
+  float:
+    left;
+
+  line-height:
+    .82;
+
+  padding-right:
+    8px;
+}
+
+
+/* =========================================================
+   PHẦN KẾT
+   ========================================================= */
+
+body.style-luxury .ending-section,
+body.style-luxury .ending {
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(217, 181, 109, .14),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #080705,
+      #030303
+    ) !important;
+}
+
+body.style-luxury .ending h2,
+body.style-luxury .ending-title {
+  color:
+    var(--lux-gold-soft) !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    .08em;
+}
+
+
+/* =========================================================
+   TIM BAY
+   ========================================================= */
+
+body.style-luxury .floating-heart,
+body.style-luxury .heart {
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(217, 181, 109, .35)
+    )
+
+    drop-shadow(
+      0 0 18px
+      rgba(217, 181, 109, .12)
+    );
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  body.style-luxury .hero h1,
+  body.style-luxury .hero-title {
+    letter-spacing:
+      .06em;
+  }
+
+  body.style-luxury .section,
+  body.style-luxury .story-section,
+  body.style-luxury .music-section,
+  body.style-luxury .counter-section,
+  body.style-luxury .letter-section,
+  body.style-luxury .ending-section,
+  body.style-luxury .love-letter {
+    border-radius:
+      20px;
+
+    backdrop-filter:
+      blur(12px);
+
+    -webkit-backdrop-filter:
+      blur(12px);
+  }
+
+  body.style-luxury .opening-screen h1,
+  body.style-luxury .opening-title {
+    letter-spacing:
+      .10em;
+  }
+
+  body.style-luxury .opening-screen::before {
+    width:
+      220px;
+
+    height:
+      220px;
+  }
+}
+
+
+/* =========================================================
+   GIẢM CHUYỂN ĐỘNG
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body.style-luxury::before,
+  body.style-luxury .opening-screen::before {
+    animation:
+      none;
+  }
+
+  body.style-luxury .opening-screen button,
+  body.style-luxury .opening-button,
+  body.style-luxury .counter-card,
+  body.style-luxury .time-card,
+  body.style-luxury .counter-item {
+    transition:
+      none;
+  }
+}
