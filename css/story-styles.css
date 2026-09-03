@@ -1533,3 +1533,689 @@ body.style-minimal .music-player {
     }
 
 }
+/* =========================================================
+   LOVE STORY — STYLE UPGRADE V2
+   Không thay đổi logic / opening / URL
+   Chỉ nâng cấp visual
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   GLOBAL STORY TRANSITIONS
+   --------------------------------------------------------- */
+
+body {
+  transition:
+    background 0.6s ease,
+    color 0.4s ease,
+    font-family 0.4s ease;
+}
+
+.story-content,
+.hero,
+.story-section,
+.music-section,
+.counter-section,
+.letter-section,
+.ending-section {
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    box-shadow 0.5s ease,
+    transform 0.4s ease;
+}
+
+
+/* =========================================================
+   💎 GLASS ROMANCE
+   ========================================================= */
+
+body.style-glass {
+  --style-radius: 26px;
+  --style-blur: 24px;
+  --style-shadow:
+    0 20px 60px rgba(0, 0, 0, .22);
+  --style-border:
+    rgba(255,255,255,.22);
+  --style-card:
+    rgba(255,255,255,.09);
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(255,255,255,.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(255,80,160,.14),
+      transparent 35%
+    ),
+    var(--story-background, #160914);
+}
+
+body.style-glass .hero,
+body.style-glass .story-section,
+body.style-glass .music-section,
+body.style-glass .counter-card,
+body.style-glass .letter-card,
+body.style-glass .ending-section {
+  backdrop-filter: blur(var(--style-blur));
+  -webkit-backdrop-filter: blur(var(--style-blur));
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.13),
+      rgba(255,255,255,.035)
+    );
+
+  border:
+    1px solid var(--style-border);
+
+  border-radius:
+    var(--style-radius);
+
+  box-shadow:
+    var(--style-shadow);
+
+  overflow: hidden;
+}
+
+body.style-glass .hero::before,
+body.style-glass .story-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,.10),
+      transparent 35%
+    );
+
+  pointer-events: none;
+}
+
+body.style-glass .section-title {
+  text-shadow:
+    0 0 20px rgba(255,255,255,.25);
+}
+
+
+/* =========================================================
+   👑 LUXURY LOVE
+   ========================================================= */
+
+body.style-luxury {
+  --style-radius: 14px;
+
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(220,175,90,.15),
+      transparent 40%
+    ),
+    linear-gradient(
+      145deg,
+      #090807,
+      #17130d 45%,
+      #050505
+    );
+
+  color: #f4ead8;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+body.style-luxury .hero,
+body.style-luxury .story-section,
+body.style-luxury .music-section,
+body.style-luxury .counter-card,
+body.style-luxury .letter-card,
+body.style-luxury .ending-section {
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.055),
+      rgba(255,215,130,.025)
+    );
+
+  border:
+    1px solid rgba(212,175,95,.28);
+
+  border-radius:
+    var(--style-radius);
+
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.5);
+
+  position: relative;
+}
+
+body.style-luxury .section-title {
+  color: #e8c77b;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  letter-spacing:
+    .04em;
+
+  text-shadow:
+    0 0 18px rgba(218,176,84,.25);
+}
+
+body.style-luxury .section-title::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #d8b45e,
+      transparent
+    );
+}
+
+body.style-luxury .counter-number {
+  color: #e4c477;
+
+  text-shadow:
+    0 0 25px rgba(218,175,75,.35);
+}
+
+body.style-luxury .letter-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,245,220,.075),
+      rgba(255,210,130,.025)
+    );
+}
+
+
+/* =========================================================
+   🌸 SAKURA DREAM
+   ========================================================= */
+
+body.style-sakura {
+  --style-radius: 30px;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(255,255,255,.65),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 90% 25%,
+      rgba(255,177,210,.3),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f7dce8,
+      #f3c6da,
+      #eebbd2
+    );
+
+  color: #633d50;
+}
+
+body.style-sakura .hero,
+body.style-sakura .story-section,
+body.style-sakura .music-section,
+body.style-sakura .counter-card,
+body.style-sakura .letter-card,
+body.style-sakura .ending-section {
+
+  background:
+    rgba(255,255,255,.38);
+
+  border:
+    1px solid rgba(255,255,255,.65);
+
+  border-radius:
+    var(--style-radius);
+
+  box-shadow:
+    0 20px 60px rgba(120,55,90,.12);
+
+  backdrop-filter:
+    blur(16px);
+
+  -webkit-backdrop-filter:
+    blur(16px);
+}
+
+body.style-sakura::before {
+  content: "🌸  🌸     🌸        🌸     🌸";
+
+  position: fixed;
+  top: 8%;
+  left: 0;
+  width: 100%;
+
+  text-align: center;
+
+  font-size: 24px;
+  letter-spacing: 18px;
+
+  opacity: .35;
+
+  pointer-events: none;
+  z-index: 0;
+
+  animation:
+    sakuraFloat 8s ease-in-out infinite;
+}
+
+body.style-sakura .section-title {
+  color: #9c4d70;
+}
+
+@keyframes sakuraFloat {
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(18px);
+  }
+}
+
+
+/* =========================================================
+   🎞️ CINEMATIC
+   ========================================================= */
+
+body.style-cinematic {
+  background:
+    radial-gradient(
+      ellipse at center,
+      #292929 0%,
+      #0d0d0d 55%,
+      #000 100%
+    );
+
+  color: #f5f5f5;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+body.style-cinematic .hero,
+body.style-cinematic .story-section,
+body.style-cinematic .music-section,
+body.style-cinematic .counter-card,
+body.style-cinematic .letter-card,
+body.style-cinematic .ending-section {
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.045),
+      rgba(255,255,255,.015)
+    );
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  border-radius:
+    4px;
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.6);
+}
+
+body.style-cinematic .section-title {
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    .12em;
+
+  font-weight:
+    700;
+}
+
+body.style-cinematic .counter-number {
+  font-family:
+    "Arial Narrow",
+    Arial,
+    sans-serif;
+
+  font-weight:
+    300;
+
+  letter-spacing:
+    -.03em;
+}
+
+body.style-cinematic .letter-card {
+  background:
+    rgba(255,255,255,.035);
+
+  border-left:
+    3px solid var(--story-accent, #fff);
+}
+
+
+/* =========================================================
+   💌 LOVE LETTER
+   ========================================================= */
+
+body.style-letter {
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255,255,255,.45),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #ead8bf,
+      #f6ead9,
+      #dfc7a9
+    );
+
+  color:
+    #4a3324;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+body.style-letter .hero,
+body.style-letter .story-section,
+body.style-letter .music-section,
+body.style-letter .counter-card,
+body.style-letter .letter-card,
+body.style-letter .ending-section {
+
+  background:
+    rgba(255,248,235,.68);
+
+  border:
+    1px solid rgba(110,75,45,.16);
+
+  border-radius:
+    10px;
+
+  box-shadow:
+    0 18px 50px rgba(75,50,30,.14);
+}
+
+body.style-letter .section-title {
+  color:
+    #7a5031;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-weight:
+    700;
+}
+
+body.style-letter .letter-card {
+  position:
+    relative;
+
+  padding:
+    32px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff9ef,
+      #f5e8d3
+    );
+}
+
+body.style-letter .letter-card::before {
+  content:
+    "💌";
+
+  position:
+    absolute;
+
+  top:
+    16px;
+
+  right:
+    20px;
+
+  font-size:
+    25px;
+
+  opacity:
+    .55;
+}
+
+body.style-letter #letterContent {
+  font-size:
+    18px;
+
+  line-height:
+    1.95;
+
+  letter-spacing:
+    .015em;
+}
+
+
+/* =========================================================
+   🤍 MINIMAL LOVE
+   ========================================================= */
+
+body.style-minimal {
+  background:
+    #f7f7f5;
+
+  color:
+    #181818;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body.style-minimal .hero,
+body.style-minimal .story-section,
+body.style-minimal .music-section,
+body.style-minimal .counter-card,
+body.style-minimal .letter-card,
+body.style-minimal .ending-section {
+
+  background:
+    rgba(255,255,255,.88);
+
+  border:
+    1px solid rgba(0,0,0,.08);
+
+  border-radius:
+    8px;
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.06);
+}
+
+body.style-minimal .section-title {
+  color:
+    #171717;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    -.01em;
+}
+
+body.style-minimal .counter-number {
+  color:
+    #111;
+
+  font-weight:
+    500;
+
+  text-shadow:
+    none;
+}
+
+body.style-minimal .letter-card {
+  box-shadow:
+    none;
+
+  border:
+    1px solid rgba(0,0,0,.1);
+}
+
+
+/* =========================================================
+   OPENING SCREEN — STYLE AWARE
+   ========================================================= */
+
+body.style-glass .opening-screen {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,.12),
+      transparent 35%
+    );
+}
+
+body.style-luxury .opening-screen {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(218,177,86,.13),
+      transparent 38%
+    ),
+    #080706;
+}
+
+body.style-sakura .opening-screen {
+  background:
+    linear-gradient(
+      135deg,
+      #f7d8e6,
+      #edbdd3
+    );
+}
+
+body.style-cinematic .opening-screen {
+  background:
+    radial-gradient(
+      circle,
+      #222,
+      #000 70%
+    );
+}
+
+body.style-letter .opening-screen {
+  background:
+    linear-gradient(
+      135deg,
+      #e9d5b9,
+      #fff3df
+    );
+}
+
+body.style-minimal .opening-screen {
+  background:
+    #f7f7f5;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  body.style-glass .hero,
+  body.style-glass .story-section,
+  body.style-glass .music-section,
+  body.style-glass .counter-card,
+  body.style-glass .letter-card,
+  body.style-glass .ending-section,
+
+  body.style-sakura .hero,
+  body.style-sakura .story-section,
+  body.style-sakura .music-section,
+  body.style-sakura .counter-card,
+  body.style-sakura .letter-card,
+  body.style-sakura .ending-section {
+
+    border-radius:
+      20px;
+  }
+
+  body.style-letter .letter-card {
+    padding:
+      24px 20px;
+  }
+
+  body.style-letter #letterContent {
+    font-size:
+      17px;
+
+    line-height:
+      1.8;
+  }
+
+  body.style-cinematic .section-title {
+    letter-spacing:
+      .07em;
+  }
+
+  body.style-minimal .hero,
+  body.style-minimal .story-section,
+  body.style-minimal .music-section,
+  body.style-minimal .counter-card,
+  body.style-minimal .letter-card,
+  body.style-minimal .ending-section {
+
+    border-radius:
+      6px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body,
+  .story-content,
+  .hero,
+  .story-section,
+  .music-section,
+  .counter-section,
+  .letter-section,
+  .ending-section {
+
+    transition:
+      none !important;
+  }
+
+  body.style-sakura::before {
+    animation:
+      none !important;
+  }
+}
