@@ -1,223 +1,165 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Our Love Story ❤️</title>
 
-    <meta
-        name="theme-color"
-        content="#160b18"
-    >
-
-    <title>Một món quà đặc biệt ❤️</title>
-
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/themes.css">
-    <link rel="stylesheet" href="css/opening.css">
     <link rel="stylesheet" href="css/story.css">
-
 </head>
-
 
 <body>
 
-    <!-- Hiệu ứng trái tim -->
-    <div id="hearts"></div>
+    <!-- Màn hình mở quà -->
+    <section id="openingScreen" class="opening-screen">
 
+        <div class="opening-content">
 
-    <!-- ==============================
-         TRANG MỞ QUÀ
-    =============================== -->
-
-    <main
-        id="openingPage"
-        class="page"
-    >
-
-        <div class="opening-wrapper">
-
-            <div class="opening-card">
-
-                <div class="opening-small">
-                    MỘT MÓN QUÀ ĐẶC BIỆT
-                </div>
-
-
-                <div class="opening-icon">
-                    💝
-                </div>
-
-
-                <div class="opening-for">
-                    Dành cho
-                </div>
-
-
-                <h1 id="openingReceiver">
-                    Em
-                </h1>
-
-
-                <p class="opening-description">
-
-                    Có một câu chuyện anh muốn
-                    kể lại cho em...
-
-                    <br>
-
-                    Một câu chuyện về chúng ta ❤️
-
-                </p>
-
-
-                <button
-                    id="openStoryButton"
-                    class="main-button"
-                    type="button"
-                >
-                    Mở món quà ❤️
-                </button>
-
+            <div class="opening-small">
+                MỘT MÓN QUÀ ĐẶC BIỆT
             </div>
+
+            <h1>
+                Dành cho <span id="receiverName">Em</span>
+            </h1>
+
+            <p>
+                Có một câu chuyện anh muốn kể lại cho em...
+            </p>
+
+            <button id="openStoryBtn">
+                Hãy mở nó nhé ❤️
+            </button>
 
         </div>
 
-    </main>
+    </section>
 
 
-
-    <!-- ==============================
-         TRANG LOVE STORY
-    =============================== -->
-
-    <main
-        id="storyPage"
-        class="page hidden"
-    >
+    <!-- Câu chuyện tình yêu -->
+    <main id="storyPage" class="story-page">
 
         <div class="story-container">
 
+            <!-- Tiêu đề -->
+            <section class="hero">
 
-            <!-- HEADER -->
-
-            <header class="story-header">
-
-                <div class="story-label">
+                <div class="hero-label">
                     OUR LOVE STORY
                 </div>
 
-
-                <h1 id="storyCouple">
-                    Anh & Em
+                <h1 id="coupleName">
+                    Trung Trang
                 </h1>
 
-
-                <div id="storyDate">
-                    05/12/2022
+                <div class="start-date" id="startDateText">
+                    04/03/2018
                 </div>
 
-            </header>
+            </section>
 
 
-
-            <!-- BỘ ĐẾM -->
-
-            <section class="story-card">
+            <!-- Bộ đếm -->
+            <section class="counter-section">
 
                 <h2>
                     Chúng ta đã bên nhau
                 </h2>
 
-
-                <p class="card-subtitle">
+                <p class="counter-subtitle">
                     Và thời gian vẫn đang tiếp tục... ❤️
                 </p>
 
 
                 <div class="counter-grid">
 
-
-                    <div class="counter-item">
-
-                        <strong id="years">
+                    <!-- Năm -->
+                    <div class="counter-box">
+                        <div id="years" class="counter-number">
                             0
-                        </strong>
+                        </div>
 
-                        <span>
+                        <div class="counter-label">
                             Năm
-                        </span>
-
+                        </div>
                     </div>
 
 
-                    <div class="counter-item">
-
-                        <strong id="months">
+                    <!-- Tháng -->
+                    <div class="counter-box">
+                        <div id="months" class="counter-number">
                             0
-                        </strong>
+                        </div>
 
-                        <span>
+                        <div class="counter-label">
                             Tháng
-                        </span>
-
+                        </div>
                     </div>
 
 
-                    <div class="counter-item">
-
-                        <strong id="days">
+                    <!-- Ngày -->
+                    <div class="counter-box">
+                        <div id="days" class="counter-number">
                             0
-                        </strong>
+                        </div>
 
-                        <span>
+                        <div class="counter-label">
                             Ngày
-                        </span>
-
+                        </div>
                     </div>
 
 
-                    <div class="counter-item">
-
-                        <strong id="hours">
+                    <!-- Giờ -->
+                    <div class="counter-box">
+                        <div id="hours" class="counter-number">
                             0
-                        </strong>
+                        </div>
 
-                        <span>
+                        <div class="counter-label">
                             Giờ
-                        </span>
-
+                        </div>
                     </div>
 
 
-                    <div class="counter-item">
+                    <!-- Phút -->
+                    <div class="counter-box">
+                        <div id="minutes" class="counter-number">
+                            0
+                        </div>
 
-                        <strong id="minutes">
-                            00
-                        </strong>
-
-                        <span>
+                        <div class="counter-label">
                             Phút
-                        </span>
-
+                        </div>
                     </div>
 
 
-                    <div class="counter-item">
-
-                        <strong id="seconds">
+                    <!-- Giây -->
+                    <div class="counter-box">
+                        <div id="seconds" class="counter-number">
                             00
-                        </strong>
+                        </div>
 
-                        <span>
+                        <div class="counter-label">
                             Giây
-                        </span>
+                        </div>
+                    </div>
 
+                </div>
+
+
+                <!-- TỔNG SỐ NGÀY -->
+                <div class="total-days">
+
+                    <div
+                        id="totalDays"
+                        class="total-days-number">
+                        0
+                    </div>
+
+                    <div class="total-days-label">
+                        TỔNG SỐ NGÀY BÊN NHAU
                     </div>
 
                 </div>
@@ -225,95 +167,52 @@
             </section>
 
 
+            <!-- Lời yêu thương -->
+            <section class="letter-section">
 
-            <!-- CÂU NÓI -->
+                <div class="section-title">
+                    Một chút yêu thương ❤️
+                </div>
 
-            <section class="story-card quote-card">
+                <div
+                    id="loveLetter"
+                    class="love-letter">
+                </div>
+
+            </section>
+
+
+            <!-- Kết -->
+            <section class="ending-section">
+
+                <div class="heart">
+                    ❤️
+                </div>
+
+                <h2>
+                    Câu chuyện của chúng ta
+                </h2>
 
                 <p>
-                    “Có những người xuất hiện trong
-                    cuộc đời ta không phải là tình cờ.”
+                    Và câu chuyện ấy vẫn chưa kết thúc...
+                </p>
+
+                <p class="forever">
+                    Mình sẽ còn viết tiếp nhé ❤️
                 </p>
 
             </section>
-
-
-
-            <!-- NHẠC -->
-
-            <section
-                id="musicSection"
-                class="story-card"
-            >
-
-                <h2>
-                    🎵 Bài hát của chúng ta
-                </h2>
-
-
-                <div class="youtube-box">
-
-                    <iframe
-                        id="youtubeFrame"
-                        title="Bài hát của chúng ta"
-                        src=""
-                        allow="
-                            autoplay;
-                            encrypted-media;
-                            picture-in-picture
-                        "
-                        allowfullscreen
-                    ></iframe>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- LỜI NHẮN -->
-
-            <section class="story-card">
-
-                <h2>
-                    💌 Điều anh muốn nói
-                </h2>
-
-
-                <div
-                    id="storyLetter"
-                    class="letter"
-                ></div>
-
-
-                <div
-                    id="storySignature"
-                    class="signature"
-                >
-                    — Anh ❤️
-                </div>
-
-            </section>
-
-
-
-            <footer>
-                Made with ❤️
-            </footer>
 
         </div>
 
     </main>
 
 
+    <!-- Tim bay -->
+    <div id="heartsContainer"></div>
 
-    <!-- JAVASCRIPT -->
 
-    <script src="js/data.js"></script>
-    <script src="js/opening.js"></script>
-    <script src="js/counter.js"></script>
     <script src="js/story.js"></script>
 
 </body>
-
 </html>
