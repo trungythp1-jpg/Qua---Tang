@@ -401,3 +401,294 @@ button {
     }
 
 }
+/* =========================================================
+   STYLE SELECTOR – CHỌN PHONG CÁCH
+   ========================================================= */
+
+.style-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.style-option {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.055);
+  color: #fff;
+
+  cursor: pointer;
+  text-align: left;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.style-option:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.style-option:active {
+  transform: scale(0.98);
+}
+
+.style-option.active {
+  border-color: var(--accent, #ff5c93);
+  background: rgba(255, 255, 255, 0.11);
+
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.06),
+    0 12px 35px rgba(0, 0, 0, 0.22);
+}
+
+/* Dấu check khi được chọn */
+.style-option.active::after {
+  content: "✓";
+
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--accent, #ff5c93);
+  color: #fff;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------------------------------------------------------
+   Ô preview
+   --------------------------------------------------------- */
+
+.style-preview {
+  width: 100%;
+  height: 125px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+
+  font-size: 42px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.style-preview span {
+  position: relative;
+  z-index: 2;
+
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.3));
+}
+
+/* Glass Romance */
+.style-glass-preview {
+  background:
+    radial-gradient(circle at 20% 20%,
+      rgba(255,255,255,.45),
+      transparent 28%),
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.28),
+      rgba(255,120,180,.18)
+    );
+  backdrop-filter: blur(12px);
+}
+
+/* Luxury */
+.style-luxury-preview {
+  background:
+    radial-gradient(circle at center,
+      rgba(255,215,120,.25),
+      transparent 55%),
+    linear-gradient(
+      135deg,
+      #17130e,
+      #332514
+    );
+}
+
+.style-luxury-preview span {
+  font-size: 48px;
+}
+
+/* Sakura */
+.style-sakura-preview {
+  background:
+    radial-gradient(circle at 15% 25%, rgba(255,255,255,.5) 0 5px, transparent 6px),
+    radial-gradient(circle at 75% 20%, rgba(255,180,210,.65) 0 7px, transparent 8px),
+    radial-gradient(circle at 35% 75%, rgba(255,210,225,.55) 0 6px, transparent 7px),
+    linear-gradient(135deg, #f8dce8, #eebbd2);
+}
+
+.style-sakura-preview span {
+  font-size: 45px;
+}
+
+/* Cinematic */
+.style-cinematic-preview {
+  background:
+    linear-gradient(
+      180deg,
+      #080808 0%,
+      #252525 50%,
+      #050505 100%
+    );
+}
+
+.style-cinematic-preview::before,
+.style-cinematic-preview::after {
+  content: "";
+
+  position: absolute;
+  left: 12%;
+  right: 12%;
+
+  height: 2px;
+
+  background: rgba(255,255,255,.55);
+}
+
+.style-cinematic-preview::before {
+  top: 25%;
+}
+
+.style-cinematic-preview::after {
+  bottom: 25%;
+}
+
+/* Love Letter */
+.style-letter-preview {
+  background:
+    linear-gradient(
+      135deg,
+      #f3e3cf,
+      #fff5e7
+    );
+}
+
+.style-letter-preview span {
+  filter: drop-shadow(0 3px 5px rgba(80,40,20,.2));
+}
+
+/* Minimal */
+.style-minimal-preview {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.02)
+    );
+  border-bottom-color: rgba(255,255,255,.25);
+}
+
+/* ---------------------------------------------------------
+   Tên + mô tả
+   --------------------------------------------------------- */
+
+.style-option strong {
+  display: block;
+
+  padding: 15px 15px 5px;
+
+  color: #fff;
+
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.style-option small {
+  display: block;
+
+  padding: 0 15px 17px;
+
+  color: rgba(255,255,255,.68);
+
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+  .style-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .style-option {
+    border-radius: 18px;
+  }
+
+  .style-preview {
+    height: 105px;
+  }
+
+  .style-option strong {
+    font-size: 17px;
+    padding: 13px 14px 4px;
+  }
+
+  .style-option small {
+    font-size: 13px;
+    padding: 0 14px 14px;
+  }
+
+  .style-option.active::after {
+    width: 28px;
+    height: 28px;
+
+    top: 10px;
+    right: 10px;
+
+    font-size: 16px;
+  }
+}
+
+/* ---------------------------------------------------------
+   TABLET / DESKTOP
+   --------------------------------------------------------- */
+
+@media (min-width: 900px) {
+
+  .style-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .style-preview {
+    height: 135px;
+  }
+}
