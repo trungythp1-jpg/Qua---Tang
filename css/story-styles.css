@@ -1,0 +1,1186 @@
+/* =========================================================
+   LOVE STORY — VISUAL STYLE SYSTEM
+   6 COLOR THEMES × 6 VISUAL STYLES
+   ========================================================= */
+
+
+/* =========================================================
+   1. BIẾN MẶC ĐỊNH
+   ========================================================= */
+
+body {
+    --story-accent: #ff82b8;
+    --story-accent-soft: rgba(255, 130, 184, .18);
+
+    --story-bg-1: #180913;
+    --story-bg-2: #3b1028;
+    --story-bg-3: #170812;
+
+    --story-card: rgba(255, 255, 255, .045);
+    --story-card-strong: rgba(255, 255, 255, .075);
+
+    --story-border: rgba(255, 255, 255, .18);
+
+    --story-text: rgba(255, 255, 255, .88);
+    --story-muted: rgba(255, 255, 255, .68);
+
+    --story-radius: 28px;
+    --story-blur: 15px;
+
+    --story-shadow:
+        0 25px 80px rgba(0, 0, 0, .22);
+
+    --story-font:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    --story-heading-font:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   2. 6 MÀU
+   ========================================================= */
+
+
+/* ❤️ ROMANTIC */
+
+body.theme-romantic {
+    --story-accent: #ff82b8;
+    --story-accent-soft: rgba(255, 130, 184, .20);
+
+    --story-bg-1: #180913;
+    --story-bg-2: #3b1028;
+    --story-bg-3: #170812;
+}
+
+
+/* 🌹 ROSE */
+
+body.theme-rose {
+    --story-accent: #ff557f;
+    --story-accent-soft: rgba(255, 85, 127, .20);
+
+    --story-bg-1: #17070b;
+    --story-bg-2: #4b0e22;
+    --story-bg-3: #21070e;
+}
+
+
+/* 💜 PURPLE */
+
+body.theme-purple {
+    --story-accent: #c995ff;
+    --story-accent-soft: rgba(201, 149, 255, .20);
+
+    --story-bg-1: #0d0818;
+    --story-bg-2: #2a1548;
+    --story-bg-3: #10091e;
+}
+
+
+/* 🌸 PINK */
+
+body.theme-pink {
+    --story-accent: #ff9bc8;
+    --story-accent-soft: rgba(255, 155, 200, .20);
+
+    --story-bg-1: #1d0d16;
+    --story-bg-2: #54243d;
+    --story-bg-3: #24101a;
+}
+
+
+/* 🌌 NIGHT */
+
+body.theme-night {
+    --story-accent: #8ab8ff;
+    --story-accent-soft: rgba(138, 184, 255, .20);
+
+    --story-bg-1: #050b18;
+    --story-bg-2: #102852;
+    --story-bg-3: #060b16;
+}
+
+
+/* 🌅 SUNSET */
+
+body.theme-sunset {
+    --story-accent: #ffb36b;
+    --story-accent-soft: rgba(255, 179, 107, .20);
+
+    --story-bg-1: #1b0c08;
+    --story-bg-2: #63301c;
+    --story-bg-3: #24100a;
+}
+
+
+/* =========================================================
+   3. NỀN CHUNG
+   ========================================================= */
+
+body {
+    font-family: var(--story-font);
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            var(--story-accent-soft),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 30%,
+            var(--story-accent-soft),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            var(--story-bg-1),
+            var(--story-bg-2),
+            var(--story-bg-3)
+        );
+}
+
+
+/* =========================================================
+   4. MÀU CHUNG CHO CÁC THÀNH PHẦN
+   ========================================================= */
+
+.opening-content h1 span,
+.counter-section h2,
+.counter-number,
+.total-days-number,
+.section-title,
+.ending-section .forever {
+    color: var(--story-accent) !important;
+}
+
+.counter-number,
+.total-days-number {
+    text-shadow:
+        0 5px 25px var(--story-accent-soft);
+}
+
+#openStoryBtn {
+    background:
+        linear-gradient(
+            135deg,
+            var(--story-accent),
+            color-mix(
+                in srgb,
+                var(--story-accent) 55%,
+                #000
+            )
+        );
+
+    box-shadow:
+        0 15px 45px var(--story-accent-soft);
+}
+
+
+/* =========================================================
+   5. GLASS ROMANCE
+   💎 Kính trong suốt — hiện đại — lung linh
+   ========================================================= */
+
+body.style-glass {
+
+    --story-radius: 30px;
+    --story-blur: 22px;
+
+    --story-card:
+        rgba(255, 255, 255, .055);
+
+    --story-card-strong:
+        rgba(255, 255, 255, .10);
+
+    --story-border:
+        rgba(255, 255, 255, .20);
+
+    --story-shadow:
+        0 25px 90px rgba(0, 0, 0, .25);
+}
+
+
+body.style-glass .counter-section,
+body.style-glass .counter-box,
+body.style-glass .total-days,
+body.style-glass .letter-section {
+
+    border-radius: var(--story-radius);
+
+    border:
+        1px solid var(--story-border);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.025)
+        );
+
+    backdrop-filter:
+        blur(var(--story-blur));
+
+    -webkit-backdrop-filter:
+        blur(var(--story-blur));
+
+    box-shadow:
+        var(--story-shadow);
+}
+
+
+body.style-glass .counter-box:hover {
+
+    transform:
+        translateY(-5px);
+
+    background:
+        rgba(255,255,255,.10);
+}
+
+
+body.style-glass .hero h1 {
+
+    text-shadow:
+        0 10px 45px var(--story-accent-soft);
+}
+
+
+body.style-glass #openStoryBtn {
+
+    border-radius: 50px;
+
+    backdrop-filter:
+        blur(15px);
+}
+
+
+/* =========================================================
+   6. LUXURY LOVE
+   👑 Sang trọng — cao cấp — quyến rũ
+   ========================================================= */
+
+body.style-luxury {
+
+    --story-radius: 10px;
+    --story-blur: 0px;
+
+    --story-font:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    --story-heading-font:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+body.style-luxury .hero,
+body.style-luxury .counter-section,
+body.style-luxury .letter-section,
+body.style-luxury .ending-section {
+
+    font-family:
+        var(--story-heading-font);
+}
+
+
+body.style-luxury .hero {
+
+    padding-top: 60px;
+    padding-bottom: 75px;
+}
+
+
+body.style-luxury .hero-label,
+body.style-luxury .opening-small {
+
+    letter-spacing: 10px;
+
+    font-family:
+        var(--story-font);
+}
+
+
+body.style-luxury .hero h1 {
+
+    font-family:
+        var(--story-heading-font);
+
+    font-weight: 500;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 8px 35px rgba(0,0,0,.55);
+}
+
+
+body.style-luxury .counter-section,
+body.style-luxury .counter-box,
+body.style-luxury .total-days,
+body.style-luxury .letter-section {
+
+    border-radius:
+        var(--story-radius);
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--story-accent) 45%,
+            transparent
+        );
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,0,0,.52),
+            rgba(255,255,255,.025)
+        );
+
+    backdrop-filter: none;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.38);
+}
+
+
+body.style-luxury .counter-number,
+body.style-luxury .total-days-number {
+
+    font-family:
+        var(--story-heading-font);
+
+    font-weight: 500;
+
+    letter-spacing: 2px;
+}
+
+
+body.style-luxury .section-title {
+
+    font-family:
+        var(--story-heading-font);
+
+    letter-spacing: 1px;
+}
+
+
+body.style-luxury .love-letter {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    line-height: 2;
+
+    font-size: 19px;
+}
+
+
+body.style-luxury #openStoryBtn {
+
+    border-radius: 8px;
+
+    letter-spacing: 1px;
+
+    font-family:
+        var(--story-heading-font);
+}
+
+
+/* =========================================================
+   7. SAKURA DREAM
+   🌸 Hoa anh đào — dịu dàng — mộng mơ
+   ========================================================= */
+
+body.style-sakura {
+
+    --story-radius: 34px;
+
+    --story-font:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    --story-heading-font:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+body.style-sakura::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    background:
+        radial-gradient(
+            circle at 12% 18%,
+            rgba(255,255,255,.30) 0 5px,
+            transparent 6px
+        ),
+        radial-gradient(
+            circle at 85% 14%,
+            rgba(255,180,210,.28) 0 7px,
+            transparent 8px
+        ),
+        radial-gradient(
+            circle at 25% 70%,
+            rgba(255,200,220,.22) 0 6px,
+            transparent 7px
+        ),
+        radial-gradient(
+            circle at 90% 75%,
+            rgba(255,220,235,.20) 0 5px,
+            transparent 6px
+        );
+
+    opacity: .8;
+}
+
+
+body.style-sakura .story-page,
+body.style-sakura .opening-screen {
+
+    position: relative;
+}
+
+
+body.style-sakura .hero h1 {
+
+    font-family:
+        var(--story-heading-font);
+
+    font-weight: 500;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 8px 30px var(--story-accent-soft);
+}
+
+
+body.style-sakura .counter-section,
+body.style-sakura .counter-box,
+body.style-sakura .total-days,
+body.style-sakura .letter-section {
+
+    border-radius:
+        var(--story-radius);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.22);
+
+    backdrop-filter:
+        blur(10px);
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.18);
+}
+
+
+body.style-sakura .love-letter {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    line-height: 2;
+
+    font-size: 18px;
+}
+
+
+body.style-sakura .ending-section {
+
+    padding-top: 100px;
+}
+
+
+body.style-sakura .heart {
+
+    filter:
+        drop-shadow(
+            0 8px 20px
+            var(--story-accent-soft)
+        );
+}
+
+
+/* =========================================================
+   8. CINEMATIC
+   🎞️ Điện ảnh — mạnh — kịch tính
+   ========================================================= */
+
+body.style-cinematic {
+
+    --story-radius: 8px;
+    --story-blur: 0px;
+
+    --story-font:
+        "Arial Narrow",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+
+body.style-cinematic::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    opacity: .16;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 3px,
+            rgba(255,255,255,.04) 4px
+        );
+}
+
+
+body.style-cinematic .story-page {
+
+    padding-top: 95px;
+}
+
+
+body.style-cinematic .hero {
+
+    padding:
+        80px 10px
+        100px;
+}
+
+
+body.style-cinematic .hero-label {
+
+    letter-spacing: 14px;
+
+    font-size: 11px;
+}
+
+
+body.style-cinematic .hero h1 {
+
+    font-size:
+        clamp(
+            48px,
+            12vw,
+            100px
+        );
+
+    line-height: .95;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: -2px;
+
+    text-shadow:
+        0 15px 45px rgba(0,0,0,.65);
+}
+
+
+body.style-cinematic .start-date {
+
+    margin-top: 25px;
+
+    font-size: 18px;
+
+    letter-spacing: 5px;
+}
+
+
+body.style-cinematic .counter-section,
+body.style-cinematic .letter-section {
+
+    border-radius:
+        var(--story-radius);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.48),
+            rgba(0,0,0,.28)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    backdrop-filter: none;
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.45);
+}
+
+
+body.style-cinematic .counter-box {
+
+    border-radius: 6px;
+
+    background:
+        rgba(0,0,0,.30);
+
+    border:
+        1px solid rgba(255,255,255,.13);
+}
+
+
+body.style-cinematic .counter-number {
+
+    font-size: 64px;
+
+    font-weight: 900;
+
+    letter-spacing: -2px;
+}
+
+
+body.style-cinematic .section-title {
+
+    font-size: 30px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+}
+
+
+body.style-cinematic .love-letter {
+
+    font-size: 19px;
+
+    line-height: 2;
+
+    max-width: 620px;
+
+    margin: auto;
+}
+
+
+body.style-cinematic .ending-section {
+
+    padding:
+        120px 20px;
+}
+
+
+body.style-cinematic #openStoryBtn {
+
+    border-radius: 5px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   9. LOVE LETTER
+   💌 Thư tình — giấy — cổ điển — ấm áp
+   ========================================================= */
+
+body.style-letter {
+
+    --story-radius: 18px;
+
+    --story-font:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    --story-heading-font:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+body.style-letter .hero {
+
+    padding-top: 60px;
+}
+
+
+body.style-letter .hero-label {
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    letter-spacing: 5px;
+}
+
+
+body.style-letter .hero h1 {
+
+    font-family:
+        var(--story-heading-font);
+
+    font-weight: 500;
+
+    font-style: italic;
+
+    letter-spacing: 1px;
+}
+
+
+body.style-letter .counter-section,
+body.style-letter .letter-section,
+body.style-letter .total-days {
+
+    border-radius:
+        var(--story-radius);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,248,235,.11),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid rgba(255,235,210,.24);
+
+    backdrop-filter:
+        blur(5px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.20);
+}
+
+
+body.style-letter .counter-box {
+
+    border-radius:
+        16px;
+
+    background:
+        rgba(255,248,235,.045);
+
+    border:
+        1px solid rgba(255,235,210,.18);
+}
+
+
+body.style-letter .counter-section h2,
+body.style-letter .section-title {
+
+    font-family:
+        var(--story-heading-font);
+
+    font-style: italic;
+
+    font-weight: 500;
+}
+
+
+body.style-letter .love-letter {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 19px;
+
+    line-height: 2.05;
+
+    letter-spacing: .1px;
+}
+
+
+body.style-letter .love-letter::first-letter {
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    float: left;
+
+    line-height: .8;
+
+    margin:
+        7px 8px 0 0;
+
+    color:
+        var(--story-accent);
+}
+
+
+body.style-letter #openStoryBtn {
+
+    border-radius: 12px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   10. MINIMAL LOVE
+   🤍 Tối giản — tinh tế — thanh lịch
+   ========================================================= */
+
+body.style-minimal {
+
+    --story-radius: 14px;
+
+    --story-blur: 0px;
+
+    --story-font:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+}
+
+
+body.style-minimal {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--story-bg-1),
+            var(--story-bg-2)
+        );
+}
+
+
+body.style-minimal .hero {
+
+    padding:
+        70px 10px
+        80px;
+}
+
+
+body.style-minimal .hero h1 {
+
+    font-size:
+        clamp(
+            42px,
+            9vw,
+            72px
+        );
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+
+    text-shadow: none;
+}
+
+
+body.style-minimal .hero-label {
+
+    letter-spacing: 5px;
+}
+
+
+body.style-minimal .counter-section,
+body.style-minimal .counter-box,
+body.style-minimal .total-days,
+body.style-minimal .letter-section {
+
+    border-radius:
+        var(--story-radius);
+
+    background:
+        transparent;
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    backdrop-filter: none;
+
+    box-shadow:
+        none;
+}
+
+
+body.style-minimal .counter-section {
+
+    padding:
+        45px 25px;
+}
+
+
+body.style-minimal .counter-box {
+
+    min-height: 145px;
+}
+
+
+body.style-minimal .counter-box:hover {
+
+    transform: translateY(-2px);
+
+    background:
+        rgba(255,255,255,.025);
+}
+
+
+body.style-minimal .counter-number {
+
+    font-weight: 500;
+
+    text-shadow: none;
+}
+
+
+body.style-minimal .total-days-number {
+
+    font-weight: 500;
+
+    text-shadow: none;
+}
+
+
+body.style-minimal .section-title {
+
+    font-weight: 500;
+
+    letter-spacing: 1px;
+}
+
+
+body.style-minimal .love-letter {
+
+    line-height: 1.95;
+
+    font-size: 18px;
+
+    max-width: 600px;
+
+    margin: auto;
+}
+
+
+body.style-minimal #openStoryBtn {
+
+    border-radius: 10px;
+
+    background:
+        transparent;
+
+    border:
+        1px solid
+        var(--story-accent);
+
+    box-shadow: none;
+}
+
+
+body.style-minimal #openStoryBtn:hover {
+
+    background:
+        var(--story-accent-soft);
+}
+
+
+/* =========================================================
+   11. OPENING SCREEN THEO STYLE
+   ========================================================= */
+
+body.style-glass .opening-screen {
+
+    background:
+        radial-gradient(
+            circle at center,
+            var(--story-accent-soft),
+            transparent 55%
+        ),
+        rgba(10,5,10,.92);
+
+    backdrop-filter:
+        blur(18px);
+}
+
+
+body.style-luxury .opening-screen {
+
+    background:
+        radial-gradient(
+            circle at center,
+            var(--story-accent-soft),
+            transparent 45%
+        ),
+        #050505;
+}
+
+
+body.style-sakura .opening-screen {
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.12),
+            transparent 55%
+        ),
+        var(--story-bg-1);
+}
+
+
+body.style-cinematic .opening-screen {
+
+    background:
+        linear-gradient(
+            180deg,
+            #030303,
+            var(--story-bg-1)
+        );
+}
+
+
+body.style-letter .opening-screen {
+
+    background:
+        radial-gradient(
+            circle at center,
+            var(--story-accent-soft),
+            transparent 55%
+        ),
+        var(--story-bg-1);
+}
+
+
+body.style-minimal .opening-screen {
+
+    background:
+        var(--story-bg-1);
+}
+
+
+/* =========================================================
+   12. MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+    body.style-cinematic .hero {
+
+        padding:
+            60px 8px
+            75px;
+    }
+
+    body.style-cinematic .hero h1 {
+
+        font-size:
+            clamp(
+                43px,
+                13vw,
+                72px
+            );
+    }
+
+    body.style-cinematic .counter-number {
+
+        font-size: 52px;
+    }
+
+
+    body.style-luxury .hero {
+
+        padding-top: 45px;
+    }
+
+
+    body.style-sakura .hero {
+
+        padding-top: 45px;
+    }
+
+
+    body.style-letter .love-letter {
+
+        font-size: 17px;
+
+        line-height: 1.95;
+    }
+
+
+    body.style-minimal .hero {
+
+        padding:
+            50px 10px
+            60px;
+    }
+
+    body.style-minimal .counter-section {
+
+        padding:
+            30px 16px;
+    }
+
+}
+
+
+/* =========================================================
+   13. TẮT HIỆU ỨNG KHÔNG CẦN THIẾT
+   ========================================================= */
+
+body.style-minimal .floating-heart {
+
+    opacity: .35;
+}
+
+body.style-cinematic .floating-heart {
+
+    opacity: .25;
+}
