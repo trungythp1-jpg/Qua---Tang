@@ -5,60 +5,79 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    content="width=device-width, initial-scale=1.0"
   >
 
   <meta
     name="theme-color"
-    content="#120d08"
+    content="#080705"
   >
 
   <meta
     name="description"
-    content="Một món quà đặc biệt dành cho người mình yêu."
+    content="Một món quà đặc biệt dành riêng cho em ❤️"
   >
 
-  <title>Our Love Story ❤️</title>
+  <title>Một món quà đặc biệt ❤️</title>
+
 
   <!-- =====================================================
        CSS
        ===================================================== -->
 
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/themes.css">
-  <link rel="stylesheet" href="css/story.css">
-  <link rel="stylesheet" href="css/story-styles.css">
+  <link
+    rel="stylesheet"
+    href="css/base.css"
+  >
 
-  <!--
-    CSS nâng cấp riêng cho Luxury Love.
-    Chỉ tác động khi body có class style-luxury.
-  -->
-  <link rel="stylesheet" href="css/luxury-premium.css">
+  <link
+    rel="stylesheet"
+    href="css/themes.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/story.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/story-styles.css"
+  >
+
+  <!-- Luxury Premium -->
+  <link
+    rel="stylesheet"
+    href="css/luxury-premium.css"
+  >
 
 </head>
 
 
 <body>
 
+
   <!-- =====================================================
        OPENING SCREEN
-       MÀN HÌNH MỞ QUÀ
        ===================================================== -->
 
   <section
     id="openingScreen"
     class="opening-screen"
+    aria-hidden="false"
   >
 
-    <div class="opening-content">
+    <div class="opening-inner">
 
       <div class="opening-heart">
-        ❤️
+        ♥
       </div>
+
 
       <div class="opening-label">
         MỘT MÓN QUÀ ĐẶC BIỆT
       </div>
+
 
       <h1 class="opening-title">
         Dành cho
@@ -67,14 +86,16 @@
         </span>
       </h1>
 
+
       <p class="opening-description">
         Có một câu chuyện anh muốn kể lại cho em...
       </p>
 
+
       <button
-        type="button"
         id="openGiftButton"
         class="opening-button"
+        type="button"
       >
         Hãy mở nó nhé ❤️
       </button>
@@ -87,12 +108,13 @@
 
   <!-- =====================================================
        LOVE STORY
-       Nội dung chính - ẩn cho đến khi mở quà
        ===================================================== -->
 
   <main
     id="storyContent"
     class="story-content"
+    style="display:none;"
+    aria-hidden="true"
   >
 
 
@@ -101,15 +123,15 @@
          =================================================== -->
 
     <section
-      id="heroSection"
       class="hero hero-section"
     >
 
       <div class="hero-inner">
 
-        <div class="hero-small-title">
+        <div class="hero-kicker">
           OUR LOVE STORY
         </div>
+
 
         <h1
           id="coupleName"
@@ -118,21 +140,21 @@
           Chun Chan
         </h1>
 
-        <div class="hero-divider">
-          <span>♥</span>
+
+        <div
+          id="startDate"
+          class="hero-date"
+        >
+          05/12/2022
         </div>
 
-        <p class="hero-date">
-          <span id="startDate">
-            05/12/2022
-          </span>
-        </p>
 
-        <p
-          id="heroReceiver"
-          class="hero-subtitle"
-        >
-          Dành cho em
+        <p class="hero-subtitle">
+          Một câu chuyện nhỏ của
+          <span id="heroReceiver">
+            em
+          </span>
+          và anh ❤️
         </p>
 
       </div>
@@ -150,37 +172,27 @@
       class="music-section story-section"
     >
 
-      <div class="section-inner">
+      <div class="section-title">
+        🎵 Bài hát dành cho chúng ta
+      </div>
 
-        <div class="section-title">
-          🎵 Bài hát dành cho chúng ta
-        </div>
 
-        <p class="music-subtitle">
-          Một bài hát nhỏ cho câu chuyện của chúng mình ❤️
-        </p>
+      <p class="music-subtitle">
+        Một bài hát nhỏ cho câu chuyện của chúng mình ❤️
+      </p>
 
-        <div class="music-player">
 
-          <iframe
-            id="youtubePlayer"
-            title="Bài hát dành cho chúng ta"
-            src=""
-            loading="lazy"
-            frameborder="0"
-            allow="
-              accelerometer;
-              autoplay;
-              clipboard-write;
-              encrypted-media;
-              gyroscope;
-              picture-in-picture;
-              web-share
-            "
-            allowfullscreen>
-          </iframe>
+      <div class="music-player">
 
-        </div>
+        <iframe
+          id="youtubePlayer"
+          title="Bài hát dành cho chúng ta"
+          src=""
+          loading="lazy"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
 
       </div>
 
@@ -193,152 +205,151 @@
          =================================================== -->
 
     <section
-      id="counterSection"
       class="counter-section story-section"
     >
 
-      <div class="section-inner">
-
-        <div class="section-title">
-          ⏳ Chúng ta đã bên nhau
-        </div>
-
-        <p class="counter-subtitle">
-          Và thời gian vẫn đang tiếp tục viết nên câu chuyện của chúng mình...
-        </p>
+      <div class="section-title">
+        ⏳ Chúng ta đã bên nhau
+      </div>
 
 
-        <div class="counter-grid">
-
-          <!-- YEARS -->
-
-          <div class="counter-card">
-
-            <div
-              id="years"
-              class="counter-number"
-            >
-              0
-            </div>
-
-            <div class="counter-label">
-              NĂM
-            </div>
-
-          </div>
+      <p class="music-subtitle">
+        Và thời gian vẫn đang tiếp tục viết nên câu chuyện ấy...
+      </p>
 
 
-          <!-- MONTHS -->
-
-          <div class="counter-card">
-
-            <div
-              id="months"
-              class="counter-number"
-            >
-              0
-            </div>
-
-            <div class="counter-label">
-              THÁNG
-            </div>
-
-          </div>
+      <div class="counter-grid">
 
 
-          <!-- DAYS -->
+        <!-- YEARS -->
 
-          <div class="counter-card">
-
-            <div
-              id="days"
-              class="counter-number"
-            >
-              0
-            </div>
-
-            <div class="counter-label">
-              NGÀY
-            </div>
-
-          </div>
-
-
-          <!-- HOURS -->
-
-          <div class="counter-card">
-
-            <div
-              id="hours"
-              class="counter-number"
-            >
-              0
-            </div>
-
-            <div class="counter-label">
-              GIỜ
-            </div>
-
-          </div>
-
-
-          <!-- MINUTES -->
-
-          <div class="counter-card">
-
-            <div
-              id="minutes"
-              class="counter-number"
-            >
-              0
-            </div>
-
-            <div class="counter-label">
-              PHÚT
-            </div>
-
-          </div>
-
-
-          <!-- SECONDS -->
-
-          <div class="counter-card">
-
-            <div
-              id="seconds"
-              class="counter-number"
-            >
-              0
-            </div>
-
-            <div class="counter-label">
-              GIÂY
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- TOTAL DAYS -->
-
-        <div class="total-days-card">
-
-          <div class="total-days-label">
-            ❤️ TỔNG SỐ NGÀY BÊN NHAU
-          </div>
+        <div class="counter-card">
 
           <div
-            id="totalDays"
-            class="total-days-number"
+            id="years"
+            class="counter-number"
           >
             0
           </div>
 
-          <div class="total-days-unit">
-            ngày
+          <div class="counter-label">
+            NĂM
           </div>
 
+        </div>
+
+
+        <!-- MONTHS -->
+
+        <div class="counter-card">
+
+          <div
+            id="months"
+            class="counter-number"
+          >
+            0
+          </div>
+
+          <div class="counter-label">
+            THÁNG
+          </div>
+
+        </div>
+
+
+        <!-- DAYS -->
+
+        <div class="counter-card">
+
+          <div
+            id="days"
+            class="counter-number"
+          >
+            0
+          </div>
+
+          <div class="counter-label">
+            NGÀY
+          </div>
+
+        </div>
+
+
+        <!-- HOURS -->
+
+        <div class="counter-card">
+
+          <div
+            id="hours"
+            class="counter-number"
+          >
+            00
+          </div>
+
+          <div class="counter-label">
+            GIỜ
+          </div>
+
+        </div>
+
+
+        <!-- MINUTES -->
+
+        <div class="counter-card">
+
+          <div
+            id="minutes"
+            class="counter-number"
+          >
+            00
+          </div>
+
+          <div class="counter-label">
+            PHÚT
+          </div>
+
+        </div>
+
+
+        <!-- SECONDS -->
+
+        <div class="counter-card">
+
+          <div
+            id="seconds"
+            class="counter-number"
+          >
+            00
+          </div>
+
+          <div class="counter-label">
+            GIÂY
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- TOTAL DAYS -->
+
+      <div class="total-days-card">
+
+        <div class="total-days-label">
+          TỔNG SỐ NGÀY BÊN NHAU
+        </div>
+
+
+        <div
+          id="totalDays"
+          class="total-days-number"
+        >
+          0
+        </div>
+
+
+        <div class="total-days-text">
+          ngày và vẫn còn tiếp tục... ❤️
         </div>
 
       </div>
@@ -352,36 +363,31 @@
          =================================================== -->
 
     <section
-      id="letterSection"
       class="letter-section story-section"
     >
 
-      <div class="section-inner">
+      <div class="section-title">
+        💌 Một lời muốn nói
+      </div>
 
-        <div class="section-title">
-          💌 Một lời muốn nói
-        </div>
+
+      <div
+        class="love-letter"
+      >
 
         <div
           id="loveLetter"
-          class="love-letter"
+          class="letter-title"
         >
+          Anh Yêu Em
+        </div>
 
-          <div class="letter-decoration">
-            ♥
-          </div>
 
-          <div
-            id="letterContent"
-            class="letter-content"
-          >
-            Anh Yêu Em
-          </div>
-
-          <div class="letter-decoration">
-            ♥
-          </div>
-
+        <div
+          id="letterContent"
+          class="letter-content"
+        >
+          Anh Yêu Em
         </div>
 
       </div>
@@ -395,31 +401,35 @@
          =================================================== -->
 
     <section
-      id="endingSection"
       class="ending-section ending"
     >
 
       <div class="ending-inner">
 
+
         <div class="ending-heart">
-          ❤️
+          ♥
         </div>
 
+
         <h2 class="ending-title">
-          Câu chuyện của chúng ta
+          Cảm ơn em
         </h2>
 
+
         <p class="ending-text">
-          Chưa kết thúc...
+          Vì đã xuất hiện trong cuộc đời anh.
         </p>
 
-        <p class="ending-love">
-          Vì anh vẫn muốn cùng em viết tiếp
-          thật nhiều chương nữa. ❤️
+
+        <p class="ending-text">
+          Mong rằng câu chuyện của chúng ta
+          sẽ còn được viết tiếp thật lâu...
         </p>
+
 
         <div class="ending-signature">
-          Forever & Always
+          ❤️ Mãi yêu em ❤️
         </div>
 
       </div>
@@ -447,7 +457,11 @@
        JAVASCRIPT
        ===================================================== -->
 
-  <script src="js/story.js"></script>
+  <script
+    src="js/story.js"
+    defer
+  ></script>
+
 
 </body>
 </html>
