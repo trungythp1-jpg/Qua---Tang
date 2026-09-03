@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -25,31 +26,562 @@
        CSS
        ===================================================== -->
 
-  <link
-    rel="stylesheet"
-    href="css/base.css"
-  >
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/story.css">
+  <link rel="stylesheet" href="css/story-styles.css">
+  <link rel="stylesheet" href="css/luxury-premium.css">
 
-  <link
-    rel="stylesheet"
-    href="css/themes.css"
-  >
 
-  <link
-    rel="stylesheet"
-    href="css/story.css"
-  >
+  <!-- =====================================================
+       CSS DỰ PHÒNG CHO OPENING + STORY
+       ===================================================== -->
 
-  <link
-    rel="stylesheet"
-    href="css/story-styles.css"
-  >
+  <style>
 
-  <!-- Luxury Premium -->
-  <link
-    rel="stylesheet"
-    href="css/luxury-premium.css"
-  >
+    /* =====================================================
+       OPENING SCREEN
+       ===================================================== */
+
+    #openingScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+
+      width: 100%;
+      height: 100vh;
+      min-height: 100svh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 24px;
+
+      overflow: hidden;
+
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+
+      transition:
+        opacity .45s ease,
+        visibility .45s ease;
+    }
+
+
+    #openingScreen.opening-hidden {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+
+    .opening-inner {
+      position: relative;
+      z-index: 2;
+
+      width: min(620px, 100%);
+
+      text-align: center;
+
+      padding: 30px 20px;
+    }
+
+
+    .opening-heart {
+      position: relative;
+
+      width: 92px;
+      height: 92px;
+
+      margin: 0 auto 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      font-size: 48px;
+      line-height: 1;
+
+      animation:
+        openingHeartBeat 1.6s ease-in-out infinite;
+    }
+
+
+    @keyframes openingHeartBeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.12);
+      }
+
+    }
+
+
+    .opening-label {
+
+      margin-bottom: 18px;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      letter-spacing: .25em;
+
+      opacity: .72;
+    }
+
+
+    .opening-title {
+
+      margin: 0 0 20px;
+
+      font-size: clamp(30px, 8vw, 58px);
+
+      line-height: 1.15;
+
+      font-weight: 700;
+    }
+
+
+    .opening-title span {
+      display: inline-block;
+    }
+
+
+    .opening-description {
+
+      max-width: 470px;
+
+      margin: 0 auto 34px;
+
+      font-size: 17px;
+
+      line-height: 1.7;
+
+      opacity: .75;
+    }
+
+
+    #openGiftButton {
+
+      position: relative;
+
+      min-width: 230px;
+
+      min-height: 58px;
+
+      padding: 16px 30px;
+
+      border: 0;
+
+      border-radius: 999px;
+
+      cursor: pointer;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      -webkit-tap-highlight-color: transparent;
+
+      touch-action: manipulation;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+
+    #openGiftButton:hover {
+      transform: translateY(-2px);
+    }
+
+
+    #openGiftButton:active {
+      transform: scale(.96);
+    }
+
+
+    #openGiftButton:disabled {
+      cursor: default;
+    }
+
+
+    /* =====================================================
+       STORY CONTENT
+       ===================================================== */
+
+    #storyContent {
+
+      display: none;
+
+      width: 100%;
+
+      min-height: 100vh;
+
+      opacity: 0;
+
+      transition:
+        opacity .6s ease;
+    }
+
+
+    #storyContent.story-visible {
+
+      display: block;
+
+      opacity: 1;
+    }
+
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .hero-inner {
+
+      width: min(900px, 100%);
+
+      margin: 0 auto;
+
+      text-align: center;
+    }
+
+
+    .hero-kicker {
+
+      font-size: 13px;
+
+      letter-spacing: .25em;
+
+      opacity: .65;
+
+      margin-bottom: 18px;
+    }
+
+
+    .hero-title {
+
+      margin: 0;
+
+      font-size: clamp(42px, 10vw, 82px);
+
+      line-height: 1.05;
+    }
+
+
+    .hero-date {
+
+      margin-top: 18px;
+
+      font-size: 16px;
+
+      letter-spacing: .12em;
+
+      opacity: .7;
+    }
+
+
+    .hero-subtitle {
+
+      margin-top: 18px;
+
+      font-size: 18px;
+
+      line-height: 1.6;
+
+      opacity: .75;
+    }
+
+
+    /* =====================================================
+       MUSIC
+       ===================================================== */
+
+    .music-player {
+
+      width: min(900px, 100%);
+
+      margin: 25px auto 0;
+
+      overflow: hidden;
+
+      border-radius: 20px;
+    }
+
+
+    .music-player iframe {
+
+      display: block;
+
+      width: 100%;
+
+      aspect-ratio: 16 / 9;
+
+      min-height: 260px;
+
+      border: 0;
+    }
+
+
+    /* =====================================================
+       COUNTER
+       ===================================================== */
+
+    .counter-grid {
+
+      width: min(900px, 100%);
+
+      margin: 30px auto 0;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 14px;
+    }
+
+
+    .counter-card {
+
+      padding: 22px 10px;
+
+      text-align: center;
+
+      border-radius: 18px;
+    }
+
+
+    .counter-number {
+
+      font-size: clamp(28px, 7vw, 48px);
+
+      font-weight: 700;
+
+      line-height: 1;
+    }
+
+
+    .counter-label {
+
+      margin-top: 10px;
+
+      font-size: 11px;
+
+      letter-spacing: .12em;
+    }
+
+
+    .total-days-card {
+
+      width: min(560px, 100%);
+
+      margin: 22px auto 0;
+
+      padding: 25px;
+
+      text-align: center;
+
+      border-radius: 20px;
+    }
+
+
+    .total-days-label {
+
+      font-size: 11px;
+
+      letter-spacing: .16em;
+
+      opacity: .65;
+    }
+
+
+    .total-days-number {
+
+      margin-top: 8px;
+
+      font-size: 42px;
+
+      font-weight: 700;
+    }
+
+
+    .total-days-text {
+
+      margin-top: 5px;
+
+      opacity: .65;
+    }
+
+
+    /* =====================================================
+       LETTER
+       ===================================================== */
+
+    .love-letter {
+
+      width: min(800px, 100%);
+
+      margin: 30px auto 0;
+
+      padding: 35px 28px;
+
+      border-radius: 22px;
+    }
+
+
+    .letter-title {
+
+      margin-bottom: 22px;
+
+      text-align: center;
+
+      font-size: 24px;
+
+      font-weight: 700;
+    }
+
+
+    .letter-content {
+
+      white-space: pre-wrap;
+
+      font-size: 17px;
+
+      line-height: 1.9;
+
+      text-align: left;
+    }
+
+
+    /* =====================================================
+       ENDING
+       ===================================================== */
+
+    .ending-inner {
+
+      width: min(700px, 100%);
+
+      margin: auto;
+
+      padding: 80px 20px;
+
+      text-align: center;
+    }
+
+
+    .ending-heart {
+
+      font-size: 54px;
+
+      margin-bottom: 20px;
+    }
+
+
+    .ending-title {
+
+      margin: 0 0 18px;
+
+      font-size: clamp(32px, 8vw, 54px);
+    }
+
+
+    .ending-text {
+
+      margin: 8px 0;
+
+      line-height: 1.7;
+
+      opacity: .72;
+    }
+
+
+    .ending-signature {
+
+      margin-top: 30px;
+
+      font-size: 20px;
+
+      font-weight: 700;
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 600px) {
+
+      .opening-inner {
+        padding: 20px 12px;
+      }
+
+
+      .opening-heart {
+
+        width: 76px;
+        height: 76px;
+
+        font-size: 40px;
+
+        margin-bottom: 22px;
+      }
+
+
+      .opening-description {
+
+        font-size: 15px;
+
+        margin-bottom: 28px;
+      }
+
+
+      #openGiftButton {
+
+        width: min(100%, 300px);
+
+        min-height: 56px;
+
+        font-size: 15px;
+      }
+
+
+      .counter-grid {
+
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+      }
+
+
+      .music-player iframe {
+
+        min-height: 210px;
+      }
+
+
+      .love-letter {
+
+        padding: 28px 20px;
+      }
+
+
+      .letter-content {
+
+        font-size: 16px;
+      }
+
+    }
+
+
+  </style>
 
 </head>
 
@@ -80,10 +612,12 @@
 
 
       <h1 class="opening-title">
+
         Dành cho
         <span id="openingReceiver">
           em
         </span>
+
       </h1>
 
 
@@ -94,7 +628,6 @@
 
       <button
         id="openGiftButton"
-        class="opening-button"
         type="button"
       >
         Hãy mở nó nhé ❤️
@@ -112,9 +645,6 @@
 
   <main
     id="storyContent"
-    class="story-content"
-    style="display:none;"
-    aria-hidden="true"
   >
 
 
@@ -150,11 +680,13 @@
 
 
         <p class="hero-subtitle">
+
           Một câu chuyện nhỏ của
           <span id="heroReceiver">
             em
           </span>
           và anh ❤️
+
         </p>
 
       </div>
@@ -189,8 +721,15 @@
           title="Bài hát dành cho chúng ta"
           src=""
           loading="lazy"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share
+          "
           allowfullscreen
         ></iframe>
 
@@ -221,8 +760,6 @@
       <div class="counter-grid">
 
 
-        <!-- YEARS -->
-
         <div class="counter-card">
 
           <div
@@ -238,8 +775,6 @@
 
         </div>
 
-
-        <!-- MONTHS -->
 
         <div class="counter-card">
 
@@ -257,8 +792,6 @@
         </div>
 
 
-        <!-- DAYS -->
-
         <div class="counter-card">
 
           <div
@@ -274,8 +807,6 @@
 
         </div>
 
-
-        <!-- HOURS -->
 
         <div class="counter-card">
 
@@ -293,8 +824,6 @@
         </div>
 
 
-        <!-- MINUTES -->
-
         <div class="counter-card">
 
           <div
@@ -310,8 +839,6 @@
 
         </div>
 
-
-        <!-- SECONDS -->
 
         <div class="counter-card">
 
@@ -330,8 +857,6 @@
 
       </div>
 
-
-      <!-- TOTAL DAYS -->
 
       <div class="total-days-card">
 
@@ -371,9 +896,7 @@
       </div>
 
 
-      <div
-        class="love-letter"
-      >
+      <div class="love-letter">
 
         <div
           id="loveLetter"
@@ -405,7 +928,6 @@
     >
 
       <div class="ending-inner">
-
 
         <div class="ending-heart">
           ♥
@@ -454,7 +976,195 @@
 
 
   <!-- =====================================================
-       JAVASCRIPT
+       OPENING SCRIPT
+       QUAN TRỌNG:
+       Script này nằm NGAY TRONG index.html.
+       Không phụ thuộc story.js.
+       ===================================================== -->
+
+  <script>
+
+    (function () {
+
+      "use strict";
+
+
+      function openGift() {
+
+        const opening =
+          document.getElementById(
+            "openingScreen"
+          );
+
+        const story =
+          document.getElementById(
+            "storyContent"
+          );
+
+        const button =
+          document.getElementById(
+            "openGiftButton"
+          );
+
+
+        if (!opening || !story) {
+
+          console.error(
+            "Không tìm thấy openingScreen hoặc storyContent."
+          );
+
+          return;
+        }
+
+
+        /* -----------------------------------------------
+           KHÓA NÚT
+           ----------------------------------------------- */
+
+        if (button) {
+
+          button.disabled = true;
+
+          button.style.pointerEvents =
+            "none";
+        }
+
+
+        /* -----------------------------------------------
+           HIỆN STORY NGAY LẬP TỨC
+           ----------------------------------------------- */
+
+        story.style.display =
+          "block";
+
+        story.style.visibility =
+          "visible";
+
+        story.style.opacity =
+          "1";
+
+        story.style.pointerEvents =
+          "auto";
+
+        story.classList.add(
+          "story-visible"
+        );
+
+        story.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+
+        /* -----------------------------------------------
+           ẨN OPENING
+           ----------------------------------------------- */
+
+        opening.classList.add(
+          "opening-hidden"
+        );
+
+        opening.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+
+        /* -----------------------------------------------
+           SAU ANIMATION XÓA HẲN
+           ----------------------------------------------- */
+
+        setTimeout(
+          function () {
+
+            opening.style.display =
+              "none";
+
+          },
+          500
+        );
+
+
+        /* -----------------------------------------------
+           ĐƯA TRANG VỀ ĐẦU
+           ----------------------------------------------- */
+
+        window.scrollTo(
+          0,
+          0
+        );
+
+      }
+
+
+
+      /* =================================================
+         CLICK
+         ================================================= */
+
+      document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+          const button =
+            document.getElementById(
+              "openGiftButton"
+            );
+
+
+          if (!button) {
+
+            console.error(
+              "Không tìm thấy nút #openGiftButton"
+            );
+
+            return;
+          }
+
+
+          button.addEventListener(
+            "click",
+            function (event) {
+
+              event.preventDefault();
+              event.stopPropagation();
+
+              openGift();
+
+            },
+            false
+          );
+
+
+          /* ---------------------------------------------
+             TOUCH — iPHONE
+             --------------------------------------------- */
+
+          button.addEventListener(
+            "touchend",
+            function (event) {
+
+              event.preventDefault();
+
+              openGift();
+
+            },
+            {
+              passive: false
+            }
+          );
+
+        }
+      );
+
+    })();
+
+  </script>
+
+
+
+  <!-- =====================================================
+       STORY ENGINE
        ===================================================== -->
 
   <script
