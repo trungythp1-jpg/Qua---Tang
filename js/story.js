@@ -3,124 +3,90 @@
    ========================================= */
 
 
-/* -----------------------------------------
-   Lấy dữ liệu từ URL
------------------------------------------ */
+/* =========================================
+   1. LẤY DỮ LIỆU TỪ URL
+   ========================================= */
 
-const params = new URLSearchParams(
-    window.location.search
-);
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
 
 const coupleName =
-    params.get("c") || "Trung Trang";
+    params.get("c") ||
+    "Trung Trang";
+
 
 const receiverName =
-    params.get("t") || "Em";
+    params.get("t") ||
+    "Em";
+
 
 const startDate =
-    params.get("d") || "2018-03-04";
+    params.get("d") ||
+    "2018-03-04";
+
+
+const musicUrl =
+    params.get("m") ||
+    "";
+
 
 const loveLetter =
     params.get("l") ||
     "Cảm ơn em vì đã xuất hiện trong cuộc đời anh.\n\nMong rằng chúng ta sẽ luôn ở bên nhau và cùng viết tiếp câu chuyện này. ❤️";
 
 
-/* -----------------------------------------
-   THEME + STYLE
------------------------------------------ */
-
-/*
-   6 màu
-*/
-const allowedThemes = [
-    "romantic",
-    "rose",
-    "purple",
-    "pink",
-    "night",
-    "sunset"
-];
-
-
-/*
-   6 phong cách
-*/
-const allowedStyles = [
-    "glass",
-    "luxury",
-    "sakura",
-    "cinematic",
-    "letter",
-    "minimal"
-];
-
-
-/*
-   Lấy theme từ URL
-   Nếu không hợp lệ → romantic
-*/
 const selectedTheme =
-    allowedThemes.includes(
-        params.get("theme")
-    )
-        ? params.get("theme")
-        : "romantic";
+    params.get("theme") ||
+    "romantic";
 
 
-/*
-   Lấy style từ URL
-   Nếu không hợp lệ → glass
-*/
 const selectedStyle =
-    allowedStyles.includes(
-        params.get("style")
-    )
-        ? params.get("style")
-        : "glass";
+    params.get("style") ||
+    "glass";
 
 
-/*
-   Áp dụng giao diện vào BODY
-*/
-document.body.classList.add(
-    "theme-" + selectedTheme,
-    "style-" + selectedStyle
-);
-
-
-/* -----------------------------------------
-   Lấy các phần tử HTML
------------------------------------------ */
+/* =========================================
+   2. LẤY ELEMENT
+   ========================================= */
 
 const openingScreen =
     document.getElementById(
         "openingScreen"
     );
 
+
 const storyPage =
     document.getElementById(
         "storyPage"
     );
+
 
 const openStoryBtn =
     document.getElementById(
         "openStoryBtn"
     );
 
+
 const receiverNameEl =
     document.getElementById(
         "receiverName"
     );
+
 
 const coupleNameEl =
     document.getElementById(
         "coupleName"
     );
 
+
 const startDateTextEl =
     document.getElementById(
         "startDateText"
     );
+
 
 const loveLetterEl =
     document.getElementById(
@@ -128,45 +94,98 @@ const loveLetterEl =
     );
 
 
-/* -----------------------------------------
-   Hiển thị thông tin
------------------------------------------ */
+const musicSection =
+    document.getElementById(
+        "musicSection"
+    );
 
-if (receiverNameEl) {
 
-    receiverNameEl.textContent =
-        receiverName;
+const youtubePlayer =
+    document.getElementById(
+        "youtubePlayer"
+    );
+
+
+/* =========================================
+   3. ÁP DỤNG THEME + STYLE
+   ========================================= */
+
+function applyVisualTheme() {
+
+    const safeThemes = [
+        "romantic",
+        "rose",
+        "purple",
+        "pink",
+        "night",
+        "sunset"
+    ];
+
+
+    const safeStyles = [
+        "glass",
+        "luxury",
+        "sakura",
+        "cinematic",
+        "letter",
+        "minimal"
+    ];
+
+
+    const theme =
+        safeThemes.includes(
+            selectedTheme
+        )
+            ? selectedTheme
+            : "romantic";
+
+
+    const style =
+        safeStyles.includes(
+            selectedStyle
+        )
+            ? selectedStyle
+            : "glass";
+
+
+    document.body.classList.add(
+        "theme-" + theme
+    );
+
+
+    document.body.classList.add(
+        "style-" + style
+    );
 
 }
 
-if (coupleNameEl) {
 
-    coupleNameEl.textContent =
-        coupleName;
-
-}
-
-if (loveLetterEl) {
-
-    loveLetterEl.textContent =
-        loveLetter;
-
-}
+applyVisualTheme();
 
 
-/* -----------------------------------------
-   Chuyển ngày YYYY-MM-DD
-   thành ngày local
------------------------------------------ */
+/* =========================================
+   4. HIỂN THỊ THÔNG TIN
+   ========================================= */
 
-function parseLocalDate(dateString) {
+receiverNameEl.textContent =
+    receiverName;
 
-    if (
-        typeof dateString !== "string"
-    ) {
-        return null;
-    }
 
+coupleNameEl.textContent =
+    coupleName;
+
+
+loveLetterEl.textContent =
+    loveLetter;
+
+
+/* =========================================
+   5. NGÀY LOCAL
+   ========================================= */
+
+function parseLocalDate(
+    dateString
+) {
 
     const parts =
         dateString.split("-");
@@ -175,27 +194,22 @@ function parseLocalDate(dateString) {
     if (
         parts.length !== 3
     ) {
+
         return null;
+
     }
 
 
     const year =
         Number(parts[0]);
 
+
     const month =
         Number(parts[1]);
 
+
     const day =
         Number(parts[2]);
-
-
-    if (
-        !Number.isInteger(year) ||
-        !Number.isInteger(month) ||
-        !Number.isInteger(day)
-    ) {
-        return null;
-    }
 
 
     const date =
@@ -211,35 +225,44 @@ function parseLocalDate(dateString) {
 
 
     if (
-        isNaN(date.getTime())
+        isNaN(
+            date.getTime()
+        )
     ) {
+
         return null;
+
     }
 
 
     /*
        Kiểm tra ngày thực tế.
-       Ví dụ 2026-02-31 không được
-       tự động biến thành tháng 3.
+       Ví dụ 31/02 không được chấp nhận.
     */
+
     if (
         date.getFullYear() !== year ||
         date.getMonth() !== month - 1 ||
         date.getDate() !== day
     ) {
+
         return null;
+
     }
 
 
     return date;
+
 }
 
 
-/* -----------------------------------------
-   Hiển thị ngày
------------------------------------------ */
+/* =========================================
+   6. FORMAT NGÀY
+   ========================================= */
 
-function formatDate(dateString) {
+function formatDate(
+    dateString
+) {
 
     const date =
         parseLocalDate(
@@ -257,13 +280,19 @@ function formatDate(dateString) {
     const day =
         String(
             date.getDate()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const month =
         String(
             date.getMonth() + 1
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const year =
@@ -271,22 +300,25 @@ function formatDate(dateString) {
 
 
     return (
-        `${day}/${month}/${year}`
+        day +
+        "/" +
+        month +
+        "/" +
+        year
     );
-}
-
-
-if (startDateTextEl) {
-
-    startDateTextEl.textContent =
-        formatDate(startDate);
 
 }
 
 
-/* -----------------------------------------
-   Tính số năm / tháng / ngày / giờ...
------------------------------------------ */
+startDateTextEl.textContent =
+    formatDate(
+        startDate
+    );
+
+
+/* =========================================
+   7. TÍNH NĂM / THÁNG / NGÀY / GIỜ
+   ========================================= */
 
 function calculateCalendarDifference(
     start,
@@ -300,25 +332,16 @@ function calculateCalendarDifference(
         return {
 
             years: 0,
-
             months: 0,
-
             days: 0,
-
             hours: 0,
-
             minutes: 0,
-
             seconds: 0
 
         };
 
     }
 
-
-    /* -------------------------------
-       Tính số năm hoàn chỉnh
-    ------------------------------- */
 
     let years =
         now.getFullYear() -
@@ -327,22 +350,13 @@ function calculateCalendarDifference(
 
     let anniversary =
         new Date(
-
             start.getFullYear() +
                 years,
-
             start.getMonth(),
-
             start.getDate(),
-
             start.getHours(),
-
             start.getMinutes(),
-
-            start.getSeconds(),
-
-            start.getMilliseconds()
-
+            start.getSeconds()
         );
 
 
@@ -355,36 +369,24 @@ function calculateCalendarDifference(
 
         anniversary =
             new Date(
-
                 start.getFullYear() +
                     years,
-
                 start.getMonth(),
-
                 start.getDate(),
-
                 start.getHours(),
-
                 start.getMinutes(),
-
-                start.getSeconds(),
-
-                start.getMilliseconds()
-
+                start.getSeconds()
             );
 
     }
 
 
-    /* -------------------------------
-       Tính số tháng hoàn chỉnh
-    ------------------------------- */
-
     let months =
         (
             now.getFullYear() -
             anniversary.getFullYear()
-        ) * 12
+        ) *
+            12
         +
         (
             now.getMonth() -
@@ -394,22 +396,13 @@ function calculateCalendarDifference(
 
     let monthPoint =
         new Date(
-
             anniversary.getFullYear(),
-
             anniversary.getMonth() +
                 months,
-
             anniversary.getDate(),
-
             anniversary.getHours(),
-
             anniversary.getMinutes(),
-
-            anniversary.getSeconds(),
-
-            anniversary.getMilliseconds()
-
+            anniversary.getSeconds()
         );
 
 
@@ -422,43 +415,34 @@ function calculateCalendarDifference(
 
         monthPoint =
             new Date(
-
                 anniversary.getFullYear(),
-
                 anniversary.getMonth() +
                     months,
-
                 anniversary.getDate(),
-
                 anniversary.getHours(),
-
                 anniversary.getMinutes(),
-
-                anniversary.getSeconds(),
-
-                anniversary.getMilliseconds()
-
+                anniversary.getSeconds()
             );
 
     }
 
 
-    /* -------------------------------
-       Phần thời gian còn lại
-    ------------------------------- */
-
     let remaining =
-        now - monthPoint;
+        now -
+        monthPoint;
 
 
     const SECOND =
         1000;
 
+
     const MINUTE =
         SECOND * 60;
 
+
     const HOUR =
         MINUTE * 60;
+
 
     const DAY =
         HOUR * 24;
@@ -500,46 +484,20 @@ function calculateCalendarDifference(
     return {
 
         years,
-
         months,
-
         days,
-
         hours,
-
         minutes,
-
         seconds
 
     };
+
 }
 
 
-/* -----------------------------------------
-   Hàm cập nhật một phần tử
------------------------------------------ */
-
-function setText(
-    id,
-    value
-) {
-
-    const element =
-        document.getElementById(id);
-
-
-    if (element) {
-
-        element.textContent =
-            value;
-
-    }
-}
-
-
-/* -----------------------------------------
-   Cập nhật bộ đếm
------------------------------------------ */
+/* =========================================
+   8. COUNTER
+   ========================================= */
 
 function updateCounter() {
 
@@ -551,42 +509,8 @@ function updateCounter() {
 
     if (!start) {
 
-        setText(
-            "years",
-            "0"
-        );
-
-        setText(
-            "months",
-            "0"
-        );
-
-        setText(
-            "days",
-            "0"
-        );
-
-        setText(
-            "hours",
-            "0"
-        );
-
-        setText(
-            "minutes",
-            "0"
-        );
-
-        setText(
-            "seconds",
-            "00"
-        );
-
-        setText(
-            "totalDays",
-            "0"
-        );
-
         return;
+
     }
 
 
@@ -594,56 +518,47 @@ function updateCounter() {
         new Date();
 
 
-    /* -----------------------------------
-       Nếu ngày bắt đầu ở tương lai
-    ----------------------------------- */
+    const ids = [
+        "years",
+        "months",
+        "days",
+        "hours",
+        "minutes",
+        "seconds",
+        "totalDays"
+    ];
+
 
     if (
         start > now
     ) {
 
-        setText(
-            "years",
-            "0"
+        ids.forEach(
+            id => {
+
+                const el =
+                    document.getElementById(
+                        id
+                    );
+
+
+                if (el) {
+
+                    el.textContent =
+                        id === "seconds"
+                            ? "00"
+                            : "0";
+
+                }
+
+            }
         );
 
-        setText(
-            "months",
-            "0"
-        );
-
-        setText(
-            "days",
-            "0"
-        );
-
-        setText(
-            "hours",
-            "0"
-        );
-
-        setText(
-            "minutes",
-            "0"
-        );
-
-        setText(
-            "seconds",
-            "00"
-        );
-
-        setText(
-            "totalDays",
-            "0"
-        );
 
         return;
+
     }
 
-
-    /* -----------------------------------
-       Năm / tháng / ngày / giờ...
-    ----------------------------------- */
 
     const difference =
         calculateCalendarDifference(
@@ -652,47 +567,50 @@ function updateCounter() {
         );
 
 
-    setText(
-        "years",
-        difference.years
-    );
+    document.getElementById(
+        "years"
+    ).textContent =
+        difference.years;
 
 
-    setText(
-        "months",
-        difference.months
-    );
+    document.getElementById(
+        "months"
+    ).textContent =
+        difference.months;
 
 
-    setText(
-        "days",
-        difference.days
-    );
+    document.getElementById(
+        "days"
+    ).textContent =
+        difference.days;
 
 
-    setText(
-        "hours",
-        difference.hours
-    );
+    document.getElementById(
+        "hours"
+    ).textContent =
+        difference.hours;
 
 
-    setText(
-        "minutes",
-        difference.minutes
-    );
+    document.getElementById(
+        "minutes"
+    ).textContent =
+        difference.minutes;
 
 
-    setText(
-        "seconds",
+    document.getElementById(
+        "seconds"
+    ).textContent =
         String(
             difference.seconds
-        ).padStart(2, "0")
-    );
+        ).padStart(
+            2,
+            "0"
+        );
 
 
-    /* -----------------------------------
-       TỔNG SỐ NGÀY
-    ----------------------------------- */
+    /*
+       Tổng số ngày thực tế
+    */
 
     const totalMilliseconds =
         now - start;
@@ -710,100 +628,319 @@ function updateCounter() {
         );
 
 
-    setText(
-        "totalDays",
+    document.getElementById(
+        "totalDays"
+    ).textContent =
         totalDays.toLocaleString(
             "vi-VN"
-        )
-    );
+        );
+
 }
 
-
-/* -----------------------------------------
-   Chạy counter
------------------------------------------ */
 
 updateCounter();
 
 
-const counterInterval =
-    setInterval(
-        updateCounter,
-        1000
-    );
+setInterval(
+    updateCounter,
+    1000
+);
 
 
-/* -----------------------------------------
-   Mở câu chuyện
------------------------------------------ */
+/* =========================================
+   9. YOUTUBE
+   ========================================= */
 
-if (
-    openStoryBtn &&
-    openingScreen
+function getYouTubeId(
+    value
 ) {
 
-    openStoryBtn.addEventListener(
-        "click",
-        function () {
+    if (!value) {
 
-            openingScreen.classList.add(
-                "hide"
+        return null;
+
+    }
+
+
+    const input =
+        value.trim();
+
+
+    /*
+       ID YouTube 11 ký tự
+    */
+
+    if (
+        /^[a-zA-Z0-9_-]{11}$/.test(
+            input
+        )
+    ) {
+
+        return input;
+
+    }
+
+
+    let url;
+
+
+    try {
+
+        url =
+            new URL(
+                input
+            );
+
+    } catch (error) {
+
+        return null;
+
+    }
+
+
+    const hostname =
+        url.hostname
+            .replace(
+                /^www\./,
+                ""
+            )
+            .toLowerCase();
+
+
+    /*
+       youtu.be/VIDEO_ID
+    */
+
+    if (
+        hostname ===
+            "youtu.be"
+    ) {
+
+        const id =
+            url.pathname
+                .replace(
+                    /^\/+/,
+                    ""
+                )
+                .split("/")[0];
+
+
+        return isValidYouTubeId(
+            id
+        )
+            ? id
+            : null;
+
+    }
+
+
+    /*
+       youtube.com
+    */
+
+    if (
+        hostname ===
+            "youtube.com" ||
+        hostname.endsWith(
+            ".youtube.com"
+        )
+    ) {
+
+        /*
+           watch?v=
+        */
+
+        const watchId =
+            url.searchParams.get(
+                "v"
             );
 
 
-            document.body.style.overflow =
-                "auto";
+        if (
+            isValidYouTubeId(
+                watchId
+            )
+        ) {
 
-
-            setTimeout(
-                function () {
-
-                    openingScreen.style.display =
-                        "none";
-
-                },
-                900
-            );
+            return watchId;
 
         }
+
+
+        /*
+           /shorts/ID
+           /embed/ID
+           /live/ID
+        */
+
+        const parts =
+            url.pathname
+                .split("/")
+                .filter(Boolean);
+
+
+        if (
+            parts.length >= 2
+        ) {
+
+            const type =
+                parts[0];
+
+
+            if (
+                type === "shorts" ||
+                type === "embed" ||
+                type === "live"
+            ) {
+
+                const id =
+                    parts[1];
+
+
+                if (
+                    isValidYouTubeId(
+                        id
+                    )
+                ) {
+
+                    return id;
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================
+   10. KIỂM TRA YOUTUBE ID
+   ========================================= */
+
+function isValidYouTubeId(
+    id
+) {
+
+    return (
+        typeof id ===
+            "string" &&
+        /^[a-zA-Z0-9_-]{11}$/.test(
+            id
+        )
     );
 
 }
 
 
-/* -----------------------------------------
-   Khởi tạo trạng thái
------------------------------------------ */
+/* =========================================
+   11. KHỞI TẠO YOUTUBE
+   ========================================= */
 
-if (storyPage) {
+function setupYouTube() {
 
-    storyPage.style.display =
-        "block";
+    if (
+        !musicSection ||
+        !youtubePlayer
+    ) {
+
+        return;
+
+    }
+
+
+    const youtubeId =
+        getYouTubeId(
+            musicUrl
+        );
+
+
+    /*
+       Không có nhạc
+    */
+
+    if (!youtubeId) {
+
+        musicSection.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    /*
+       Có nhạc
+    */
+
+    youtubePlayer.src =
+        "https://www.youtube.com/embed/" +
+        youtubeId +
+        "?rel=0" +
+        "&modestbranding=1" +
+        "&playsinline=1";
+
+
+    musicSection.style.display =
+        "";
 
 }
 
 
-/*
-   Khi mở trực tiếp gift URL,
-   khóa scroll để người nhận
-   tập trung vào màn hình mở quà.
-*/
-if (
-    openingScreen &&
-    !openingScreen.classList.contains(
-        "hide"
-    )
-) {
-
-    document.body.style.overflow =
-        "hidden";
-
-}
+setupYouTube();
 
 
-/* -----------------------------------------
-   Tim bay
------------------------------------------ */
+/* =========================================
+   12. MỞ CÂU CHUYỆN
+   ========================================= */
+
+openStoryBtn.addEventListener(
+    "click",
+    function () {
+
+        openingScreen.classList.add(
+            "hide"
+        );
+
+
+        document.body.style.overflow =
+            "auto";
+
+
+        setTimeout(
+            function () {
+
+                openingScreen.style.display =
+                    "none";
+
+            },
+            900
+        );
+
+    }
+);
+
+
+/* =========================================
+   13. TRẠNG THÁI BAN ĐẦU
+   ========================================= */
+
+storyPage.style.display =
+    "block";
+
+
+document.body.style.overflow =
+    "hidden";
+
+
+/* =========================================
+   14. TIM BAY
+   ========================================= */
 
 const heartsContainer =
     document.getElementById(
@@ -813,7 +950,9 @@ const heartsContainer =
 
 function createHeart() {
 
-    if (!heartsContainer) {
+    if (
+        !heartsContainer
+    ) {
 
         return;
 
@@ -870,25 +1009,22 @@ function createHeart() {
             heart.remove();
 
         },
-        duration * 1000 + 500
+        duration * 1000 +
+        500
     );
+
 }
 
 
-/* -----------------------------------------
-   Tim bay định kỳ
------------------------------------------ */
-
-const heartInterval =
-    setInterval(
-        createHeart,
-        1200
-    );
+setInterval(
+    createHeart,
+    1200
+);
 
 
-/* -----------------------------------------
-   Tạo một vài tim ban đầu
------------------------------------------ */
+/* =========================================
+   15. TIM BAN ĐẦU
+   ========================================= */
 
 for (
     let i = 0;
