@@ -405,137 +405,593 @@ body.style-luxury #openStoryBtn {
 
 
 /* =========================================================
-   7. SAKURA DREAM
-   🌸 Hoa anh đào — dịu dàng — mộng mơ
+   7. /* =========================================================
+   🌸 SAKURA DREAM
+   Pastel Sakura • Dịu dàng • Mộng mơ • Dễ đọc
    ========================================================= */
 
 body.style-sakura {
+  --style-radius: 28px;
+  --style-blur: 16px;
 
-    --story-radius: 34px;
+  /* MÀU CHỮ CHÍNH — KHÔNG DÙNG TRẮNG */
+  --sakura-text: #60384d;
+  --sakura-text-soft: #80556a;
+  --sakura-heading: #a43f6c;
+  --sakura-accent: #df5c8d;
+  --sakura-accent-dark: #c74374;
 
-    --story-font:
-        "Segoe UI",
-        Arial,
-        sans-serif;
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(255,255,255,.8) 0,
+      rgba(255,255,255,0) 28%
+    ),
+    radial-gradient(
+      circle at 88% 22%,
+      rgba(255,190,215,.5) 0,
+      rgba(255,190,215,0) 32%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255,255,255,.45) 0,
+      rgba(255,255,255,0) 35%
+    ),
+    linear-gradient(
+      135deg,
+      #f9e0eb 0%,
+      #f5ccdd 45%,
+      #efbfd4 100%
+    );
 
-    --story-heading-font:
-        Georgia,
-        "Times New Roman",
-        serif;
+  color: var(--sakura-text);
 }
 
 
-body.style-sakura::before {
+/* =========================================================
+   🌸 SAKURA — TYPOGRAPHY
+   ========================================================= */
 
-    content: "";
+body.style-sakura,
+body.style-sakura p,
+body.style-sakura span,
+body.style-sakura small,
+body.style-sakura strong,
+body.style-sakura li,
+body.style-sakura label {
+  color: var(--sakura-text);
+}
 
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: 0;
-
-    background:
-        radial-gradient(
-            circle at 12% 18%,
-            rgba(255,255,255,.30) 0 5px,
-            transparent 6px
-        ),
-        radial-gradient(
-            circle at 85% 14%,
-            rgba(255,180,210,.28) 0 7px,
-            transparent 8px
-        ),
-        radial-gradient(
-            circle at 25% 70%,
-            rgba(255,200,220,.22) 0 6px,
-            transparent 7px
-        ),
-        radial-gradient(
-            circle at 90% 75%,
-            rgba(255,220,235,.20) 0 5px,
-            transparent 6px
-        );
-
-    opacity: .8;
+body.style-sakura h1,
+body.style-sakura h2,
+body.style-sakura h3,
+body.style-sakura h4 {
+  color: var(--sakura-heading);
 }
 
 
-body.style-sakura .story-page,
-body.style-sakura .opening-screen {
+/* =========================================================
+   🌸 SECTION TITLE
+   ========================================================= */
 
-    position: relative;
+body.style-sakura .section-title {
+  color: var(--sakura-heading) !important;
+
+  text-shadow:
+    0 2px 10px rgba(130,50,85,.12);
+}
+
+body.style-sakura .section-title::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--sakura-accent),
+      transparent
+    ) !important;
 }
 
 
-body.style-sakura .hero h1 {
+/* =========================================================
+   🌸 CARD SYSTEM
+   ========================================================= */
 
-    font-family:
-        var(--story-heading-font);
+body.style-sakura .hero,
+body.style-sakura .story-section,
+body.style-sakura .music-section,
+body.style-sakura .counter-card,
+body.style-sakura .letter-card,
+body.style-sakura .ending-section {
+  position: relative;
 
-    font-weight: 500;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.68),
+      rgba(255,245,249,.46)
+    );
 
-    letter-spacing: 1px;
+  border:
+    1px solid rgba(255,255,255,.78);
 
-    text-shadow:
-        0 8px 30px var(--story-accent-soft);
+  border-radius:
+    var(--style-radius);
+
+  box-shadow:
+    0 18px 55px rgba(120,55,85,.12);
+
+  backdrop-filter:
+    blur(var(--style-blur));
+
+  -webkit-backdrop-filter:
+    blur(var(--style-blur));
 }
 
+
+/* ánh sáng trên card */
+
+body.style-sakura .hero::before,
+body.style-sakura .story-section::before,
+body.style-sakura .music-section::before,
+body.style-sakura .counter-card::before,
+body.style-sakura .letter-card::before,
+body.style-sakura .ending-section::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,.28),
+      transparent 38%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   🌸 HERO
+   ========================================================= */
+
+body.style-sakura .hero {
+  color: var(--sakura-text);
+}
+
+body.style-sakura .hero h1,
+body.style-sakura #coupleName {
+  color: var(--sakura-heading) !important;
+
+  text-shadow:
+    0 3px 14px rgba(150,55,95,.13);
+}
+
+body.style-sakura #heroReceiver {
+  color: #713f57 !important;
+}
+
+body.style-sakura #startDate {
+  color: var(--sakura-text-soft) !important;
+}
+
+
+/* =========================================================
+   🌸 MUSIC
+   ========================================================= */
+
+body.style-sakura .music-section,
+body.style-sakura .music-section p,
+body.style-sakura .music-section span {
+  color: var(--sakura-text);
+}
+
+body.style-sakura .music-section h2,
+body.style-sakura .music-section h3 {
+  color: var(--sakura-heading) !important;
+}
+
+body.style-sakura .music-subtitle {
+  color: var(--sakura-text-soft) !important;
+}
+
+body.style-sakura .music-player {
+  background:
+    rgba(255,255,255,.38);
+
+  border:
+    1px solid rgba(255,255,255,.7);
+
+  box-shadow:
+    0 12px 35px rgba(120,50,85,.1);
+}
+
+body.style-sakura .music-player iframe {
+  border-radius:
+    18px;
+}
+
+
+/* =========================================================
+   🌸 COUNTER
+   ========================================================= */
 
 body.style-sakura .counter-section,
-body.style-sakura .counter-box,
-body.style-sakura .total-days,
-body.style-sakura .letter-section {
+body.style-sakura .counter-section p,
+body.style-sakura .counter-section span {
+  color: var(--sakura-text);
+}
 
-    border-radius:
-        var(--story-radius);
+body.style-sakura .counter-number {
+  color: var(--sakura-accent-dark) !important;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.09),
-            rgba(255,255,255,.025)
-        );
+  font-weight: 800;
 
-    border:
-        1px solid rgba(255,255,255,.22);
+  text-shadow:
+    0 3px 12px rgba(190,55,105,.16);
+}
 
-    backdrop-filter:
-        blur(10px);
+body.style-sakura .counter-label {
+  color: var(--sakura-text-soft) !important;
+}
 
-    box-shadow:
-        0 20px 70px rgba(0,0,0,.18);
+body.style-sakura #totalDays {
+  color: var(--sakura-accent-dark) !important;
+
+  font-weight: 800;
 }
 
 
-body.style-sakura .love-letter {
+/* =========================================================
+   🌸 LOVE LETTER
+   ========================================================= */
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+body.style-sakura .letter-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,252,248,.88),
+      rgba(255,239,247,.76)
+    );
 
-    line-height: 2;
+  border:
+    1px solid rgba(190,80,125,.18);
 
-    font-size: 18px;
+  box-shadow:
+    0 18px 55px rgba(120,50,85,.12);
 }
 
+body.style-sakura .letter-card h2,
+body.style-sakura .letter-card h3 {
+  color: var(--sakura-heading) !important;
+}
+
+body.style-sakura #letterContent {
+  color: #613b50 !important;
+
+  font-size:
+    18px;
+
+  line-height:
+    1.9;
+
+  letter-spacing:
+    .01em;
+}
+
+
+/* =========================================================
+   🌸 ENDING
+   ========================================================= */
 
 body.style-sakura .ending-section {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,187,215,.78),
+      rgba(255,222,235,.72)
+    );
 
-    padding-top: 100px;
+  color:
+    #60384d;
+}
+
+body.style-sakura .ending-section h2,
+body.style-sakura .ending-section h3 {
+  color:
+    #9e3d68 !important;
+}
+
+body.style-sakura .ending-section p {
+  color:
+    #74465c !important;
 }
 
 
-body.style-sakura .heart {
+/* =========================================================
+   🌸 BUTTON
+   ========================================================= */
 
-    filter:
-        drop-shadow(
-            0 8px 20px
-            var(--story-accent-soft)
-        );
+body.style-sakura button,
+body.style-sakura .button,
+body.style-sakura a.button {
+  color:
+    #fff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ec6697,
+      #ce4377
+    );
+
+  border:
+    1px solid rgba(255,255,255,.5);
+
+  box-shadow:
+    0 10px 28px rgba(190,55,105,.22);
+}
+
+body.style-sakura button:hover,
+body.style-sakura .button:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #f171a0,
+      #d64a7d
+    );
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* =========================================================
+   🌸 OPENING SCREEN
+   ========================================================= */
+
+body.style-sakura .opening-screen {
+  color:
+    #63384f;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(255,255,255,.52),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #f8dce8,
+      #efbfd5
+    );
+}
+
+body.style-sakura .opening-screen h1,
+body.style-sakura .opening-screen h2,
+body.style-sakura .opening-screen p,
+body.style-sakura .opening-screen span {
+  color:
+    #713d56 !important;
+}
+
+body.style-sakura .opening-label {
+  color:
+    #b24976 !important;
+
+  letter-spacing:
+    .18em;
+}
+
+body.style-sakura .opening-title {
+  color:
+    #9f3e68 !important;
+
+  text-shadow:
+    0 3px 15px rgba(130,45,80,.14);
+}
+
+body.style-sakura .opening-description {
+  color:
+    #795067 !important;
+}
+
+body.style-sakura #openGiftButton {
+  color:
+    #fff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ed6295,
+      #c94072
+    ) !important;
+
+  box-shadow:
+    0 12px 30px rgba(190,55,105,.24);
+
+  text-shadow:
+    0 1px 3px rgba(100,30,55,.18);
+}
+
+
+/* =========================================================
+   🌸 SAKURA PETALS
+   ========================================================= */
+
+body.style-sakura::before {
+  content:
+    "🌸      🌸          🌸       🌸          🌸";
+
+  position:
+    fixed;
+
+  top:
+    4%;
+
+  left:
+    0;
+
+  width:
+    100%;
+
+  text-align:
+    center;
+
+  font-size:
+    22px;
+
+  letter-spacing:
+    12px;
+
+  opacity:
+    .32;
+
+  pointer-events:
+    none;
+
+  z-index:
+    0;
+
+  animation:
+    sakuraFloat 8s ease-in-out infinite;
+}
+
+body.style-sakura::after {
+  content:
+    "🌸        🌸     🌸          🌸";
+
+  position:
+    fixed;
+
+  bottom:
+    5%;
+
+  left:
+    0;
+
+  width:
+    100%;
+
+  text-align:
+    center;
+
+  font-size:
+    18px;
+
+  letter-spacing:
+    18px;
+
+  opacity:
+    .2;
+
+  pointer-events:
+    none;
+
+  z-index:
+    0;
+
+  animation:
+    sakuraFloatReverse 10s ease-in-out infinite;
+}
+
+@keyframes sakuraFloat {
+  0%, 100% {
+    transform:
+      translateY(0)
+      rotate(0deg);
+  }
+
+  50% {
+    transform:
+      translateY(18px)
+      rotate(2deg);
+  }
+}
+
+@keyframes sakuraFloatReverse {
+  0%, 100% {
+    transform:
+      translateY(0)
+      rotate(0deg);
+  }
+
+  50% {
+    transform:
+      translateY(-15px)
+      rotate(-2deg);
+  }
+}
+
+
+/* =========================================================
+   🌸 MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  body.style-sakura {
+    --style-radius: 20px;
+  }
+
+  body.style-sakura .hero,
+  body.style-sakura .story-section,
+  body.style-sakura .music-section,
+  body.style-sakura .counter-card,
+  body.style-sakura .letter-card,
+  body.style-sakura .ending-section {
+    border-radius:
+      20px;
+  }
+
+  body.style-sakura #letterContent {
+    font-size:
+      17px;
+
+    line-height:
+      1.85;
+  }
+
+  body.style-sakura .section-title {
+    font-size:
+      22px;
+  }
+
+  body.style-sakura .counter-number {
+    font-size:
+      clamp(28px, 8vw, 42px);
+  }
+
+  body.style-sakura::before {
+    font-size:
+      16px;
+
+    letter-spacing:
+      7px;
+  }
+
+  body.style-sakura::after {
+    font-size:
+      14px;
+
+    letter-spacing:
+      9px;
+  }
+}
+
+
+/* =========================================================
+   🌸 REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body.style-sakura::before,
+  body.style-sakura::after {
+    animation:
+      none !important;
+  }
 }
 
 
@@ -2217,254 +2673,5 @@ body.style-minimal .opening-screen {
   body.style-sakura::before {
     animation:
       none !important;
-  }
-}
-/* =========================================================
-   🌸 SAKURA DREAM — CONTRAST FIX
-   Nền sáng → chữ tối, dễ đọc trên điện thoại
-   ========================================================= */
-
-body.style-sakura {
-  color: #5a3047 !important;
-
-  --story-text: #5a3047;
-  --story-text-soft: #7b5066;
-  --story-heading: #a33f68;
-}
-
-/* ---------- TẤT CẢ TEXT ---------- */
-
-body.style-sakura,
-body.style-sakura p,
-body.style-sakura span,
-body.style-sakura small,
-body.style-sakura strong,
-body.style-sakura li,
-body.style-sakura label {
-  color: #5a3047;
-}
-
-/* ---------- TIÊU ĐỀ ---------- */
-
-body.style-sakura h1,
-body.style-sakura h2,
-body.style-sakura h3,
-body.style-sakura h4 {
-  color: #9d3f67 !important;
-
-  text-shadow:
-    0 2px 8px rgba(120, 45, 80, .10);
-}
-
-body.style-sakura .section-title {
-  color: #a33f68 !important;
-}
-
-body.style-sakura .section-title::after {
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #d86a94,
-      transparent
-    ) !important;
-}
-
-/* ---------- HERO ---------- */
-
-body.style-sakura .hero,
-body.style-sakura .hero * {
-  color: #5a3047;
-}
-
-body.style-sakura #coupleName {
-  color: #9d3f67 !important;
-}
-
-body.style-sakura #heroReceiver {
-  color: #6f3d55 !important;
-}
-
-body.style-sakura #startDate {
-  color: #81546a !important;
-}
-
-/* ---------- MUSIC ---------- */
-
-body.style-sakura .music-section,
-body.style-sakura .music-section * {
-  color: #65384f;
-}
-
-body.style-sakura .music-subtitle {
-  color: #81546a !important;
-}
-
-/* ---------- COUNTER ---------- */
-
-body.style-sakura .counter-section,
-body.style-sakura .counter-section * {
-  color: #63384e;
-}
-
-body.style-sakura .counter-number {
-  color: #d34d7b !important;
-
-  text-shadow:
-    0 3px 10px rgba(180, 55, 105, .16);
-}
-
-body.style-sakura .counter-label {
-  color: #87536b !important;
-}
-
-body.style-sakura #totalDays {
-  color: #c54272 !important;
-}
-
-/* ---------- LOVE LETTER ---------- */
-
-body.style-sakura .letter-section,
-body.style-sakura .letter-section * {
-  color: #61384d;
-}
-
-body.style-sakura #letterContent {
-  color: #61384d !important;
-}
-
-body.style-sakura .letter-card {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.82),
-      rgba(255,242,248,.72)
-    ) !important;
-
-  border:
-    1px solid rgba(180,75,120,.18);
-
-  box-shadow:
-    0 18px 55px rgba(120,50,85,.12);
-}
-
-/* ---------- ENDING ---------- */
-
-body.style-sakura .ending-section,
-body.style-sakura .ending-section * {
-  color: #63384f;
-}
-
-body.style-sakura .ending-section h2,
-body.style-sakura .ending-section h3 {
-  color: #a13f68 !important;
-}
-
-body.style-sakura .ending-section p {
-  color: #774b61 !important;
-}
-
-/* ---------- BUTTON ---------- */
-
-body.style-sakura button,
-body.style-sakura .button,
-body.style-sakura a.button {
-  color: #fff !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      #e85d91,
-      #c94072
-    );
-
-  border-color:
-    rgba(255,255,255,.45);
-
-  box-shadow:
-    0 10px 25px rgba(190,55,105,.22);
-}
-
-/* ---------- OPENING ---------- */
-
-body.style-sakura .opening-screen {
-  color: #63384f;
-}
-
-body.style-sakura .opening-screen h1,
-body.style-sakura .opening-screen h2,
-body.style-sakura .opening-screen p,
-body.style-sakura .opening-screen span {
-  color: #713b56 !important;
-}
-
-body.style-sakura .opening-title {
-  color: #9f3e68 !important;
-}
-
-body.style-sakura .opening-label {
-  color: #b34b76 !important;
-}
-
-body.style-sakura .opening-description {
-  color: #7b5066 !important;
-}
-
-/* Nút mở quà vẫn phải chữ trắng */
-
-body.style-sakura #openGiftButton {
-  color: #fff !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ed6094,
-      #c93f71
-    ) !important;
-
-  text-shadow:
-    0 1px 3px rgba(100,30,55,.18);
-}
-
-/* ---------- ICON ---------- */
-
-body.style-sakura .section-title,
-body.style-sakura .section-title *,
-body.style-sakura .ending-section svg {
-  color: #c94b78;
-}
-
-/* ---------- CARD ---------- */
-
-body.style-sakura .story-section,
-body.style-sakura .music-section,
-body.style-sakura .counter-card,
-body.style-sakura .ending-section {
-  background:
-    rgba(255,255,255,.48);
-
-  border:
-    1px solid rgba(255,255,255,.72);
-}
-
-/* ---------- MOBILE ---------- */
-
-@media (max-width: 600px) {
-
-  body.style-sakura p {
-    color: #694057;
-  }
-
-  body.style-sakura #letterContent {
-    font-size: 17px;
-    line-height: 1.85;
-  }
-
-  body.style-sakura .counter-number {
-    font-size: clamp(28px, 8vw, 42px);
-  }
-
-  body.style-sakura .section-title {
-    font-size: 22px;
   }
 }
