@@ -1,174 +1,560 @@
-/* =========================================
+/* =========================================================
    TAO QUA
-   ========================================= */
+   LOVE STORY • DIGITAL GIFT
+   ========================================================= */
+
+
+/* =========================================================
+   1. TRẠNG THÁI LỰA CHỌN
+   ========================================================= */
 
 let selectedTheme = "romantic";
+
 let selectedStyle = "glass";
 
 
-/* =========================================
-   ELEMENTS
-   ========================================= */
+/* =========================================================
+   2. ELEMENTS
+   ========================================================= */
 
 const coupleInput =
     document.getElementById("couple");
 
+
 const receiverInput =
     document.getElementById("receiver");
+
 
 const dateInput =
     document.getElementById("startDate");
 
+
 const musicInput =
     document.getElementById("music");
+
 
 const letterInput =
     document.getElementById("letter");
 
+
 const createButton =
     document.getElementById("createButton");
+
 
 const result =
     document.getElementById("result");
 
+
 const generatedLink =
     document.getElementById("generatedLink");
+
 
 const qrImage =
     document.getElementById("qrImage");
 
+
 const copyButton =
     document.getElementById("copyButton");
+
 
 const openButton =
     document.getElementById("openButton");
 
 
-/* =========================================
-   THEME SELECT
-   ========================================= */
+/* =========================================================
+   3. KIỂM TRA ELEMENT BẮT BUỘC
+   ========================================================= */
+
+if (!createButton) {
+    console.error(
+        "Không tìm thấy #createButton"
+    );
+}
+
+
+/* =========================================================
+   4. THEME SELECT
+   ========================================================= */
 
 const themeButtons =
-    document.querySelectorAll(".theme-option");
-
-themeButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        themeButtons.forEach(item => {
-            item.classList.remove("active");
-        });
-
-        button.classList.add("active");
-
-        selectedTheme =
-            button.dataset.theme;
-
-        applyCreateTheme();
-
-    });
-
-});
+    document.querySelectorAll(
+        ".theme-option"
+    );
 
 
-/* =========================================
-   STYLE SELECT
-   ========================================= */
+themeButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                /*
+                   Bỏ active ở tất cả màu
+                */
+
+                themeButtons.forEach(
+                    item => {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                /*
+                   Active màu đang chọn
+                */
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                /*
+                   Lưu theme
+                */
+
+                selectedTheme =
+                    button.dataset.theme ||
+                    "romantic";
+
+
+                /*
+                   Cập nhật preview
+                */
+
+                applyCreateTheme();
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   5. STYLE SELECT
+   ========================================================= */
 
 const styleButtons =
-    document.querySelectorAll(".style-option");
-
-styleButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        styleButtons.forEach(item => {
-            item.classList.remove("active");
-        });
-
-        button.classList.add("active");
-
-        selectedStyle =
-            button.dataset.style;
-
-        applyCreateTheme();
-
-    });
-
-});
+    document.querySelectorAll(
+        ".style-option"
+    );
 
 
-/* =========================================
-   APPLY PREVIEW
-   ========================================= */
+styleButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                /*
+                   Bỏ active ở tất cả phong cách
+                */
+
+                styleButtons.forEach(
+                    item => {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                /*
+                   Active phong cách đang chọn
+                */
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                /*
+                   Lưu style
+                */
+
+                selectedStyle =
+                    button.dataset.style ||
+                    "glass";
+
+
+                /*
+                   Cập nhật preview
+                */
+
+                applyCreateStyle();
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   6. ÁP DỤNG THEME CHO TRANG TẠO QUÀ
+   ========================================================= */
 
 function applyCreateTheme() {
 
     /*
-       Xóa theme/style cũ
-       nhưng giữ nguyên các class khác
+       Xóa theme cũ
     */
 
-    document.body.className =
-        document.body.className
-            .replace(/\btheme-\S+/g, "")
-            .replace(/\bstyle-\S+/g, "")
-            .replace(/\s+/g, " ")
-            .trim();
-
-
-    /*
-       Thêm màu được chọn
-    */
-
-    document.body.classList.add(
-        "theme-" + selectedTheme
+    document.body.classList.remove(
+        "theme-romantic",
+        "theme-rose",
+        "theme-purple",
+        "theme-pink",
+        "theme-night",
+        "theme-sunset"
     );
 
 
     /*
-       Thêm phong cách được chọn
+       Thêm theme hiện tại
     */
 
     document.body.classList.add(
-        "style-" + selectedStyle
+        "theme-" +
+        selectedTheme
     );
 
 }
 
 
-/* =========================================
-   INITIAL PREVIEW
-   ========================================= */
+/* =========================================================
+   7. ÁP DỤNG STYLE CHO TRANG TẠO QUÀ
+   ========================================================= */
+
+function applyCreateStyle() {
+
+    /*
+       Xóa style cũ
+    */
+
+    document.body.classList.remove(
+        "style-glass",
+        "style-luxury",
+        "style-sakura",
+        "style-cinematic",
+        "style-letter",
+        "style-minimal"
+    );
+
+
+    /*
+       Thêm style hiện tại
+    */
+
+    document.body.classList.add(
+        "style-" +
+        selectedStyle
+    );
+
+}
+
+
+/* =========================================================
+   8. KHỞI TẠO PREVIEW
+   ========================================================= */
 
 applyCreateTheme();
 
+applyCreateStyle();
 
-/* =========================================
-   CREATE LINK
-   ========================================= */
 
-function createGift() {
+/* =========================================================
+   9. YOUTUBE VALIDATOR
+   ========================================================= */
 
-    const couple =
-        coupleInput.value.trim();
+function getYouTubeId(value) {
 
-    const receiver =
-        receiverInput.value.trim();
+    if (!value) {
 
-    const date =
-        dateInput.value;
+        return null;
+
+    }
+
+
+    const input =
+        value.trim();
+
+
+    /*
+       Trường hợp nhập trực tiếp ID
+       Ví dụ:
+       dQw4w9WgXcQ
+    */
+
+    if (
+        /^[a-zA-Z0-9_-]{11}$/.test(
+            input
+        )
+    ) {
+
+        return input;
+
+    }
+
+
+    let url;
+
+
+    try {
+
+        url =
+            new URL(
+                input
+            );
+
+    } catch (error) {
+
+        return null;
+
+    }
+
+
+    const hostname =
+        url.hostname
+            .replace(
+                /^www\./,
+                ""
+            )
+            .toLowerCase();
+
+
+    /*
+       -----------------------------------------
+       youtu.be/VIDEO_ID
+       -----------------------------------------
+    */
+
+    if (
+        hostname === "youtu.be"
+    ) {
+
+        const id =
+            url.pathname
+                .replace(
+                    /^\/+/,
+                    ""
+                )
+                .split("/")[0];
+
+
+        if (
+            /^[a-zA-Z0-9_-]{11}$/.test(
+                id
+            )
+        ) {
+
+            return id;
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /*
+       -----------------------------------------
+       youtube.com
+       -----------------------------------------
+    */
+
+    if (
+        hostname === "youtube.com" ||
+        hostname.endsWith(
+            ".youtube.com"
+        )
+    ) {
+
+        /*
+           watch?v=VIDEO_ID
+        */
+
+        const watchId =
+            url.searchParams.get(
+                "v"
+            );
+
+
+        if (
+            watchId &&
+            /^[a-zA-Z0-9_-]{11}$/.test(
+                watchId
+            )
+        ) {
+
+            return watchId;
+
+        }
+
+
+        /*
+           /shorts/VIDEO_ID
+           /embed/VIDEO_ID
+           /live/VIDEO_ID
+        */
+
+        const parts =
+            url.pathname
+                .split("/")
+                .filter(Boolean);
+
+
+        if (
+            parts.length >= 2
+        ) {
+
+            const type =
+                parts[0];
+
+
+            const id =
+                parts[1];
+
+
+            if (
+                (
+                    type === "shorts" ||
+                    type === "embed" ||
+                    type === "live"
+                ) &&
+                /^[a-zA-Z0-9_-]{11}$/.test(
+                    id
+                )
+            ) {
+
+                return id;
+
+            }
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   10. KIỂM TRA LINK YOUTUBE
+   ========================================================= */
+
+function validateYouTubeInput() {
 
     const music =
         musicInput.value.trim();
 
+
+    /*
+       Không nhập nhạc
+       → vẫn cho tạo quà
+    */
+
+    if (!music) {
+
+        return true;
+
+    }
+
+
+    /*
+       Có nhập → phải là YouTube hợp lệ
+    */
+
+    const youtubeId =
+        getYouTubeId(
+            music
+        );
+
+
+    if (!youtubeId) {
+
+        alert(
+            "Link YouTube chưa đúng.\n\n" +
+            "Bạn có thể nhập:\n" +
+            "• https://youtu.be/VIDEO_ID\n" +
+            "• https://www.youtube.com/watch?v=VIDEO_ID\n" +
+            "• https://www.youtube.com/shorts/VIDEO_ID\n" +
+            "• https://www.youtube.com/embed/VIDEO_ID\n" +
+            "• Hoặc nhập trực tiếp ID video."
+        );
+
+
+        musicInput.focus();
+
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================================================
+   11. TẠO QUÀ
+   ========================================================= */
+
+function createGift() {
+
+    /*
+       -----------------------------------------
+       LẤY DỮ LIỆU
+       -----------------------------------------
+    */
+
+    const couple =
+        coupleInput
+            ? coupleInput.value.trim()
+            : "";
+
+
+    const receiver =
+        receiverInput
+            ? receiverInput.value.trim()
+            : "";
+
+
+    const date =
+        dateInput
+            ? dateInput.value
+            : "";
+
+
+    const music =
+        musicInput
+            ? musicInput.value.trim()
+            : "";
+
+
     const letter =
-        letterInput.value.trim();
+        letterInput
+            ? letterInput.value.trim()
+            : "";
 
 
-    /* =====================================
-       VALIDATE
-       ===================================== */
+    /*
+       -----------------------------------------
+       KIỂM TRA TÊN HAI NGƯỜI
+       -----------------------------------------
+    */
 
     if (!couple) {
 
@@ -176,11 +562,24 @@ function createGift() {
             "Bạn chưa nhập tên hai người."
         );
 
-        coupleInput.focus();
+
+        if (coupleInput) {
+
+            coupleInput.focus();
+
+        }
+
 
         return;
+
     }
 
+
+    /*
+       -----------------------------------------
+       KIỂM TRA NGƯỜI NHẬN
+       -----------------------------------------
+    */
 
     if (!receiver) {
 
@@ -188,11 +587,24 @@ function createGift() {
             "Bạn chưa nhập tên người nhận."
         );
 
-        receiverInput.focus();
+
+        if (receiverInput) {
+
+            receiverInput.focus();
+
+        }
+
 
         return;
+
     }
 
+
+    /*
+       -----------------------------------------
+       KIỂM TRA NGÀY
+       -----------------------------------------
+    */
 
     if (!date) {
 
@@ -200,15 +612,100 @@ function createGift() {
             "Bạn chưa chọn ngày bắt đầu."
         );
 
-        dateInput.focus();
+
+        if (dateInput) {
+
+            dateInput.focus();
+
+        }
+
 
         return;
+
     }
 
 
-    /* =====================================
-       PARAMS
-       ===================================== */
+    /*
+       -----------------------------------------
+       KIỂM TRA NGÀY KHÔNG Ở TƯƠNG LAI
+       -----------------------------------------
+    */
+
+    const selectedDate =
+        new Date(
+            date +
+            "T00:00:00"
+        );
+
+
+    const today =
+        new Date();
+
+
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    if (
+        isNaN(
+            selectedDate.getTime()
+        )
+    ) {
+
+        alert(
+            "Ngày bắt đầu không hợp lệ."
+        );
+
+
+        dateInput.focus();
+
+
+        return;
+
+    }
+
+
+    if (
+        selectedDate > today
+    ) {
+
+        alert(
+            "Ngày bắt đầu không thể ở tương lai."
+        );
+
+
+        dateInput.focus();
+
+
+        return;
+
+    }
+
+
+    /*
+       -----------------------------------------
+       KIỂM TRA YOUTUBE
+       -----------------------------------------
+    */
+
+    if (
+        !validateYouTubeInput()
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+       -----------------------------------------
+       TẠO PARAMS
+       -----------------------------------------
+    */
 
     const params =
         new URLSearchParams();
@@ -216,6 +713,7 @@ function createGift() {
 
     /*
        Tên hai người
+       c
     */
 
     params.set(
@@ -226,6 +724,7 @@ function createGift() {
 
     /*
        Người nhận
+       t
     */
 
     params.set(
@@ -236,6 +735,7 @@ function createGift() {
 
     /*
        Ngày bắt đầu
+       d
     */
 
     params.set(
@@ -246,6 +746,9 @@ function createGift() {
 
     /*
        YouTube
+       m
+
+       Chỉ thêm nếu người dùng có nhập.
     */
 
     if (music) {
@@ -259,7 +762,8 @@ function createGift() {
 
 
     /*
-       Lời nhắn
+       Lời yêu thương
+       l
     */
 
     if (letter) {
@@ -273,7 +777,8 @@ function createGift() {
 
 
     /*
-       MÀU SẮC
+       Màu
+       theme
     */
 
     params.set(
@@ -283,7 +788,8 @@ function createGift() {
 
 
     /*
-       PHONG CÁCH
+       Phong cách
+       style
     */
 
     params.set(
@@ -292,9 +798,11 @@ function createGift() {
     );
 
 
-    /* =====================================
-       INDEX URL
-       ===================================== */
+    /*
+       -----------------------------------------
+       TẠO URL
+       -----------------------------------------
+    */
 
     const indexURL =
         new URL(
@@ -311,66 +819,138 @@ function createGift() {
         indexURL.toString();
 
 
-    /* =====================================
-       DISPLAY LINK
-       ===================================== */
+    /*
+       -----------------------------------------
+       HIỂN THỊ LINK
+       -----------------------------------------
+    */
 
-    generatedLink.value =
-        finalURL;
+    if (generatedLink) {
 
+        generatedLink.value =
+            finalURL;
 
-    /* =====================================
-       QR CODE
-       ===================================== */
-
-    qrImage.src =
-        "https://api.qrserver.com/v1/create-qr-code/?" +
-        "size=700x700" +
-        "&margin=20" +
-        "&data=" +
-        encodeURIComponent(finalURL);
+    }
 
 
-    /* =====================================
-       SHOW RESULT
-       ===================================== */
+    /*
+       -----------------------------------------
+       TẠO QR
+       -----------------------------------------
+    */
 
-    result.classList.remove(
-        "hidden"
-    );
+    if (qrImage) {
+
+        qrImage.src =
+            "https://api.qrserver.com/v1/create-qr-code/?" +
+            "size=700x700" +
+            "&margin=20" +
+            "&data=" +
+            encodeURIComponent(
+                finalURL
+            );
+
+    }
 
 
-    result.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    /*
+       -----------------------------------------
+       HIỆN KẾT QUẢ
+       -----------------------------------------
+    */
+
+    if (result) {
+
+        result.classList.remove(
+            "hidden"
+        );
+
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
 
 }
 
 
-/* =========================================
-   CREATE BUTTON
-   ========================================= */
+/* =========================================================
+   12. NÚT TẠO QUÀ
+   ========================================================= */
 
-createButton.addEventListener(
-    "click",
-    createGift
-);
+if (createButton) {
+
+    createButton.addEventListener(
+        "click",
+        createGift
+    );
+
+}
 
 
-/* =========================================
-   COPY LINK
-   ========================================= */
+/* =========================================================
+   13. SAO CHÉP LINK
+   ========================================================= */
 
-copyButton.addEventListener(
-    "click",
-    async () => {
+if (copyButton) {
 
-        try {
+    copyButton.addEventListener(
+        "click",
+        async () => {
 
-            await navigator.clipboard.writeText(
-                generatedLink.value
-            );
+            const link =
+                generatedLink
+                    ? generatedLink.value
+                    : "";
+
+
+            if (!link) {
+
+                return;
+
+            }
+
+
+            try {
+
+                /*
+                   Cách hiện đại
+                */
+
+                await navigator.clipboard.writeText(
+                    link
+                );
+
+
+            } catch (error) {
+
+                /*
+                   Fallback cho trình duyệt
+                */
+
+                if (generatedLink) {
+
+                    generatedLink.focus();
+
+                    generatedLink.select();
+
+                    document.execCommand(
+                        "copy"
+                    );
+
+                }
+
+            }
+
+
+            /*
+               Thông báo đã copy
+            */
+
+            const oldText =
+                copyButton.textContent;
 
 
             copyButton.textContent =
@@ -381,46 +961,124 @@ copyButton.addEventListener(
                 () => {
 
                     copyButton.textContent =
+                        oldText ||
                         "📋 Sao chép";
 
                 },
                 1800
             );
 
-
-        } catch (error) {
-
-            generatedLink.select();
-
-            document.execCommand(
-                "copy"
-            );
-
-            copyButton.textContent =
-                "✅ Đã sao chép";
-
         }
+    );
 
-    }
-);
+}
 
 
-/* =========================================
-   OPEN GIFT
-   ========================================= */
+/* =========================================================
+   14. MỞ MÓN QUÀ
+   ========================================================= */
 
-openButton.addEventListener(
-    "click",
-    () => {
+if (openButton) {
 
-        if (
-            generatedLink.value
-        ) {
+    openButton.addEventListener(
+        "click",
+        () => {
+
+            const link =
+                generatedLink
+                    ? generatedLink.value
+                    : "";
+
+
+            if (!link) {
+
+                alert(
+                    "Bạn hãy tạo món quà trước."
+                );
+
+
+                return;
+
+            }
+
 
             window.location.href =
-                generatedLink.value;
+                link;
 
         }
+    );
 
+}
+
+
+/* =========================================================
+   15. ĐẢM BẢO ACTIVE BAN ĐẦU
+   ========================================================= */
+
+function initializeSelections() {
+
+    /*
+       Theme
+    */
+
+    themeButtons.forEach(
+        button => {
+
+            if (
+                button.dataset.theme ===
+                selectedTheme
+            ) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+       Style
+    */
+
+    styleButtons.forEach(
+        button => {
+
+            if (
+                button.dataset.style ===
+                selectedStyle
+            ) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+
+    applyCreateTheme();
+
+    applyCreateStyle();
+
+}
+
+
+initializeSelections();
+
+
+/* =========================================================
+   16. LOG KIỂM TRA
+   ========================================================= */
+
+console.log(
+    "Love Story Gift Creator loaded.",
+    {
+        theme: selectedTheme,
+        style: selectedStyle
     }
 );
