@@ -19,14 +19,15 @@
     --soft:rgba(255,240,248,.68);
     --muted:rgba(255,240,248,.46);
     --accent:#ff6f9d;
-    --accent2:#ffabc6;
     --card:rgba(255,255,255,.075);
     --border:rgba(255,255,255,.13);
     --radius:28px;
     --shadow:0 25px 80px rgba(0,0,0,.32);
 }
 
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
 html{
     scroll-behavior:smooth;
@@ -108,7 +109,7 @@ textarea{
     line-height:1.7;
 }
 
-/* BUILDER LAYOUT */
+/* LAYOUT */
 
 .builder-layout{
     display:grid;
@@ -128,9 +129,11 @@ textarea{
     border:1px solid var(--border);
     border-radius:var(--radius);
     background:
-        linear-gradient(145deg,
-        rgba(255,255,255,.095),
-        rgba(255,255,255,.045));
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.095),
+            rgba(255,255,255,.045)
+        );
     box-shadow:var(--shadow);
     backdrop-filter:blur(24px);
     -webkit-backdrop-filter:blur(24px);
@@ -236,14 +239,20 @@ textarea{
     transition:.28s ease;
 }
 
-.theme-option:hover{
+.theme-option:hover,
+.style-option:hover{
     transform:translateY(-3px);
     background:rgba(255,255,255,.065);
 }
 
 .theme-option.active{
     border-color:rgba(255,132,173,.9);
-    background:linear-gradient(145deg,rgba(255,110,160,.14),rgba(255,255,255,.055));
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,110,160,.14),
+            rgba(255,255,255,.055)
+        );
     box-shadow:0 12px 35px rgba(255,70,130,.12);
 }
 
@@ -283,12 +292,29 @@ textarea{
     font-size:20px;
 }
 
-.romantic-preview{background:linear-gradient(135deg,#9e173e,#e9587d,#ffb0c4)}
-.rose-preview{background:linear-gradient(135deg,#4b071d,#9e183d,#df5470)}
-.purple-preview{background:linear-gradient(135deg,#321354,#7540a0,#c98de0)}
-.pink-preview{background:linear-gradient(135deg,#ff9fba,#ffcad9,#ffe4ed)}
-.night-preview{background:linear-gradient(135deg,#060b21,#192d66,#57458c)}
-.sunset-preview{background:linear-gradient(135deg,#76283b,#d66049,#f2ad68)}
+.romantic-preview{
+    background:linear-gradient(135deg,#9e173e,#e9587d,#ffb0c4);
+}
+
+.rose-preview{
+    background:linear-gradient(135deg,#4b071d,#9e183d,#df5470);
+}
+
+.purple-preview{
+    background:linear-gradient(135deg,#321354,#7540a0,#c98de0);
+}
+
+.pink-preview{
+    background:linear-gradient(135deg,#ff9fba,#ffcad9,#ffe4ed);
+}
+
+.night-preview{
+    background:linear-gradient(135deg,#060b21,#192d66,#57458c);
+}
+
+.sunset-preview{
+    background:linear-gradient(135deg,#76283b,#d66049,#f2ad68);
+}
 
 .theme-option strong{
     display:block;
@@ -328,11 +354,6 @@ textarea{
     transition:.28s ease;
 }
 
-.style-option:hover{
-    transform:translateY(-3px);
-    background:rgba(255,255,255,.065);
-}
-
 .style-option.active{
     border-color:rgba(255,132,173,.9);
     box-shadow:0 14px 38px rgba(255,70,130,.12);
@@ -348,12 +369,18 @@ textarea{
 }
 
 .style-glass-preview{
-    background:linear-gradient(135deg,rgba(255,255,255,.35),rgba(255,100,170,.3));
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.35),
+            rgba(255,100,170,.3)
+        );
     backdrop-filter:blur(15px);
 }
 
 .style-luxury-preview{
-    background:radial-gradient(circle,#77542a,#2b1b0d 65%,#0d0905);
+    background:
+        radial-gradient(circle,#77542a,#2b1b0d 65%,#0d0905);
     color:#e9c77e;
 }
 
@@ -457,10 +484,12 @@ textarea{
     height:670px;
     overflow:hidden;
     border-radius:31px;
-    background:
-        radial-gradient(circle at 50% 10%,rgba(255,100,160,.28),transparent 35%),
-        linear-gradient(145deg,#230b18,#4b1730);
-    transition:.45s ease;
+    transition:
+        background .45s ease,
+        color .45s ease,
+        border-radius .45s ease,
+        box-shadow .45s ease,
+        filter .45s ease;
 }
 
 .preview-glow{
@@ -473,6 +502,8 @@ textarea{
     transform:translateX(-50%);
     background:rgba(255,140,180,.18);
     filter:blur(35px);
+    pointer-events:none;
+    transition:.5s ease;
 }
 
 .preview-content{
@@ -483,12 +514,14 @@ textarea{
     display:flex;
     flex-direction:column;
     text-align:center;
+    transition:.45s ease;
 }
 
 .preview-mini-label{
     font-size:8px;
     letter-spacing:.25em;
     opacity:.65;
+    transition:.4s ease;
 }
 
 .preview-heart{
@@ -502,11 +535,18 @@ textarea{
     border:1px solid rgba(255,255,255,.18);
     font-size:30px;
     animation:previewBeat 1.8s infinite;
+    transition:
+        .45s ease;
 }
 
 @keyframes previewBeat{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.08)}
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
 }
 
 .preview-title{
@@ -514,6 +554,7 @@ textarea{
     font-size:30px;
     line-height:1.1;
     word-break:break-word;
+    transition:.4s ease;
 }
 
 .preview-title span{
@@ -527,6 +568,7 @@ textarea{
     font-size:11px;
     line-height:1.6;
     opacity:.68;
+    transition:.4s ease;
 }
 
 .preview-button{
@@ -538,17 +580,20 @@ textarea{
     border:1px solid rgba(255,255,255,.2);
     font-size:11px;
     font-weight:700;
+    transition:.4s ease;
 }
 
 .preview-story{
     margin-top:auto;
     padding-top:30px;
+    transition:.4s ease;
 }
 
 .preview-couple{
     font-size:20px;
     font-weight:750;
     word-break:break-word;
+    transition:.4s ease;
 }
 
 .preview-date{
@@ -568,6 +613,7 @@ textarea{
     padding:8px 3px;
     border-radius:10px;
     background:rgba(255,255,255,.08);
+    transition:.4s ease;
 }
 
 .preview-counter strong{
@@ -590,6 +636,7 @@ textarea{
     min-height:55px;
     max-height:75px;
     overflow:hidden;
+    transition:.4s ease;
 }
 
 .preview-style-name{
@@ -603,122 +650,513 @@ textarea{
     opacity:.4;
 }
 
-/* PREVIEW THEMES */
+/* =========================================================
+   PREVIEW THEMES
+   ========================================================= */
 
 .preview-theme-romantic{
     background:
-        radial-gradient(circle at 50% 10%,rgba(255,160,190,.3),transparent 35%),
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(255,160,190,.3),
+            transparent 35%
+        ),
         linear-gradient(145deg,#5b102c,#b33159,#5d152f);
 }
 
 .preview-theme-rose{
     background:
-        radial-gradient(circle at 50% 10%,rgba(255,90,120,.25),transparent 35%),
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(255,90,120,.25),
+            transparent 35%
+        ),
         linear-gradient(145deg,#23030d,#72152d,#390713);
 }
 
 .preview-theme-purple{
     background:
-        radial-gradient(circle at 50% 10%,rgba(200,130,255,.25),transparent 35%),
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(200,130,255,.25),
+            transparent 35%
+        ),
         linear-gradient(145deg,#180827,#5b287d,#251039);
 }
 
 .preview-theme-pink{
     color:#4d2535;
     background:
-        radial-gradient(circle at 50% 10%,rgba(255,255,255,.7),transparent 35%),
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(255,255,255,.7),
+            transparent 35%
+        ),
         linear-gradient(145deg,#ffb5ca,#ffd8e3,#f5b7cc);
 }
 
 .preview-theme-night{
     background:
-        radial-gradient(circle at 50% 10%,rgba(100,150,255,.3),transparent 35%),
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(100,150,255,.3),
+            transparent 35%
+        ),
         linear-gradient(145deg,#030616,#10255b,#1c1742);
 }
 
 .preview-theme-sunset{
     background:
-        radial-gradient(circle at 50% 10%,rgba(255,220,150,.25),transparent 35%),
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(255,220,150,.25),
+            transparent 35%
+        ),
         linear-gradient(145deg,#4b1224,#b34a42,#c27b48);
 }
 
-/* PREVIEW STYLES */
+/* =========================================================
+   PREVIEW STYLE — GLASS
+   ========================================================= */
+
+.preview-style-glass{
+    border-radius:31px;
+}
+
+.preview-style-glass .preview-content{
+    padding:48px 25px 30px;
+}
+
+.preview-style-glass .preview-heart{
+    border-radius:50%;
+    background:rgba(255,255,255,.11);
+    border:1px solid rgba(255,255,255,.24);
+    box-shadow:
+        0 12px 35px rgba(255,100,170,.18),
+        inset 0 0 20px rgba(255,255,255,.08);
+}
+
+.preview-style-glass .preview-title{
+    font-weight:700;
+    letter-spacing:-.02em;
+}
+
+.preview-style-glass .preview-button{
+    border-radius:999px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.24);
+    backdrop-filter:blur(12px);
+}
+
+.preview-style-glass .preview-letter{
+    border-radius:13px;
+    background:rgba(255,255,255,.08);
+}
+
+/* =========================================================
+   PREVIEW STYLE — LUXURY
+   ========================================================= */
 
 .preview-style-luxury{
-    border-radius:25px;
-    box-shadow:inset 0 0 50px rgba(255,196,80,.08);
+    border-radius:24px;
+    border:1px solid rgba(232,199,126,.38);
+    box-shadow:
+        inset 0 0 70px rgba(232,199,126,.09),
+        inset 0 0 0 1px rgba(255,255,255,.03);
+}
+
+.preview-style-luxury .preview-content{
+    padding:55px 27px 30px;
+}
+
+.preview-style-luxury .preview-mini-label{
+    color:#e9c77e;
+    letter-spacing:.32em;
+    font-family:Georgia,serif;
 }
 
 .preview-style-luxury .preview-heart{
-    border-color:rgba(232,199,126,.45);
-    color:#e9c77e;
-    background:rgba(210,170,80,.08);
+    width:76px;
+    height:76px;
+    margin:40px auto 24px;
+    border-radius:50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(232,199,126,.22),
+            rgba(232,199,126,.04) 65%,
+            transparent
+        );
+    border:1px solid rgba(232,199,126,.6);
+    color:#f1d58e;
+    box-shadow:
+        0 0 35px rgba(232,199,126,.15),
+        inset 0 0 25px rgba(232,199,126,.08);
 }
 
 .preview-style-luxury .preview-title{
-    font-family:Georgia,serif;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:29px;
+    font-weight:400;
     letter-spacing:.02em;
 }
 
-.preview-style-luxury .preview-button{
-    border-color:rgba(232,199,126,.45);
+.preview-style-luxury .preview-title span{
     color:#e9c77e;
+    font-style:italic;
 }
 
-.preview-style-sakura{
-    color:#633c4c;
+.preview-style-luxury .preview-description{
+    font-family:Georgia,serif;
+    font-style:italic;
 }
 
-.preview-style-sakura .preview-heart{
-    background:rgba(255,255,255,.35);
+.preview-style-luxury .preview-button{
+    border-radius:5px;
+    background:linear-gradient(
+        135deg,
+        rgba(232,199,126,.20),
+        rgba(232,199,126,.06)
+    );
+    border:1px solid rgba(232,199,126,.55);
+    color:#f1d58e;
+    letter-spacing:.08em;
 }
 
-.preview-style-sakura .preview-title{
+.preview-style-luxury .preview-couple{
+    font-family:Georgia,serif;
+    color:#f0d18a;
+    letter-spacing:.03em;
+}
+
+.preview-style-luxury .preview-counter div{
+    border-radius:4px;
+    background:rgba(232,199,126,.06);
+    border:1px solid rgba(232,199,126,.16);
+}
+
+.preview-style-luxury .preview-counter strong{
+    color:#f0d18a;
     font-family:Georgia,serif;
 }
 
-.preview-style-cinematic{
+.preview-style-luxury .preview-letter{
+    border-radius:5px;
+    background:rgba(232,199,126,.055);
+    border:1px solid rgba(232,199,126,.14);
+    font-family:Georgia,serif;
+}
+
+/* =========================================================
+   PREVIEW STYLE — SAKURA
+   ========================================================= */
+
+.preview-style-sakura{
+    border-radius:38px;
+    color:#633c4c;
+}
+
+.preview-style-sakura .preview-content{
+    padding:42px 24px 30px;
+}
+
+.preview-style-sakura .preview-mini-label{
+    color:#a94b70;
+    letter-spacing:.28em;
+}
+
+.preview-style-sakura .preview-heart{
+    width:72px;
+    height:72px;
+    margin:28px auto 18px;
+    border-radius:50%;
+    background:rgba(255,255,255,.42);
+    border:2px solid rgba(255,255,255,.65);
+    color:#c85c82;
+    box-shadow:0 12px 30px rgba(180,70,120,.15);
+}
+
+.preview-style-sakura .preview-title{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:31px;
+    font-weight:500;
+}
+
+.preview-style-sakura .preview-title span{
+    color:#b34f76;
+    font-style:italic;
+}
+
+.preview-style-sakura .preview-description{
+    color:#74495a;
+}
+
+.preview-style-sakura .preview-button{
+    background:rgba(255,255,255,.42);
+    border:1px solid rgba(255,255,255,.7);
+    color:#8b4663;
+    box-shadow:0 8px 25px rgba(160,70,110,.10);
+}
+
+.preview-style-sakura .preview-counter div{
+    background:rgba(255,255,255,.32);
+    border:1px solid rgba(255,255,255,.45);
+}
+
+.preview-style-sakura .preview-letter{
+    background:rgba(255,255,255,.35);
+    border:1px solid rgba(255,255,255,.45);
     border-radius:18px;
 }
 
+/* =========================================================
+   PREVIEW STYLE — CINEMATIC
+   ========================================================= */
+
+.preview-style-cinematic{
+    border-radius:18px;
+    box-shadow:
+        inset 0 0 100px rgba(0,0,0,.55);
+}
+
+.preview-style-cinematic::before,
+.preview-style-cinematic::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    height:28px;
+    z-index:10;
+    background:#000;
+    pointer-events:none;
+}
+
+.preview-style-cinematic::before{
+    top:0;
+}
+
+.preview-style-cinematic::after{
+    bottom:0;
+}
+
+.preview-style-cinematic .preview-content{
+    padding:60px 24px 55px;
+}
+
+.preview-style-cinematic .preview-mini-label{
+    font-family:Arial,sans-serif;
+    letter-spacing:.38em;
+    font-size:7px;
+}
+
 .preview-style-cinematic .preview-heart{
-    border-radius:12px;
+    width:58px;
+    height:58px;
+    margin:48px auto 25px;
+    border-radius:8px;
+    background:rgba(0,0,0,.30);
+    border:1px solid rgba(242,210,140,.45);
     color:#f2d28c;
 }
 
 .preview-style-cinematic .preview-title{
     text-transform:uppercase;
-    letter-spacing:.08em;
-    font-size:24px;
+    font-family:Arial,sans-serif;
+    font-size:23px;
+    font-weight:800;
+    letter-spacing:.12em;
 }
+
+.preview-style-cinematic .preview-description{
+    text-transform:uppercase;
+    font-size:8px;
+    letter-spacing:.10em;
+}
+
+.preview-style-cinematic .preview-button{
+    border-radius:3px;
+    background:rgba(0,0,0,.38);
+    border:1px solid rgba(255,255,255,.22);
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:8px;
+}
+
+.preview-style-cinematic .preview-story{
+    border-top:1px solid rgba(255,255,255,.12);
+    padding-top:18px;
+}
+
+.preview-style-cinematic .preview-couple{
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:15px;
+}
+
+.preview-style-cinematic .preview-counter div{
+    border-radius:3px;
+    background:rgba(0,0,0,.35);
+}
+
+.preview-style-cinematic .preview-letter{
+    border-radius:3px;
+    background:rgba(0,0,0,.32);
+    border:1px solid rgba(255,255,255,.10);
+}
+
+/* =========================================================
+   PREVIEW STYLE — LOVE LETTER
+   ========================================================= */
 
 .preview-style-letter{
+    border-radius:12px;
     color:#573b34;
+    box-shadow:
+        inset 0 0 70px rgba(120,70,40,.08);
 }
 
-.preview-style-letter .preview-heart{
-    border-radius:8px;
-    background:#f5e6cc;
+.preview-style-letter .preview-content{
+    padding:52px 28px 30px;
+}
+
+.preview-style-letter .preview-mini-label{
     color:#8c5148;
 }
 
+.preview-style-letter .preview-heart{
+    width:62px;
+    height:62px;
+    margin:30px auto 20px;
+    border-radius:8px;
+    background:#f5e6cc;
+    border:1px solid #d9bfa0;
+    color:#9b554d;
+    transform:rotate(-2deg);
+}
+
 .preview-style-letter .preview-title{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:30px;
+    font-weight:500;
+}
+
+.preview-style-letter .preview-title span{
+    font-style:italic;
+    color:#9b554d;
+}
+
+.preview-style-letter .preview-description{
+    font-family:Georgia,serif;
+    color:#725046;
+    font-style:italic;
+}
+
+.preview-style-letter .preview-button{
+    border-radius:5px;
+    background:#f7ead4;
+    border:1px solid #d7b999;
+    color:#765044;
     font-family:Georgia,serif;
 }
 
+.preview-style-letter .preview-couple{
+    font-family:Georgia,serif;
+    color:#75473d;
+}
+
+.preview-style-letter .preview-counter div{
+    border-radius:4px;
+    background:rgba(255,248,230,.48);
+    border:1px solid rgba(130,85,55,.14);
+}
+
+.preview-style-letter .preview-letter{
+    border-radius:4px;
+    background:rgba(255,248,230,.58);
+    border:1px solid rgba(130,85,55,.14);
+    font-family:Georgia,"Times New Roman",serif;
+}
+
+/* =========================================================
+   PREVIEW STYLE — MINIMAL
+   ========================================================= */
+
 .preview-style-minimal{
+    border-radius:18px;
     color:#303030;
+    background:#f7f7f7 !important;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.05);
+}
+
+.preview-style-minimal .preview-glow{
+    opacity:.12;
+}
+
+.preview-style-minimal .preview-content{
+    padding:58px 30px 30px;
+}
+
+.preview-style-minimal .preview-mini-label{
+    color:#777;
+    letter-spacing:.30em;
 }
 
 .preview-style-minimal .preview-heart{
-    background:white;
-    border-color:#ddd;
+    width:56px;
+    height:56px;
+    margin:38px auto 25px;
+    border-radius:50%;
+    background:#fff;
+    border:1px solid #dedede;
+    color:#555;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+    animation:none;
+}
+
+.preview-style-minimal .preview-title{
+    font-family:Arial,sans-serif;
+    font-size:27px;
+    font-weight:500;
+    color:#222;
+}
+
+.preview-style-minimal .preview-title span{
+    font-weight:700;
+}
+
+.preview-style-minimal .preview-description{
     color:#777;
+    opacity:1;
 }
 
 .preview-style-minimal .preview-button{
-    background:white;
-    border-color:#ddd;
+    border-radius:8px;
+    background:#fff;
+    border:1px solid #d8d8d8;
+    color:#333;
+}
+
+.preview-style-minimal .preview-story{
+    border-top:1px solid #dedede;
+    padding-top:20px;
+}
+
+.preview-style-minimal .preview-couple{
+    color:#222;
+    font-weight:600;
+}
+
+.preview-style-minimal .preview-counter div{
+    border-radius:7px;
+    background:#fff;
+    border:1px solid #e1e1e1;
+}
+
+.preview-style-minimal .preview-letter{
+    border-radius:8px;
+    background:#fff;
+    border:1px solid #e1e1e1;
+    color:#555;
 }
 
 /* RESULT */
@@ -793,10 +1231,6 @@ textarea{
         margin-bottom:10px;
     }
 
-    .preview-heading{
-        margin-bottom:10px;
-    }
-
     .phone{
         max-width:340px;
     }
@@ -861,10 +1295,6 @@ textarea{
     .preview-heart{
         margin-top:28px;
     }
-
-    .result-buttons{
-        gap:8px;
-    }
 }
 
 @media(max-width:380px){
@@ -911,183 +1341,295 @@ textarea{
 <div class="create-container">
 
 <header class="create-header">
-    <div class="create-label">LOVE STORY</div>
+
+    <div class="create-label">
+        LOVE STORY
+    </div>
 
     <h1>Tạo món quà</h1>
 
     <p>
         Tạo một món quà nhỏ dành cho người đặc biệt ❤️
     </p>
+
 </header>
 
 
 <div class="builder-layout">
 
-<!-- =====================================================
-     FORM
-     ===================================================== -->
-
 <div class="builder-form">
 
 <section class="form-card">
 
-<h2>💌 Thông tin món quà</h2>
+    <h2>💌 Thông tin món quà</h2>
 
-<label for="couple">Tên hai người</label>
+    <label for="couple">
+        Tên hai người
+    </label>
 
-<input
-    id="couple"
-    type="text"
-    autocomplete="off"
-    placeholder="Ví dụ: Anh & Em"
->
+    <input
+        id="couple"
+        type="text"
+        autocomplete="off"
+        placeholder="Ví dụ: Anh & Em"
+    >
 
-<label for="receiver">Tên người nhận</label>
+    <label for="receiver">
+        Tên người nhận
+    </label>
 
-<input
-    id="receiver"
-    type="text"
-    autocomplete="off"
-    placeholder="Ví dụ: Trang"
->
+    <input
+        id="receiver"
+        type="text"
+        autocomplete="off"
+        placeholder="Ví dụ: Trang"
+    >
 
-<label for="startDate">Ngày bắt đầu yêu</label>
+    <label for="startDate">
+        Ngày bắt đầu yêu
+    </label>
 
-<input
-    id="startDate"
-    type="date"
->
+    <input
+        id="startDate"
+        type="date"
+    >
 
-<label for="music">Bài hát YouTube</label>
+    <label for="music">
+        Bài hát YouTube
+    </label>
 
-<input
-    id="music"
-    type="url"
-    inputmode="url"
-    autocomplete="off"
-    placeholder="Dán link YouTube vào đây..."
->
+    <input
+        id="music"
+        type="url"
+        inputmode="url"
+        autocomplete="off"
+        placeholder="Dán link YouTube vào đây..."
+    >
 
-<label for="letter">Một lời muốn nói</label>
+    <label for="letter">
+        Một lời muốn nói
+    </label>
 
-<textarea
-    id="letter"
-    rows="7"
-    placeholder="Viết điều bạn muốn nói với người ấy..."
-></textarea>
+    <textarea
+        id="letter"
+        rows="7"
+        placeholder="Viết điều bạn muốn nói với người ấy..."
+    ></textarea>
 
 </section>
 
 
 <section class="form-card">
 
-<h2>🎨 Chọn màu sắc</h2>
+    <h2>🎨 Chọn màu sắc</h2>
 
-<p class="form-description">
-    Màu sắc sẽ được áp dụng trực tiếp vào món quà.
-</p>
+    <p class="form-description">
+        Màu sắc sẽ được áp dụng trực tiếp vào món quà.
+    </p>
 
-<div class="theme-grid">
+    <div class="theme-grid">
 
-<button type="button" class="theme-option active" data-theme="romantic">
-    <span class="theme-preview romantic-preview"></span>
-    <strong>❤️ Romantic</strong>
-    <small>Đỏ hồng</small>
-</button>
+        <button type="button"
+                class="theme-option active"
+                data-theme="romantic">
 
-<button type="button" class="theme-option" data-theme="rose">
-    <span class="theme-preview rose-preview"></span>
-    <strong>🌹 Rose</strong>
-    <small>Đỏ quyến rũ</small>
-</button>
+            <span class="theme-preview romantic-preview"></span>
 
-<button type="button" class="theme-option" data-theme="purple">
-    <span class="theme-preview purple-preview"></span>
-    <strong>💜 Purple</strong>
-    <small>Tím mộng mơ</small>
-</button>
+            <strong>❤️ Romantic</strong>
 
-<button type="button" class="theme-option" data-theme="pink">
-    <span class="theme-preview pink-preview"></span>
-    <strong>🌸 Sweet Pink</strong>
-    <small>Hồng ngọt ngào</small>
-</button>
+            <small>Đỏ hồng</small>
 
-<button type="button" class="theme-option" data-theme="night">
-    <span class="theme-preview night-preview"></span>
-    <strong>🌌 Night Love</strong>
-    <small>Đêm huyền bí</small>
-</button>
+        </button>
 
-<button type="button" class="theme-option" data-theme="sunset">
-    <span class="theme-preview sunset-preview"></span>
-    <strong>🌅 Sunset</strong>
-    <small>Hoàng hôn</small>
-</button>
 
-</div>
+        <button type="button"
+                class="theme-option"
+                data-theme="rose">
+
+            <span class="theme-preview rose-preview"></span>
+
+            <strong>🌹 Rose</strong>
+
+            <small>Đỏ quyến rũ</small>
+
+        </button>
+
+
+        <button type="button"
+                class="theme-option"
+                data-theme="purple">
+
+            <span class="theme-preview purple-preview"></span>
+
+            <strong>💜 Purple</strong>
+
+            <small>Tím mộng mơ</small>
+
+        </button>
+
+
+        <button type="button"
+                class="theme-option"
+                data-theme="pink">
+
+            <span class="theme-preview pink-preview"></span>
+
+            <strong>🌸 Sweet Pink</strong>
+
+            <small>Hồng ngọt ngào</small>
+
+        </button>
+
+
+        <button type="button"
+                class="theme-option"
+                data-theme="night">
+
+            <span class="theme-preview night-preview"></span>
+
+            <strong>🌌 Night Love</strong>
+
+            <small>Đêm huyền bí</small>
+
+        </button>
+
+
+        <button type="button"
+                class="theme-option"
+                data-theme="sunset">
+
+            <span class="theme-preview sunset-preview"></span>
+
+            <strong>🌅 Sunset</strong>
+
+            <small>Hoàng hôn</small>
+
+        </button>
+
+    </div>
+
 </section>
 
 
 <section class="form-card">
 
-<h2>✨ Chọn phong cách</h2>
+    <h2>✨ Chọn phong cách</h2>
 
-<p class="form-description">
-    Phong cách sẽ thay đổi diện mạo tổng thể của món quà.
-</p>
+    <p class="form-description">
+        Phong cách sẽ thay đổi diện mạo tổng thể của món quà.
+    </p>
 
-<div class="style-grid">
+    <div class="style-grid">
 
-<button type="button" class="style-option active" data-style="glass">
-    <span class="style-preview style-glass-preview"><span>♥</span></span>
-    <div>
-        <strong>💎 Glass Romance</strong>
-        <small>Kính trong suốt • Hiện đại • Lung linh</small>
+        <button type="button"
+                class="style-option active"
+                data-style="glass">
+
+            <span class="style-preview style-glass-preview">
+                <span>♥</span>
+            </span>
+
+            <div>
+                <strong>💎 Glass Romance</strong>
+                <small>
+                    Kính trong suốt • Hiện đại • Lung linh
+                </small>
+            </div>
+
+        </button>
+
+
+        <button type="button"
+                class="style-option"
+                data-style="luxury">
+
+            <span class="style-preview style-luxury-preview">
+                <span>♛</span>
+            </span>
+
+            <div>
+                <strong>👑 Luxury Love</strong>
+                <small>
+                    Sang trọng • Cao cấp • Quyến rũ
+                </small>
+            </div>
+
+        </button>
+
+
+        <button type="button"
+                class="style-option"
+                data-style="sakura">
+
+            <span class="style-preview style-sakura-preview">
+                <span>🌸</span>
+            </span>
+
+            <div>
+                <strong>🌸 Sakura Dream</strong>
+                <small>
+                    Hoa anh đào • Dịu dàng • Mộng mơ
+                </small>
+            </div>
+
+        </button>
+
+
+        <button type="button"
+                class="style-option"
+                data-style="cinematic">
+
+            <span class="style-preview style-cinematic-preview">
+                <span>🎞</span>
+            </span>
+
+            <div>
+                <strong>🎞️ Cinematic</strong>
+                <small>
+                    Điện ảnh • Kịch tính • Ấn tượng
+                </small>
+            </div>
+
+        </button>
+
+
+        <button type="button"
+                class="style-option"
+                data-style="letter">
+
+            <span class="style-preview style-letter-preview">
+                <span>💌</span>
+            </span>
+
+            <div>
+                <strong>💌 Love Letter</strong>
+                <small>
+                    Thư tình • Ấm áp • Cổ điển
+                </small>
+            </div>
+
+        </button>
+
+
+        <button type="button"
+                class="style-option"
+                data-style="minimal">
+
+            <span class="style-preview style-minimal-preview">
+                <span>♡</span>
+            </span>
+
+            <div>
+                <strong>🤍 Minimal Love</strong>
+                <small>
+                    Tối giản • Tinh tế • Thanh lịch
+                </small>
+            </div>
+
+        </button>
+
     </div>
-</button>
 
-<button type="button" class="style-option" data-style="luxury">
-    <span class="style-preview style-luxury-preview"><span>♛</span></span>
-    <div>
-        <strong>👑 Luxury Love</strong>
-        <small>Sang trọng • Cao cấp • Quyến rũ</small>
-    </div>
-</button>
-
-<button type="button" class="style-option" data-style="sakura">
-    <span class="style-preview style-sakura-preview"><span>🌸</span></span>
-    <div>
-        <strong>🌸 Sakura Dream</strong>
-        <small>Hoa anh đào • Dịu dàng • Mộng mơ</small>
-    </div>
-</button>
-
-<button type="button" class="style-option" data-style="cinematic">
-    <span class="style-preview style-cinematic-preview"><span>🎞</span></span>
-    <div>
-        <strong>🎞️ Cinematic</strong>
-        <small>Điện ảnh • Kịch tính • Ấn tượng</small>
-    </div>
-</button>
-
-<button type="button" class="style-option" data-style="letter">
-    <span class="style-preview style-letter-preview"><span>💌</span></span>
-    <div>
-        <strong>💌 Love Letter</strong>
-        <small>Thư tình • Ấm áp • Cổ điển</small>
-    </div>
-</button>
-
-<button type="button" class="style-option" data-style="minimal">
-    <span class="style-preview style-minimal-preview"><span>♡</span></span>
-    <div>
-        <strong>🤍 Minimal Love</strong>
-        <small>Tối giản • Tinh tế • Thanh lịch</small>
-    </div>
-</button>
-
-</div>
 </section>
 
 
@@ -1105,151 +1647,196 @@ textarea{
     class="form-card result-card hidden"
 >
 
-<h2>🎁 Món quà đã sẵn sàng</h2>
+    <h2>🎁 Món quà đã sẵn sàng</h2>
 
-<p>
-    Link của bạn đã được tạo.
-    Hãy gửi món quà này đến người đặc biệt ❤️
-</p>
+    <p>
+        Link của bạn đã được tạo.
+        Hãy gửi món quà này đến người đặc biệt ❤️
+    </p>
 
-<input
-    id="generatedLink"
-    type="text"
-    readonly
-    aria-label="Link món quà"
->
-
-<div class="result-buttons">
-
-<button
-    id="copyButton"
-    type="button"
-    class="secondary-button"
->
-    📋 Sao chép link
-</button>
-
-<button
-    id="openButton"
-    type="button"
-    class="secondary-button"
->
-    🎁 Mở quà
-</button>
-
-</div>
-
-<div class="qr-wrapper">
-    <img
-        id="qrImage"
-        alt="Mã QR món quà"
+    <input
+        id="generatedLink"
+        type="text"
+        readonly
+        aria-label="Link món quà"
     >
-</div>
+
+    <div class="result-buttons">
+
+        <button
+            id="copyButton"
+            type="button"
+            class="secondary-button"
+        >
+            📋 Sao chép link
+        </button>
+
+        <button
+            id="openButton"
+            type="button"
+            class="secondary-button"
+        >
+            🎁 Mở quà
+        </button>
+
+    </div>
+
+    <div class="qr-wrapper">
+
+        <img
+            id="qrImage"
+            alt="Mã QR món quà"
+        >
+
+    </div>
 
 </section>
 
 </div>
 
 
-<!-- =====================================================
-     LIVE PREVIEW
-     ===================================================== -->
+<!-- LIVE PREVIEW -->
 
 <aside class="preview-panel">
 
-<div class="preview-heading">
-    <span>LIVE PREVIEW</span>
-    <strong>🎁 Món quà của bạn</strong>
-</div>
+    <div class="preview-heading">
 
-<div class="phone">
+        <span>LIVE PREVIEW</span>
 
-<div class="phone-notch"></div>
+        <strong>
+            🎁 Món quà của bạn
+        </strong>
 
-<div
-    id="previewScreen"
-    class="phone-screen preview-theme-romantic"
->
+    </div>
 
-<div class="preview-glow"></div>
 
-<div class="preview-content">
+    <div class="phone">
 
-<div class="preview-mini-label">
-    MỘT MÓN QUÀ ĐẶC BIỆT
-</div>
+        <div class="phone-notch"></div>
 
-<div class="preview-heart">
-    ♥
-</div>
+        <div
+            id="previewScreen"
+            class="phone-screen preview-theme-romantic preview-style-glass"
+        >
 
-<h2 class="preview-title">
-    Dành cho
-    <span id="previewReceiver">em</span>
-</h2>
+            <div class="preview-glow"></div>
 
-<div class="preview-description">
-    Có một câu chuyện anh muốn kể lại cho em...
-</div>
+            <div class="preview-content">
 
-<div class="preview-button">
-    Hãy mở nó nhé ❤️
-</div>
+                <div class="preview-mini-label">
+                    MỘT MÓN QUÀ ĐẶC BIỆT
+                </div>
 
-<div class="preview-story">
 
-<div
-    id="previewCouple"
-    class="preview-couple"
->
-    Anh & Em
-</div>
+                <div class="preview-heart">
+                    ♥
+                </div>
 
-<div
-    id="previewDate"
-    class="preview-date"
->
-    Chưa chọn ngày
-</div>
 
-<div class="preview-counter">
+                <h2 class="preview-title">
 
-<div>
-    <strong id="previewDays">0</strong>
-    <small>NGÀY</small>
-</div>
+                    Dành cho
 
-<div>
-    <strong id="previewHours">00</strong>
-    <small>GIỜ</small>
-</div>
+                    <span id="previewReceiver">
+                        em
+                    </span>
 
-<div>
-    <strong id="previewMinutes">00</strong>
-    <small>PHÚT</small>
-</div>
+                </h2>
 
-</div>
 
-<div
-    id="previewLetter"
-    class="preview-letter"
->
-    Anh Yêu Em ❤️
-</div>
+                <div class="preview-description">
+                    Có một câu chuyện anh muốn kể lại cho em...
+                </div>
 
-</div>
 
-<div
-    id="previewStyleName"
-    class="preview-style-name"
->
-    GLASS ROMANCE
-</div>
+                <div class="preview-button">
+                    Hãy mở nó nhé ❤️
+                </div>
 
-</div>
-</div>
-</div>
+
+                <div class="preview-story">
+
+                    <div
+                        id="previewCouple"
+                        class="preview-couple"
+                    >
+                        Anh & Em
+                    </div>
+
+
+                    <div
+                        id="previewDate"
+                        class="preview-date"
+                    >
+                        Chưa chọn ngày
+                    </div>
+
+
+                    <div class="preview-counter">
+
+                        <div>
+
+                            <strong id="previewDays">
+                                0
+                            </strong>
+
+                            <small>
+                                NGÀY
+                            </small>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong id="previewHours">
+                                00
+                            </strong>
+
+                            <small>
+                                GIỜ
+                            </small>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong id="previewMinutes">
+                                00
+                            </strong>
+
+                            <small>
+                                PHÚT
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="previewLetter"
+                        class="preview-letter"
+                    >
+                        Anh Yêu Em ❤️
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="previewStyleName"
+                    class="preview-style-name"
+                >
+                    GLASS ROMANCE
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </aside>
 
