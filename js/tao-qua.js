@@ -2,33 +2,80 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const coupleInput = document.getElementById("couple");
-    const receiverInput = document.getElementById("receiver");
-    const startDateInput = document.getElementById("startDate");
-    const musicInput = document.getElementById("music");
-    const letterInput = document.getElementById("letter");
+    /* =====================================================
+       DOM
+       ===================================================== */
 
-    const createButton = document.getElementById("createButton");
+    const coupleInput =
+        document.getElementById("couple");
 
-    const result = document.getElementById("result");
-    const generatedLink = document.getElementById("generatedLink");
-    const copyButton = document.getElementById("copyButton");
-    const openButton = document.getElementById("openButton");
-    const qrImage = document.getElementById("qrImage");
+    const receiverInput =
+        document.getElementById("receiver");
 
-    const previewScreen = document.getElementById("previewScreen");
-    const previewReceiver = document.getElementById("previewReceiver");
-    const previewCouple = document.getElementById("previewCouple");
-    const previewDate = document.getElementById("previewDate");
-    const previewDays = document.getElementById("previewDays");
-    const previewHours = document.getElementById("previewHours");
-    const previewMinutes = document.getElementById("previewMinutes");
-    const previewLetter = document.getElementById("previewLetter");
-    const previewStyleName = document.getElementById("previewStyleName");
+    const startDateInput =
+        document.getElementById("startDate");
+
+    const musicInput =
+        document.getElementById("music");
+
+    const letterInput =
+        document.getElementById("letter");
+
+    const createButton =
+        document.getElementById("createButton");
+
+    const result =
+        document.getElementById("result");
+
+    const generatedLink =
+        document.getElementById("generatedLink");
+
+    const copyButton =
+        document.getElementById("copyButton");
+
+    const openButton =
+        document.getElementById("openButton");
+
+    const qrImage =
+        document.getElementById("qrImage");
+
+
+    /* PREVIEW */
+
+    const previewScreen =
+        document.getElementById("previewScreen");
+
+    const previewReceiver =
+        document.getElementById("previewReceiver");
+
+    const previewCouple =
+        document.getElementById("previewCouple");
+
+    const previewDate =
+        document.getElementById("previewDate");
+
+    const previewDays =
+        document.getElementById("previewDays");
+
+    const previewHours =
+        document.getElementById("previewHours");
+
+    const previewMinutes =
+        document.getElementById("previewMinutes");
+
+    const previewLetter =
+        document.getElementById("previewLetter");
+
+    const previewStyleName =
+        document.getElementById("previewStyleName");
+
+
+    /* =====================================================
+       STATE
+       ===================================================== */
 
     let selectedTheme = "romantic";
     let selectedStyle = "glass";
-
     let generatedGiftURL = "";
 
 
@@ -44,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "night",
         "sunset"
     ];
+
 
     const VALID_STYLES = [
         "glass",
@@ -69,56 +117,68 @@ document.addEventListener("DOMContentLoaded", () => {
        THEME SELECTION
        ===================================================== */
 
-    document.querySelectorAll(".theme-option").forEach(button => {
+    document
+        .querySelectorAll(".theme-option")
+        .forEach(button => {
 
-        button.addEventListener("click", () => {
+            button.addEventListener("click", () => {
 
-            const theme = button.dataset.theme;
+                const theme =
+                    button.dataset.theme;
 
-            if (!VALID_THEMES.includes(theme)) {
-                return;
-            }
+                if (!VALID_THEMES.includes(theme)) {
+                    return;
+                }
 
-            selectedTheme = theme;
+                selectedTheme = theme;
 
-            document.querySelectorAll(".theme-option")
-                .forEach(item => item.classList.remove("active"));
+                document
+                    .querySelectorAll(".theme-option")
+                    .forEach(item => {
+                        item.classList.remove("active");
+                    });
 
-            button.classList.add("active");
+                button.classList.add("active");
 
-            updatePreview();
+                updatePreview();
+
+            });
 
         });
-
-    });
 
 
     /* =====================================================
        STYLE SELECTION
        ===================================================== */
 
-    document.querySelectorAll(".style-option").forEach(button => {
+    document
+        .querySelectorAll(".style-option")
+        .forEach(button => {
 
-        button.addEventListener("click", () => {
+            button.addEventListener("click", () => {
 
-            const style = button.dataset.style;
+                const style =
+                    button.dataset.style;
 
-            if (!VALID_STYLES.includes(style)) {
-                return;
-            }
+                if (!VALID_STYLES.includes(style)) {
+                    return;
+                }
 
-            selectedStyle = style;
+                selectedStyle = style;
 
-            document.querySelectorAll(".style-option")
-                .forEach(item => item.classList.remove("active"));
+                document
+                    .querySelectorAll(".style-option")
+                    .forEach(item => {
+                        item.classList.remove("active");
+                    });
 
-            button.classList.add("active");
+                button.classList.add("active");
 
-            updatePreview();
+                updatePreview();
+
+            });
 
         });
-
-    });
 
 
     /* =====================================================
@@ -131,35 +191,53 @@ document.addEventListener("DOMContentLoaded", () => {
         startDateInput,
         musicInput,
         letterInput
+
     ].forEach(input => {
 
         if (!input) return;
 
-        input.addEventListener("input", updatePreview);
-        input.addEventListener("change", updatePreview);
+        input.addEventListener(
+            "input",
+            updatePreview
+        );
+
+        input.addEventListener(
+            "change",
+            updatePreview
+        );
 
     });
 
 
     /* =====================================================
-       DATE FORMAT
+       DATE
        ===================================================== */
 
     function parseLocalDate(value) {
 
-        if (!value) return null;
+        if (!value) {
+            return null;
+        }
 
-        const parts = value.split("-").map(Number);
+        const parts =
+            value.split("-").map(Number);
 
-        if (parts.length !== 3) return null;
+        if (parts.length !== 3) {
+            return null;
+        }
 
-        const [year, month, day] = parts;
-
-        const date = new Date(
+        const [
             year,
-            month - 1,
+            month,
             day
-        );
+        ] = parts;
+
+        const date =
+            new Date(
+                year,
+                month - 1,
+                day
+            );
 
         if (
             date.getFullYear() !== year ||
@@ -175,36 +253,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function formatDate(date) {
 
-        if (!date) return "Chưa chọn ngày";
+        if (!date) {
+            return "Chưa chọn ngày";
+        }
 
         return [
             String(date.getDate()).padStart(2, "0"),
             String(date.getMonth() + 1).padStart(2, "0"),
             date.getFullYear()
         ].join("/");
+
     }
 
 
     /* =====================================================
        COUNTER
        ===================================================== */
-
-    function calculateTotalDays(date) {
-
-        if (!date) return 0;
-
-        const now = new Date();
-
-        if (date > now) return 0;
-
-        const diff =
-            now.getTime() - date.getTime();
-
-        return Math.floor(
-            diff / 86400000
-        );
-    }
-
 
     function calculateTime(date) {
 
@@ -218,7 +282,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-        const now = new Date();
+        const now =
+            new Date();
 
         if (date > now) {
 
@@ -231,19 +296,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const diff =
-            now.getTime() - date.getTime();
+            now.getTime() -
+            date.getTime();
 
         const days =
-            Math.floor(diff / 86400000);
+            Math.floor(
+                diff / 86400000
+            );
 
         const hours =
             Math.floor(
-                (diff % 86400000) / 3600000
+                (diff % 86400000) /
+                3600000
             );
 
         const minutes =
             Math.floor(
-                (diff % 3600000) / 60000
+                (diff % 3600000) /
+                60000
             );
 
         return {
@@ -256,69 +326,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       LIVE PREVIEW
+       PREVIEW THEME
        ===================================================== */
 
-    function updatePreview() {
+    function applyPreviewTheme() {
 
-        if (!previewScreen) return;
-
-        const couple =
-            coupleInput?.value.trim() ||
-            "Anh & Em";
-
-        const receiver =
-            receiverInput?.value.trim() ||
-            "em";
-
-        const letter =
-            letterInput?.value.trim() ||
-            "Anh Yêu Em ❤️";
-
-        const date =
-            parseLocalDate(
-                startDateInput?.value
-            );
-
-
-        /* NAME */
-
-        previewReceiver.textContent = receiver;
-        previewCouple.textContent = couple;
-
-
-        /* DATE */
-
-        previewDate.textContent =
-            date
-                ? formatDate(date)
-                : "Chưa chọn ngày";
-
-
-        /* COUNTER */
-
-        const counter =
-            calculateTime(date);
-
-        previewDays.textContent =
-            counter.days;
-
-        previewHours.textContent =
-            String(counter.hours)
-                .padStart(2, "0");
-
-        previewMinutes.textContent =
-            String(counter.minutes)
-                .padStart(2, "0");
-
-
-        /* LETTER */
-
-        previewLetter.textContent =
-            letter;
-
-
-        /* THEME */
+        if (!previewScreen) {
+            return;
+        }
 
         VALID_THEMES.forEach(theme => {
 
@@ -332,8 +347,18 @@ document.addEventListener("DOMContentLoaded", () => {
             `preview-theme-${selectedTheme}`
         );
 
+    }
 
-        /* STYLE */
+
+    /* =====================================================
+       PREVIEW STYLE
+       ===================================================== */
+
+    function applyPreviewStyle() {
+
+        if (!previewScreen) {
+            return;
+        }
 
         VALID_STYLES.forEach(style => {
 
@@ -348,33 +373,156 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        previewStyleName.textContent =
-            STYLE_NAMES[selectedStyle] ||
-            selectedStyle.toUpperCase();
+        if (previewStyleName) {
+
+            previewStyleName.textContent =
+                STYLE_NAMES[selectedStyle] ||
+                selectedStyle.toUpperCase();
+
+        }
 
     }
 
 
     /* =====================================================
-       YOUTUBE PARSER
+       LIVE PREVIEW
+       ===================================================== */
+
+    function updatePreview() {
+
+        if (!previewScreen) {
+            return;
+        }
+
+
+        const couple =
+            coupleInput?.value.trim() ||
+            "Anh & Em";
+
+
+        const receiver =
+            receiverInput?.value.trim() ||
+            "em";
+
+
+        const letter =
+            letterInput?.value.trim() ||
+            "Anh Yêu Em ❤️";
+
+
+        const date =
+            parseLocalDate(
+                startDateInput?.value
+            );
+
+
+        /* NAME */
+
+        if (previewReceiver) {
+            previewReceiver.textContent =
+                receiver;
+        }
+
+        if (previewCouple) {
+            previewCouple.textContent =
+                couple;
+        }
+
+
+        /* DATE */
+
+        if (previewDate) {
+
+            previewDate.textContent =
+                date
+                    ? formatDate(date)
+                    : "Chưa chọn ngày";
+
+        }
+
+
+        /* COUNTER */
+
+        const counter =
+            calculateTime(date);
+
+
+        if (previewDays) {
+
+            previewDays.textContent =
+                counter.days;
+
+        }
+
+
+        if (previewHours) {
+
+            previewHours.textContent =
+                String(counter.hours)
+                    .padStart(2, "0");
+
+        }
+
+
+        if (previewMinutes) {
+
+            previewMinutes.textContent =
+                String(counter.minutes)
+                    .padStart(2, "0");
+
+        }
+
+
+        /* LETTER */
+
+        if (previewLetter) {
+
+            previewLetter.textContent =
+                letter;
+
+        }
+
+
+        /* THEME */
+
+        applyPreviewTheme();
+
+
+        /* STYLE */
+
+        applyPreviewStyle();
+
+    }
+
+
+    /* =====================================================
+       YOUTUBE
        ===================================================== */
 
     function extractYouTubeId(value) {
 
-        if (!value) return null;
+        if (!value) {
+            return null;
+        }
 
-        const input = value.trim();
+        const input =
+            value.trim();
 
-        /* Raw ID */
 
-        if (/^[A-Za-z0-9_-]{11}$/.test(input)) {
+        /* RAW ID */
+
+        if (
+            /^[A-Za-z0-9_-]{11}$/
+                .test(input)
+        ) {
             return input;
         }
 
 
         try {
 
-            const url = new URL(input);
+            const url =
+                new URL(input);
 
             const host =
                 url.hostname
@@ -382,40 +530,45 @@ document.addEventListener("DOMContentLoaded", () => {
                     .replace(/^www\./, "");
 
 
-            if (
-                host === "youtu.be"
-            ) {
+            /* YOUTU.BE */
+
+            if (host === "youtu.be") {
 
                 const id =
                     url.pathname
                         .split("/")
                         .filter(Boolean)[0];
 
-                return /^[A-Za-z0-9_-]{11}$/.test(id)
+                return id &&
+                    /^[A-Za-z0-9_-]{11}$/.test(id)
                     ? id
                     : null;
             }
 
+
+            /* YOUTUBE */
 
             if (
                 host === "youtube.com" ||
                 host === "m.youtube.com"
             ) {
 
-                /* watch?v= */
+
+                /* WATCH */
 
                 const watchID =
                     url.searchParams.get("v");
 
                 if (
                     watchID &&
-                    /^[A-Za-z0-9_-]{11}$/.test(watchID)
+                    /^[A-Za-z0-9_-]{11}$/
+                        .test(watchID)
                 ) {
                     return watchID;
                 }
 
 
-                /* shorts */
+                /* SHORTS */
 
                 const shorts =
                     url.pathname.match(
@@ -427,7 +580,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* embed */
+                /* EMBED */
 
                 const embed =
                     url.pathname.match(
@@ -439,7 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* live */
+                /* LIVE */
 
                 const live =
                     url.pathname.match(
@@ -473,24 +626,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 startDateInput.value
             );
 
+
         if (!date) {
 
-            alert("Vui lòng chọn ngày bắt đầu yêu.");
+            alert(
+                "Vui lòng chọn ngày bắt đầu yêu."
+            );
+
+            startDateInput.focus();
 
             return false;
         }
 
 
-        const now = new Date();
+        const now =
+            new Date();
 
-        now.setHours(23, 59, 59, 999);
+        now.setHours(
+            23,
+            59,
+            59,
+            999
+        );
+
 
         if (date > now) {
 
-            alert("Ngày bắt đầu yêu không thể ở tương lai.");
+            alert(
+                "Ngày bắt đầu yêu không thể ở tương lai."
+            );
+
+            startDateInput.focus();
 
             return false;
         }
+
 
         return true;
 
@@ -498,7 +668,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CREATE URL
+       BUILD URL
        ===================================================== */
 
     function buildGiftURL() {
@@ -509,42 +679,50 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href
             );
 
+
         url.searchParams.set(
             "c",
             coupleInput.value.trim()
         );
+
 
         url.searchParams.set(
             "t",
             receiverInput.value.trim()
         );
 
+
         url.searchParams.set(
             "d",
             startDateInput.value
         );
 
+
         url.searchParams.set(
             "m",
             extractYouTubeId(
                 musicInput.value.trim()
-            )
+            ) || ""
         );
+
 
         url.searchParams.set(
             "l",
             letterInput.value.trim()
         );
 
+
         url.searchParams.set(
             "theme",
             selectedTheme
         );
 
+
         url.searchParams.set(
             "style",
             selectedStyle
         );
+
 
         return url.href;
 
@@ -557,7 +735,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function createQRCode(url) {
 
-        if (!qrImage) return;
+        if (!qrImage) {
+            return;
+        }
+
 
         qrImage.src =
             "https://api.qrserver.com/v1/create-qr-code/" +
@@ -570,7 +751,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CREATE GIFT
+       CREATE
        ===================================================== */
 
     function createGift() {
@@ -590,7 +771,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!couple) {
 
-            alert("Vui lòng nhập tên hai người.");
+            alert(
+                "Vui lòng nhập tên hai người."
+            );
 
             coupleInput.focus();
 
@@ -600,7 +783,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!receiver) {
 
-            alert("Vui lòng nhập tên người nhận.");
+            alert(
+                "Vui lòng nhập tên người nhận."
+            );
 
             receiverInput.focus();
 
@@ -615,7 +800,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!music) {
 
-            alert("Vui lòng nhập link YouTube.");
+            alert(
+                "Vui lòng nhập link YouTube."
+            );
 
             musicInput.focus();
 
@@ -625,6 +812,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const youtubeID =
             extractYouTubeId(music);
+
 
         if (!youtubeID) {
 
@@ -642,7 +830,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!letter) {
 
-            alert("Bạn hãy viết một lời muốn nói ❤️");
+            alert(
+                "Bạn hãy viết một lời muốn nói ❤️"
+            );
 
             letterInput.focus();
 
@@ -663,12 +853,14 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        result.classList.remove("hidden");
+        result.classList.remove(
+            "hidden"
+        );
 
 
         result.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+            behavior:"smooth",
+            block:"start"
         });
 
     }
@@ -680,7 +872,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function copyGiftLink() {
 
-        if (!generatedGiftURL) return;
+        if (!generatedGiftURL) {
+            return;
+        }
+
 
         try {
 
@@ -688,35 +883,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 generatedGiftURL
             );
 
+
             const oldText =
                 copyButton.textContent;
 
+
             copyButton.textContent =
                 "✅ Đã sao chép!";
+
 
             setTimeout(() => {
 
                 copyButton.textContent =
                     oldText;
 
-            }, 1800);
+            },1800);
+
 
         } catch (error) {
 
             generatedLink.focus();
+
             generatedLink.select();
 
             document.execCommand("copy");
 
+
             copyButton.textContent =
                 "✅ Đã sao chép!";
+
 
             setTimeout(() => {
 
                 copyButton.textContent =
                     "📋 Sao chép link";
 
-            }, 1800);
+            },1800);
 
         }
 
@@ -729,7 +931,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openGift() {
 
-        if (!generatedGiftURL) return;
+        if (!generatedGiftURL) {
+            return;
+        }
 
         window.location.href =
             generatedGiftURL;
@@ -772,7 +976,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       INITIAL PREVIEW
+       INITIAL
        ===================================================== */
 
     updatePreview();
