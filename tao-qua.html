@@ -12,13 +12,1479 @@
 
     <meta
         name="theme-color"
-        content="#160b18"
+        content="#170b18"
+    >
+
+    <meta
+        name="description"
+        content="Tạo một món quà tình yêu kỹ thuật số dành cho người đặc biệt."
     >
 
     <title>Tạo món quà ❤️</title>
 
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/themes.css">
+
+    <style>
+
+        /* =========================================================
+           LOVE STORY — GIFT BUILDER PREMIUM
+           ========================================================= */
+
+        :root {
+            --builder-bg-1: #130914;
+            --builder-bg-2: #241022;
+            --builder-bg-3: #3a172f;
+
+            --builder-card: rgba(255, 255, 255, 0.075);
+            --builder-card-border: rgba(255, 255, 255, 0.13);
+
+            --builder-text: #fff8fc;
+            --builder-text-soft: rgba(255, 240, 248, 0.68);
+            --builder-text-muted: rgba(255, 240, 248, 0.48);
+
+            --builder-accent: #ff6f9d;
+            --builder-accent-2: #ff9fbd;
+
+            --builder-radius: 28px;
+            --builder-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.32);
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            color: var(--builder-text);
+
+            background:
+                radial-gradient(
+                    circle at 10% 5%,
+                    rgba(255, 100, 160, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(190, 100, 255, 0.13),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(255, 70, 130, 0.12),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    145deg,
+                    var(--builder-bg-1),
+                    var(--builder-bg-2) 52%,
+                    var(--builder-bg-3)
+                );
+
+            background-attachment: fixed;
+        }
+
+
+        body::before {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 50% 15%,
+                    rgba(255,255,255,0.05),
+                    transparent 38%
+                );
+
+            z-index: -1;
+        }
+
+
+        /* =========================================================
+           PAGE
+           ========================================================= */
+
+        .create-page {
+            width: 100%;
+            min-height: 100vh;
+
+            padding:
+                55px
+                20px
+                90px;
+        }
+
+
+        .create-container {
+            width: min(920px, 100%);
+            margin: 0 auto;
+        }
+
+
+        /* =========================================================
+           HEADER
+           ========================================================= */
+
+        .create-header {
+            text-align: center;
+
+            margin-bottom: 42px;
+
+            animation:
+                builderFadeUp
+                0.8s
+                ease both;
+        }
+
+
+        .create-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 15px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.13);
+
+            border-radius: 999px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            color:
+                rgba(255, 210, 230, 0.78);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 0.22em;
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.16);
+        }
+
+
+        .create-label::before {
+            content: "♡";
+
+            font-size: 15px;
+
+            color:
+                var(--builder-accent);
+        }
+
+
+        .create-header h1 {
+            margin:
+                18px
+                0
+                12px;
+
+            font-size:
+                clamp(
+                    38px,
+                    7vw,
+                    64px
+                );
+
+            line-height: 1.05;
+
+            font-weight: 800;
+
+            letter-spacing: -0.04em;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #ffd6e5 45%,
+                    #ff91b7
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+
+            text-shadow:
+                0 15px 50px
+                rgba(255, 100, 160, 0.12);
+        }
+
+
+        .create-header p {
+            width: min(520px, 100%);
+
+            margin:
+                0
+                auto;
+
+            color:
+                var(--builder-text-soft);
+
+            font-size: 16px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           FORM CARD
+           ========================================================= */
+
+        .form-card {
+            position: relative;
+
+            margin-bottom: 24px;
+
+            padding:
+                30px;
+
+            border:
+                1px solid
+                var(--builder-card-border);
+
+            border-radius:
+                var(--builder-radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.095),
+                    rgba(255,255,255,0.045)
+                );
+
+            box-shadow:
+                var(--builder-shadow);
+
+            backdrop-filter:
+                blur(24px);
+
+            -webkit-backdrop-filter:
+                blur(24px);
+
+            overflow: hidden;
+
+            animation:
+                builderFadeUp
+                0.75s
+                ease both;
+        }
+
+
+        .form-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            top: -140px;
+            right: -100px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 110, 160, 0.09);
+
+            filter:
+                blur(10px);
+
+            pointer-events: none;
+        }
+
+
+        .form-card h2 {
+            position: relative;
+
+            margin:
+                0
+                0
+                26px;
+
+            font-size: 21px;
+
+            font-weight: 750;
+
+            letter-spacing: -0.015em;
+        }
+
+
+        .form-description {
+            margin:
+                -12px
+                0
+                24px;
+
+            color:
+                var(--builder-text-muted);
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================================
+           LABEL
+           ========================================================= */
+
+        .form-card label {
+            display: block;
+
+            margin:
+                20px
+                0
+                9px;
+
+            color:
+                rgba(255, 240, 248, 0.78);
+
+            font-size: 13px;
+
+            font-weight: 650;
+
+            letter-spacing: 0.01em;
+        }
+
+
+        .form-card label:first-of-type {
+            margin-top: 0;
+        }
+
+
+        /* =========================================================
+           INPUT
+           ========================================================= */
+
+        .form-card input[type="text"],
+        .form-card input[type="url"],
+        .form-card input[type="date"],
+        .form-card textarea,
+        #generatedLink {
+
+            width: 100%;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.105);
+
+            border-radius: 17px;
+
+            outline: none;
+
+            background:
+                rgba(10, 5, 12, 0.28);
+
+            color:
+                #fff;
+
+            padding:
+                15px
+                17px;
+
+            font-family:
+                inherit;
+
+            font-size: 15px;
+
+            transition:
+                border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .form-card input[type="text"],
+        .form-card input[type="url"],
+        .form-card input[type="date"] {
+            min-height: 54px;
+        }
+
+
+        .form-card textarea {
+            min-height: 150px;
+
+            resize: vertical;
+
+            line-height: 1.75;
+        }
+
+
+        .form-card input::placeholder,
+        .form-card textarea::placeholder {
+            color:
+                rgba(255, 235, 245, 0.34);
+        }
+
+
+        .form-card input:focus,
+        .form-card textarea:focus,
+        #generatedLink:focus {
+
+            border-color:
+                rgba(255, 111, 157, 0.72);
+
+            background:
+                rgba(10, 5, 12, 0.4);
+
+            box-shadow:
+                0 0 0 4px
+                rgba(255, 111, 157, 0.09),
+                0 12px 35px
+                rgba(0, 0, 0, 0.14);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* =========================================================
+           DATE
+           ========================================================= */
+
+        .form-card input[type="date"] {
+            color-scheme: dark;
+        }
+
+
+        /* =========================================================
+           THEME GRID
+           ========================================================= */
+
+        .theme-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 13px;
+        }
+
+
+        .theme-option {
+            position: relative;
+
+            min-height: 132px;
+
+            padding: 14px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            text-align: left;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.095);
+
+            border-radius: 21px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            color: white;
+
+            cursor: pointer;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.28s ease,
+                border-color 0.28s ease,
+                background 0.28s ease,
+                box-shadow 0.28s ease;
+        }
+
+
+        .theme-option:hover {
+            transform:
+                translateY(-4px);
+
+            background:
+                rgba(255,255,255,0.065);
+
+            border-color:
+                rgba(255,255,255,0.18);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,0.2);
+        }
+
+
+        .theme-option.active {
+            border-color:
+                rgba(255, 132, 173, 0.9);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,110,160,0.14),
+                    rgba(255,255,255,0.055)
+                );
+
+            box-shadow:
+                0 12px 35px
+                rgba(255, 70, 130, 0.12),
+                inset 0 0 0 1px
+                rgba(255, 170, 200, 0.08);
+        }
+
+
+        .theme-option.active::after {
+            content: "✓";
+
+            position: absolute;
+
+            top: 10px;
+            right: 10px;
+
+            width: 25px;
+            height: 25px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 111, 157, 0.95);
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 5px 18px
+                rgba(255, 80, 140, 0.25);
+        }
+
+
+        .theme-preview {
+            width: 100%;
+            height: 58px;
+
+            display: block;
+
+            border-radius: 14px;
+
+            margin-bottom: 12px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .theme-preview::after {
+            content: "♥";
+
+            position: absolute;
+
+            inset: 0;
+
+            display: grid;
+            place-items: center;
+
+            color:
+                rgba(255,255,255,0.9);
+
+            font-size: 20px;
+
+            text-shadow:
+                0 4px 15px
+                rgba(0,0,0,0.25);
+        }
+
+
+        .romantic-preview {
+            background:
+                linear-gradient(
+                    135deg,
+                    #9e173e,
+                    #e9587d,
+                    #ffb0c4
+                );
+        }
+
+
+        .rose-preview {
+            background:
+                linear-gradient(
+                    135deg,
+                    #4b071d,
+                    #9e183d,
+                    #df5470
+                );
+        }
+
+
+        .purple-preview {
+            background:
+                linear-gradient(
+                    135deg,
+                    #321354,
+                    #7540a0,
+                    #c98de0
+                );
+        }
+
+
+        .pink-preview {
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff9fba,
+                    #ffcad9,
+                    #ffe4ed
+                );
+        }
+
+
+        .night-preview {
+            background:
+                linear-gradient(
+                    135deg,
+                    #060b21,
+                    #192d66,
+                    #57458c
+                );
+        }
+
+
+        .sunset-preview {
+            background:
+                linear-gradient(
+                    135deg,
+                    #76283b,
+                    #d66049,
+                    #f2ad68
+                );
+        }
+
+
+        .theme-option strong {
+            display: block;
+
+            font-size: 14px;
+
+            line-height: 1.35;
+        }
+
+
+        .theme-option small {
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                rgba(255,235,245,0.48);
+
+            font-size: 11px;
+
+            line-height: 1.4;
+        }
+
+
+        /* =========================================================
+           STYLE GRID
+           ========================================================= */
+
+        .style-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+
+        .style-option {
+            position: relative;
+
+            display: grid;
+
+            grid-template-columns:
+                82px
+                1fr;
+
+            grid-template-rows:
+                auto
+                auto;
+
+            column-gap: 15px;
+
+            min-height: 116px;
+
+            padding: 14px;
+
+            text-align: left;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.095);
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            color: white;
+
+            cursor: pointer;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .style-option:hover {
+            transform:
+                translateY(-4px);
+
+            background:
+                rgba(255,255,255,0.065);
+
+            border-color:
+                rgba(255,255,255,0.18);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,0.2);
+        }
+
+
+        .style-option.active {
+            border-color:
+                rgba(255, 132, 173, 0.9);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,110,160,0.14),
+                    rgba(255,255,255,0.055)
+                );
+
+            box-shadow:
+                0 14px 38px
+                rgba(255, 70, 130, 0.12);
+        }
+
+
+        .style-option.active::after {
+            content: "✓";
+
+            position: absolute;
+
+            top: 10px;
+            right: 10px;
+
+            width: 25px;
+            height: 25px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 111, 157, 0.95);
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .style-preview {
+            grid-row: 1 / span 2;
+
+            width: 82px;
+            height: 86px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 17px;
+
+            overflow: hidden;
+
+            font-size: 28px;
+
+            box-shadow:
+                inset 0 0 0 1px
+                rgba(255,255,255,0.1);
+        }
+
+
+        .style-preview span {
+            filter:
+                drop-shadow(
+                    0 5px 10px
+                    rgba(0,0,0,0.2)
+                );
+        }
+
+
+        .style-glass-preview {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.32),
+                    rgba(255,120,170,0.26)
+                );
+
+            backdrop-filter:
+                blur(15px);
+        }
+
+
+        .style-luxury-preview {
+            background:
+                radial-gradient(
+                    circle at center,
+                    #77542a,
+                    #2b1b0d 65%,
+                    #0d0905
+                );
+
+            color:
+                #e9c77e;
+        }
+
+
+        .style-sakura-preview {
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8c8da,
+                    #f2dce7
+                );
+
+            color:
+                #a94b70;
+        }
+
+
+        .style-cinematic-preview {
+            background:
+                linear-gradient(
+                    145deg,
+                    #070707,
+                    #252525 50%,
+                    #050505
+                );
+
+            color:
+                #f2d28c;
+        }
+
+
+        .style-letter-preview {
+            background:
+                linear-gradient(
+                    145deg,
+                    #ead8bf,
+                    #fff2dc
+                );
+
+            color:
+                #7b493e;
+        }
+
+
+        .style-minimal-preview {
+            background:
+                linear-gradient(
+                    145deg,
+                    #fafafa,
+                    #e8e8e8
+                );
+
+            color:
+                #555;
+        }
+
+
+        .style-option strong {
+            align-self: end;
+
+            padding-right: 25px;
+
+            font-size: 14px;
+
+            line-height: 1.4;
+        }
+
+
+        .style-option small {
+            align-self: start;
+
+            padding-right: 20px;
+
+            color:
+                rgba(255,235,245,0.48);
+
+            font-size: 11px;
+
+            line-height: 1.45;
+        }
+
+
+        /* =========================================================
+           MAIN BUTTON
+           ========================================================= */
+
+        .create-button {
+            position: relative;
+
+            width: 100%;
+
+            min-height: 64px;
+
+            margin:
+                12px
+                0
+                28px;
+
+            border: none;
+
+            border-radius: 21px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff5f91,
+                    #ff86ac 48%,
+                    #e75a91
+                );
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 16px;
+
+            font-weight: 750;
+
+            letter-spacing: 0.01em;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 18px 45px
+                rgba(255, 70, 130, 0.23);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                filter 0.25s ease;
+
+            overflow: hidden;
+        }
+
+
+        .create-button::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 70%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.25),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left 0.7s ease;
+        }
+
+
+        .create-button:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 22px 55px
+                rgba(255, 70, 130, 0.3);
+
+            filter:
+                brightness(1.05);
+        }
+
+
+        .create-button:hover::before {
+            left: 140%;
+        }
+
+
+        .create-button:active {
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================================
+           RESULT
+           ========================================================= */
+
+        .result-card {
+            text-align: center;
+
+            padding:
+                34px
+                28px
+                40px;
+        }
+
+
+        .result-card h2 {
+            margin-bottom: 10px;
+        }
+
+
+        .result-card > p {
+            margin:
+                0
+                auto
+                24px;
+
+            max-width: 450px;
+
+            color:
+                var(--builder-text-soft);
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        #generatedLink {
+            text-align: center;
+
+            margin-bottom: 15px;
+
+            color:
+                #ffd6e5;
+
+            background:
+                rgba(0,0,0,0.2);
+        }
+
+
+        .result-buttons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .secondary-button {
+            min-height: 52px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.13);
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,255,255,0.055);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            font-weight: 650;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+
+        .secondary-button:hover {
+            transform:
+                translateY(-2px);
+
+            background:
+                rgba(255,255,255,0.09);
+
+            border-color:
+                rgba(255,255,255,0.22);
+        }
+
+
+        .qr-wrapper {
+            width:
+                min(
+                    330px,
+                    100%
+                );
+
+            margin:
+                0
+                auto;
+
+            padding: 15px;
+
+            border-radius: 24px;
+
+            background:
+                rgba(255,255,255,0.96);
+
+            box-shadow:
+                0 20px 60px
+                rgba(0,0,0,0.28);
+        }
+
+
+        .qr-wrapper img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            aspect-ratio: 1 / 1;
+
+            border-radius: 12px;
+
+            object-fit: contain;
+        }
+
+
+        /* =========================================================
+           HIDDEN
+           ========================================================= */
+
+        .hidden {
+            display: none !important;
+        }
+
+
+        /* =========================================================
+           ANIMATION
+           ========================================================= */
+
+        @keyframes builderFadeUp {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(22px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+           ========================================================= */
+
+        @media (max-width: 700px) {
+
+            .create-page {
+                padding:
+                    30px
+                    14px
+                    60px;
+            }
+
+
+            .create-header {
+                margin-bottom: 28px;
+            }
+
+
+            .create-header h1 {
+                margin-top: 16px;
+
+                font-size:
+                    clamp(
+                        36px,
+                        12vw,
+                        52px
+                    );
+            }
+
+
+            .create-header p {
+                font-size: 14px;
+
+                padding:
+                    0
+                    10px;
+            }
+
+
+            .form-card {
+                padding:
+                    22px
+                    17px;
+
+                border-radius: 23px;
+
+                margin-bottom: 16px;
+            }
+
+
+            .form-card h2 {
+                margin-bottom: 21px;
+
+                font-size: 19px;
+            }
+
+
+            .theme-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 10px;
+            }
+
+
+            .theme-option {
+                min-height: 125px;
+
+                padding: 11px;
+
+                border-radius: 18px;
+            }
+
+
+            .theme-preview {
+                height: 53px;
+
+                margin-bottom: 9px;
+            }
+
+
+            .theme-option strong {
+                font-size: 13px;
+            }
+
+
+            .theme-option small {
+                font-size: 10px;
+            }
+
+
+            .style-grid {
+                grid-template-columns: 1fr;
+
+                gap: 10px;
+            }
+
+
+            .style-option {
+                min-height: 105px;
+
+                grid-template-columns:
+                    72px
+                    1fr;
+
+                column-gap: 13px;
+
+                padding: 11px;
+
+                border-radius: 19px;
+            }
+
+
+            .style-preview {
+                width: 72px;
+                height: 81px;
+
+                border-radius: 15px;
+
+                font-size: 25px;
+            }
+
+
+            .style-option strong {
+                font-size: 13px;
+            }
+
+
+            .style-option small {
+                font-size: 10px;
+            }
+
+
+            .form-card input[type="text"],
+            .form-card input[type="url"],
+            .form-card input[type="date"],
+            .form-card textarea,
+            #generatedLink {
+                font-size: 16px;
+            }
+
+
+            .form-card textarea {
+                min-height: 145px;
+            }
+
+
+            .create-button {
+                min-height: 60px;
+
+                margin-top: 5px;
+
+                border-radius: 18px;
+            }
+
+
+            .result-card {
+                padding:
+                    26px
+                    17px
+                    30px;
+            }
+
+
+            .result-buttons {
+                gap: 9px;
+            }
+
+
+            .secondary-button {
+                min-height: 50px;
+
+                font-size: 13px;
+            }
+
+
+            .qr-wrapper {
+                padding: 11px;
+
+                border-radius: 20px;
+            }
+
+        }
+
+
+        /* =========================================================
+           SMALL PHONES
+           ========================================================= */
+
+        @media (max-width: 380px) {
+
+            .create-page {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+
+            .theme-grid {
+                gap: 8px;
+            }
+
+
+            .theme-option {
+                min-height: 119px;
+            }
+
+
+            .style-option {
+                grid-template-columns:
+                    65px
+                    1fr;
+            }
+
+
+            .style-preview {
+                width: 65px;
+                height: 76px;
+            }
+
+        }
+
+
+        /* =========================================================
+           REDUCED MOTION
+           ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -30,7 +1496,11 @@
         <div class="create-container">
 
 
-            <div class="create-header">
+            <!-- =====================================================
+                 HEADER
+                 ===================================================== -->
+
+            <header class="create-header">
 
                 <div class="create-label">
                     LOVE STORY
@@ -45,42 +1515,45 @@
                     người đặc biệt ❤️
                 </p>
 
-            </div>
+            </header>
 
 
-
-            <!-- THÔNG TIN -->
+            <!-- =====================================================
+                 THÔNG TIN
+                 ===================================================== -->
 
             <section class="form-card">
 
                 <h2>
-                    💌 Thông tin
+                    💌 Thông tin món quà
                 </h2>
 
 
-                <label>
+                <label for="couple">
                     Tên hai người
                 </label>
 
                 <input
                     id="couple"
                     type="text"
+                    autocomplete="off"
                     placeholder="Ví dụ: Anh & Em"
                 >
 
 
-                <label>
+                <label for="receiver">
                     Tên người nhận
                 </label>
 
                 <input
                     id="receiver"
                     type="text"
+                    autocomplete="off"
                     placeholder="Ví dụ: Trang"
                 >
 
 
-                <label>
+                <label for="startDate">
                     Ngày bắt đầu yêu
                 </label>
 
@@ -90,38 +1563,45 @@
                 >
 
 
-                <label>
-                    Link YouTube
+                <label for="music">
+                    Bài hát YouTube
                 </label>
 
                 <input
                     id="music"
                     type="url"
-                    placeholder="https://www.youtube.com/watch?v=..."
+                    inputmode="url"
+                    autocomplete="off"
+                    placeholder="Dán link YouTube vào đây..."
                 >
 
 
-                <label>
-                    Lời nhắn
+                <label for="letter">
+                    Một lời muốn nói
                 </label>
 
                 <textarea
                     id="letter"
                     rows="7"
-                    placeholder="Viết điều bạn muốn nói..."
+                    placeholder="Viết điều bạn muốn nói với người ấy..."
                 ></textarea>
 
             </section>
 
 
-
-            <!-- CHỌN GIAO DIỆN -->
+            <!-- =====================================================
+                 MÀU SẮC
+                 ===================================================== -->
 
             <section class="form-card">
 
                 <h2>
-                    🎨 Chọn giao diện
+                    🎨 Chọn màu sắc
                 </h2>
+
+                <p class="form-description">
+                    Chọn gam màu phù hợp với câu chuyện của hai người
+                </p>
 
 
                 <div class="theme-grid">
@@ -133,7 +1613,9 @@
                         data-theme="romantic"
                     >
 
-                        <span class="theme-preview romantic-preview"></span>
+                        <span
+                            class="theme-preview romantic-preview"
+                        ></span>
 
                         <strong>
                             ❤️ Romantic
@@ -152,7 +1634,9 @@
                         data-theme="rose"
                     >
 
-                        <span class="theme-preview rose-preview"></span>
+                        <span
+                            class="theme-preview rose-preview"
+                        ></span>
 
                         <strong>
                             🌹 Rose
@@ -171,7 +1655,9 @@
                         data-theme="purple"
                     >
 
-                        <span class="theme-preview purple-preview"></span>
+                        <span
+                            class="theme-preview purple-preview"
+                        ></span>
 
                         <strong>
                             💜 Purple
@@ -190,7 +1676,9 @@
                         data-theme="pink"
                     >
 
-                        <span class="theme-preview pink-preview"></span>
+                        <span
+                            class="theme-preview pink-preview"
+                        ></span>
 
                         <strong>
                             🌸 Sweet Pink
@@ -209,7 +1697,9 @@
                         data-theme="night"
                     >
 
-                        <span class="theme-preview night-preview"></span>
+                        <span
+                            class="theme-preview night-preview"
+                        ></span>
 
                         <strong>
                             🌌 Night Love
@@ -228,7 +1718,9 @@
                         data-theme="sunset"
                     >
 
-                        <span class="theme-preview sunset-preview"></span>
+                        <span
+                            class="theme-preview sunset-preview"
+                        ></span>
 
                         <strong>
                             🌅 Sunset
@@ -240,82 +1732,189 @@
 
                     </button>
 
+
                 </div>
 
             </section>
-<section class="form-card">
-  <h2>✨ Chọn phong cách</h2>
-  <p class="form-description">
-    Chọn phong cách tổng thể cho câu chuyện tình yêu của bạn
-  </p>
-
-  <div class="style-grid">
-
-    <button type="button" class="style-option active" data-style="glass">
-      <span class="style-preview style-glass-preview">
-        <span>♥</span>
-      </span>
-      <strong>💎 Glass Romance</strong>
-      <small>Kính trong suốt • Hiện đại • Lung linh</small>
-    </button>
-
-    <button type="button" class="style-option" data-style="luxury">
-      <span class="style-preview style-luxury-preview">
-        <span>♛</span>
-      </span>
-      <strong>👑 Luxury Love</strong>
-      <small>Sang trọng • Cao cấp • Quyến rũ</small>
-    </button>
-
-    <button type="button" class="style-option" data-style="sakura">
-      <span class="style-preview style-sakura-preview">
-        <span>🌸</span>
-      </span>
-      <strong>🌸 Sakura Dream</strong>
-      <small>Hoa anh đào • Dịu dàng • Mộng mơ</small>
-    </button>
-
-    <button type="button" class="style-option" data-style="cinematic">
-      <span class="style-preview style-cinematic-preview">
-        <span>🎞</span>
-      </span>
-      <strong>🎞️ Cinematic</strong>
-      <small>Điện ảnh • Kịch tính • Ấn tượng</small>
-    </button>
-
-    <button type="button" class="style-option" data-style="letter">
-      <span class="style-preview style-letter-preview">
-        <span>💌</span>
-      </span>
-      <strong>💌 Love Letter</strong>
-      <small>Thư tình • Ấm áp • Cổ điển</small>
-    </button>
-
-    <button type="button" class="style-option" data-style="minimal">
-      <span class="style-preview style-minimal-preview">
-        <span>♡</span>
-      </span>
-      <strong>🤍 Minimal Love</strong>
-      <small>Tối giản • Tinh tế • Thanh lịch</small>
-    </button>
-
-  </div>
-</section>
 
 
-            <!-- NÚT TẠO -->
+            <!-- =====================================================
+                 PHONG CÁCH
+                 ===================================================== -->
+
+            <section class="form-card">
+
+                <h2>
+                    ✨ Chọn phong cách
+                </h2>
+
+                <p class="form-description">
+                    Chọn phong cách tổng thể cho câu chuyện tình yêu của bạn
+                </p>
+
+
+                <div class="style-grid">
+
+
+                    <button
+                        type="button"
+                        class="style-option active"
+                        data-style="glass"
+                    >
+
+                        <span
+                            class="style-preview style-glass-preview"
+                        >
+                            <span>♥</span>
+                        </span>
+
+                        <strong>
+                            💎 Glass Romance
+                        </strong>
+
+                        <small>
+                            Kính trong suốt • Hiện đại • Lung linh
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="style-option"
+                        data-style="luxury"
+                    >
+
+                        <span
+                            class="style-preview style-luxury-preview"
+                        >
+                            <span>♛</span>
+                        </span>
+
+                        <strong>
+                            👑 Luxury Love
+                        </strong>
+
+                        <small>
+                            Sang trọng • Cao cấp • Quyến rũ
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="style-option"
+                        data-style="sakura"
+                    >
+
+                        <span
+                            class="style-preview style-sakura-preview"
+                        >
+                            <span>🌸</span>
+                        </span>
+
+                        <strong>
+                            🌸 Sakura Dream
+                        </strong>
+
+                        <small>
+                            Hoa anh đào • Dịu dàng • Mộng mơ
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="style-option"
+                        data-style="cinematic"
+                    >
+
+                        <span
+                            class="style-preview style-cinematic-preview"
+                        >
+                            <span>🎞</span>
+                        </span>
+
+                        <strong>
+                            🎞️ Cinematic
+                        </strong>
+
+                        <small>
+                            Điện ảnh • Kịch tính • Ấn tượng
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="style-option"
+                        data-style="letter"
+                    >
+
+                        <span
+                            class="style-preview style-letter-preview"
+                        >
+                            <span>💌</span>
+                        </span>
+
+                        <strong>
+                            💌 Love Letter
+                        </strong>
+
+                        <small>
+                            Thư tình • Ấm áp • Cổ điển
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="style-option"
+                        data-style="minimal"
+                    >
+
+                        <span
+                            class="style-preview style-minimal-preview"
+                        >
+                            <span>♡</span>
+                        </span>
+
+                        <strong>
+                            🤍 Minimal Love
+                        </strong>
+
+                        <small>
+                            Tối giản • Tinh tế • Thanh lịch
+                        </small>
+
+                    </button>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 CREATE
+                 ===================================================== -->
 
             <button
                 id="createButton"
                 class="main-button create-button"
                 type="button"
             >
-                Tạo món quà ❤️
+                ✨ Tạo món quà ❤️
             </button>
 
 
-
-            <!-- KẾT QUẢ -->
+            <!-- =====================================================
+                 RESULT
+                 ===================================================== -->
 
             <section
                 id="result"
@@ -328,7 +1927,8 @@
 
 
                 <p>
-                    Sao chép link hoặc quét mã QR để gửi.
+                    Link của bạn đã được tạo.
+                    Hãy gửi món quà này đến người đặc biệt ❤️
                 </p>
 
 
@@ -336,6 +1936,7 @@
                     id="generatedLink"
                     type="text"
                     readonly
+                    aria-label="Link món quà"
                 >
 
 
@@ -346,7 +1947,7 @@
                         type="button"
                         class="secondary-button"
                     >
-                        📋 Sao chép
+                        📋 Sao chép link
                     </button>
 
 
@@ -366,11 +1967,13 @@
                     <img
                         id="qrImage"
                         alt="Mã QR món quà"
+                        loading="eager"
                     >
 
                 </div>
 
             </section>
+
 
         </div>
 
