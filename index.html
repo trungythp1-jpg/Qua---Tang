@@ -35,7 +35,7 @@
 
 
   <!-- =====================================================
-       CSS DỰ PHÒNG
+       CSS DỰ PHÒNG / OVERRIDE
        ===================================================== -->
 
   <style>
@@ -47,6 +47,7 @@
     #openingScreen {
       position: fixed;
       inset: 0;
+
       z-index: 99999;
 
       width: 100%;
@@ -54,6 +55,7 @@
       min-height: 100svh;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -86,6 +88,7 @@
 
     .opening-inner {
       position: relative;
+
       z-index: 100;
 
       width: min(620px, 100%);
@@ -98,7 +101,8 @@
 
     .opening-heart {
       position: relative;
-      z-index: 2;
+
+      z-index: 10;
 
       width: 92px;
       height: 92px;
@@ -106,12 +110,14 @@
       margin: 0 auto 28px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
       border-radius: 50%;
 
       font-size: 48px;
+
       line-height: 1;
 
       animation:
@@ -133,14 +139,20 @@
     }
 
 
-    .opening-label {
-
+    .opening-label,
+    .opening-title,
+    .opening-description {
       position: relative;
-      z-index: 2;
+      z-index: 10;
+    }
+
+
+    .opening-label {
 
       margin-bottom: 18px;
 
       font-size: 13px;
+
       font-weight: 700;
 
       letter-spacing: .25em;
@@ -151,12 +163,10 @@
 
     .opening-title {
 
-      position: relative;
-      z-index: 2;
-
       margin: 0 0 20px;
 
-      font-size: clamp(30px, 8vw, 58px);
+      font-size:
+        clamp(30px, 8vw, 58px);
 
       line-height: 1.15;
 
@@ -170,9 +180,6 @@
 
 
     .opening-description {
-
-      position: relative;
-      z-index: 2;
 
       max-width: 470px;
 
@@ -189,6 +196,7 @@
     #openGiftButton {
 
       position: relative;
+
       z-index: 1000;
 
       min-width: 230px;
@@ -204,6 +212,7 @@
       cursor: pointer;
 
       font-size: 16px;
+
       font-weight: 700;
 
       -webkit-tap-highlight-color: transparent;
@@ -301,7 +310,8 @@
 
       margin: 0;
 
-      font-size: clamp(42px, 10vw, 82px);
+      font-size:
+        clamp(42px, 10vw, 82px);
 
       line-height: 1.05;
     }
@@ -394,7 +404,8 @@
 
     .counter-number {
 
-      font-size: clamp(28px, 7vw, 48px);
+      font-size:
+        clamp(28px, 7vw, 48px);
 
       font-weight: 700;
 
@@ -459,44 +470,112 @@
        LOVE LETTER
        ===================================================== */
 
-    .love-letter {
+    /*
+      Tiêu đề nằm NGOÀI card.
+      Card chỉ chứa duy nhất nội dung thư.
+    */
 
-      width: min(800px, 100%);
+    .letter-section {
+      width: 100%;
+    }
 
-      margin: 30px auto 0;
 
-      padding: 35px 28px;
+    .letter-section > .section-title {
+      position: relative;
 
-      border-radius: 22px;
+      z-index: 20;
+
+      text-align: center;
+
+      margin-bottom: 24px;
     }
 
 
     /*
-       Chỉ có MỘT vùng chứa nội dung thư.
-       Không dùng .letter-title nữa.
+      CARD THƯ
+      -----------------------------------------------
+      Nội dung được căn giữa theo cả chiều ngang
+      và chiều dọc.
     */
 
-    .letter-content {
+    .letter-section .love-letter {
+
+      width: min(800px, 100%);
+
+      min-height: 620px;
+
+      margin: 0 auto;
+
+      padding: 40px 32px;
+
+      border-radius: 22px;
+
+      display: flex !important;
+
+      align-items: center !important;
+
+      justify-content: center !important;
+
+      position: relative;
+
+      box-sizing: border-box;
+
+      overflow: hidden;
+    }
+
+
+    /*
+      Nội dung thư duy nhất
+    */
+
+    .letter-section .letter-content {
+
+      display: block !important;
+
+      width: min(680px, 100%);
+
+      max-width: 680px;
+
+      margin: 0 auto !important;
+
+      padding: 0 !important;
 
       white-space: pre-wrap;
 
-      font-size: 17px;
+      text-align: center !important;
+
+      font-size: 21px;
 
       line-height: 1.9;
 
-      text-align: left;
+      font-weight: 400;
 
       word-break: break-word;
 
       overflow-wrap: anywhere;
+
+      position: relative;
+
+      z-index: 10;
+
+      transform: none !important;
+
+      top: auto !important;
+
+      bottom: auto !important;
+
+      left: auto !important;
+
+      right: auto !important;
     }
 
 
     /*
-       Không cho CSS làm chữ cái đầu phóng to.
+      Chặn hoàn toàn hiệu ứng chữ cái đầu phóng to
+      từ luxury-premium.css.
     */
 
-    .letter-content::first-letter {
+    .letter-section .letter-content::first-letter {
 
       font-size: inherit !important;
 
@@ -509,6 +588,16 @@
       margin: 0 !important;
 
       color: inherit !important;
+    }
+
+
+    /*
+      Nếu CSS style cũ tạo .letter-title,
+      không cho nó xuất hiện trong card.
+    */
+
+    .letter-section .letter-title {
+      display: none !important;
     }
 
 
@@ -541,7 +630,8 @@
 
       margin: 0 0 18px;
 
-      font-size: clamp(32px, 8vw, 54px);
+      font-size:
+        clamp(32px, 8vw, 54px);
     }
 
 
@@ -610,7 +700,6 @@
 
         grid-template-columns:
           repeat(2, minmax(0, 1fr));
-
       }
 
 
@@ -620,17 +709,69 @@
       }
 
 
-      .love-letter {
+      /* -----------------------------------------------
+         LOVE LETTER MOBILE
+         ----------------------------------------------- */
 
-        padding: 28px 20px;
+      .letter-section > .section-title {
+
+        margin-bottom: 20px;
       }
 
 
-      .letter-content {
+      .letter-section .love-letter {
 
-        font-size: 16px;
+        min-height: 560px;
+
+        padding: 32px 20px;
+
+        border-radius: 20px;
+      }
+
+
+      .letter-section .letter-content {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        font-size: 20px;
 
         line-height: 1.85;
+
+        text-align: center !important;
+      }
+
+
+      .ending-inner {
+
+        padding:
+          70px 20px;
+      }
+
+    }
+
+
+    /* =====================================================
+       VERY SMALL PHONES
+       ===================================================== */
+
+    @media (max-width: 380px) {
+
+      .letter-section .love-letter {
+
+        min-height: 520px;
+
+        padding:
+          28px 18px;
+      }
+
+
+      .letter-section .letter-content {
+
+        font-size: 18px;
+
+        line-height: 1.8;
       }
 
     }
@@ -655,7 +796,6 @@
   >
 
     <div class="opening-inner">
-
 
       <div class="opening-heart">
         ♥
@@ -738,9 +878,11 @@
         <p class="hero-subtitle">
 
           Một câu chuyện nhỏ của
+
           <span id="heroReceiver">
             em
           </span>
+
           và anh ❤️
 
         </p>
@@ -952,12 +1094,14 @@
       </div>
 
 
-      <div class="love-letter">
+      <!--
+        QUAN TRỌNG:
 
-        <!--
-          CHỈ DUY NHẤT MỘT ID:
-          #letterContent
-        -->
+        Chỉ có DUY NHẤT một vùng chứa thư.
+        Không còn #loveLetter.
+      -->
+
+      <div class="love-letter">
 
         <div
           id="letterContent"
@@ -1030,212 +1174,6 @@
 
 
   <!-- =====================================================
-       OPENING SCRIPT
-       ===================================================== -->
-
-  <script>
-
-    (function () {
-
-      "use strict";
-
-
-      function openGift() {
-
-        const opening =
-          document.getElementById(
-            "openingScreen"
-          );
-
-        const story =
-          document.getElementById(
-            "storyContent"
-          );
-
-        const button =
-          document.getElementById(
-            "openGiftButton"
-          );
-
-
-        if (!opening || !story) {
-
-          console.error(
-            "Không tìm thấy openingScreen hoặc storyContent."
-          );
-
-          return;
-        }
-
-
-        /*
-         * Không cho mở nhiều lần
-         */
-
-        if (
-          button &&
-          button.disabled
-        ) {
-
-          return;
-
-        }
-
-
-        /*
-         * KHÓA NÚT
-         */
-
-        if (button) {
-
-          button.disabled = true;
-
-          button.style.pointerEvents =
-            "none";
-
-        }
-
-
-        /*
-         * HIỆN STORY
-         */
-
-        story.style.display =
-          "block";
-
-        story.style.visibility =
-          "visible";
-
-        story.style.opacity =
-          "1";
-
-        story.style.pointerEvents =
-          "auto";
-
-        story.classList.add(
-          "story-visible"
-        );
-
-        story.setAttribute(
-          "aria-hidden",
-          "false"
-        );
-
-
-        /*
-         * ẨN OPENING
-         */
-
-        opening.classList.add(
-          "opening-hidden"
-        );
-
-        opening.setAttribute(
-          "aria-hidden",
-          "true"
-        );
-
-
-        /*
-         * XÓA OPENING SAU ANIMATION
-         */
-
-        setTimeout(
-          function () {
-
-            opening.style.display =
-              "none";
-
-          },
-          500
-        );
-
-
-        /*
-         * ĐƯA TRANG VỀ ĐẦU
-         */
-
-        window.scrollTo(
-          0,
-          0
-        );
-
-      }
-
-
-
-      /*
-       * CHỜ DOM
-       */
-
-      document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-
-          const button =
-            document.getElementById(
-              "openGiftButton"
-            );
-
-
-          if (!button) {
-
-            console.error(
-              "Không tìm thấy nút #openGiftButton"
-            );
-
-            return;
-          }
-
-
-          /*
-           * CLICK
-           */
-
-          button.addEventListener(
-            "click",
-            function (event) {
-
-              event.preventDefault();
-              event.stopPropagation();
-
-              openGift();
-
-            },
-            false
-          );
-
-
-          /*
-           * TOUCH — iPHONE
-           */
-
-          button.addEventListener(
-            "touchend",
-            function (event) {
-
-              event.preventDefault();
-
-              event.stopPropagation();
-
-              openGift();
-
-            },
-            {
-              passive: false
-            }
-          );
-
-        }
-      );
-
-    })();
-
-  </script>
-
-
-
-  <!-- =====================================================
        STORY ENGINE
        ===================================================== -->
 
@@ -1246,4 +1184,5 @@
 
 
 </body>
+
 </html>
